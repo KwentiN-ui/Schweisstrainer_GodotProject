@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bugj14g6cbq0g"]
+
+[ext_resource type="PackedScene" uid="uid://bty7rjm8rgg6f" path="res://Meshes/Helm/Helm.dae" id="1_yjmh0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwymp"]
+transparency = 1
+albedo_color = Color(0.196078, 0.262745, 0, 0.670588)
+
+[node name="Helm" instance=ExtResource("1_yjmh0")]
+
+[node name="Visier" parent="Helm" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rwymp")
