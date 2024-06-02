@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://calbsc1knycfb"]
+
+[ext_resource type="Script" path="res://Objekte/Inputs/Push_Button.gd" id="1_qo0g5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xhiu4"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.137
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7x5kr"]
+albedo_color = Color(0.632764, 0, 0.150309, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_spwex"]
+top_radius = 0.03
+bottom_radius = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3cjx"]
+albedo_color = Color(0.29219, 0.29219, 0.29219, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbu1m"]
+height = 0.03
+radius = 0.03
+
+[node name="PushButton" type="Node3D" node_paths=PackedStringArray("knopfmesh")]
+script = ExtResource("1_qo0g5")
+knopfmesh = NodePath("KnopfMesh")
+
+[node name="KnopfMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.14178, 0, 0, 0, 1, 0, 0.017, 0)
+mesh = SubResource("CylinderMesh_xhiu4")
+surface_material_override/0 = SubResource("StandardMaterial3D_7x5kr")
+
+[node name="Sockel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00763709, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_spwex")
+surface_material_override/0 = SubResource("StandardMaterial3D_x3cjx")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125265, 0)
+shape = SubResource("CylinderShape3D_qbu1m")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

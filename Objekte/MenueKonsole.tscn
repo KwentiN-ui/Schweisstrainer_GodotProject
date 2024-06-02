@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://lb37klol8jor"]
+
+[ext_resource type="PackedScene" uid="uid://c1r7872wyjluo" path="res://Szenen/GUI_Test.tscn" id="1_bjmew"]
+[ext_resource type="Script" path="res://Objekte/MenueKonsole.gd" id="1_j22sk"]
+[ext_resource type="PackedScene" uid="uid://calbsc1knycfb" path="res://Objekte/Inputs/Push_Button.tscn" id="2_48amn"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4e2ja"]
+viewport_path = NodePath("SubViewport")
+
+[node name="MenueKonsole" type="Node3D"]
+script = ExtResource("1_j22sk")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -0.110982, 1, 0)
+pixel_size = 0.001
+texture = SubResource("ViewportTexture_4e2ja")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+gui_embed_subwindows = true
+size = Vector2i(400, 512)
+
+[node name="GUI" parent="SubViewport" instance=ExtResource("1_bjmew")]
+
+[node name="Hoch" parent="." instance=ExtResource("2_48amn")]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0.153064, 1.08467, -0.067032)
+
+[node name="Runter" parent="." instance=ExtResource("2_48amn")]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0.153064, 0.939036, 0.0468402)
+
+[node name="start" parent="." instance=ExtResource("2_48amn")]
+transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, -0.37657, 1.01549, -0.0112591)
+
+[connection signal="knopf_pressed" from="Hoch" to="." method="_on_hoch_knopf_pressed"]
+[connection signal="knopf_pressed" from="Runter" to="." method="_on_runter_knopf_pressed"]
+[connection signal="knopf_pressed" from="start" to="." method="_on_start_knopf_pressed"]

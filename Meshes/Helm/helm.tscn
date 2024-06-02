@@ -4,6 +4,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqg1m"]
 transparency = 1
+cull_mode = 2
 albedo_color = Color(0.443137, 0.603922, 0, 0.392157)
 
 [node name="Helm" instance=ExtResource("1_fv1gn")]

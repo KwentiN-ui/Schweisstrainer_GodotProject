@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3cgr3vswgw00"]
+[gd_scene load_steps=8 format=3 uid="uid://3cgr3vswgw00"]
 
 [ext_resource type="Script" path="res://Objekte/Spieler.gd" id="1_3qhso"]
 [ext_resource type="PackedScene" uid="uid://beclmk8hpk3ch" path="res://Objekte/Helm.tscn" id="1_nvyxg"]
@@ -6,11 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_fatwb"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="3_yp8pr"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0x4ua"]
+radius = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_htpvs"]
+radius = 0.05
+height = 0.1
+
 [node name="Spieler" type="Node3D"]
 script = ExtResource("1_3qhso")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 current = true
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("3_yp8pr")]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -24,8 +33,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
 
-[node name="FunctionTeleport" parent="XROrigin3D/LinkerController" instance=ExtResource("3_fatwb")]
-
 [node name="RechterController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
@@ -33,6 +40,14 @@ tracker = &"right_hand"
 [node name="MovementTurn" parent="XROrigin3D/RechterController" instance=ExtResource("3_4gk3v")]
 turn_mode = 2
 
-[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("3_yp8pr")]
+[node name="FunctionTeleport" parent="XROrigin3D/RechterController" instance=ExtResource("3_fatwb")]
+teleport_button_action = "ax_button"
 
-[connection signal="button_pressed" from="XROrigin3D/RechterController" to="." method="_on_rechter_controller_button_pressed"]
+[node name="Area3D" type="Area3D" parent="XROrigin3D/RechterController"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RechterController/Area3D"]
+shape = SubResource("SphereShape3D_0x4ua")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RechterController/Area3D"]
+mesh = SubResource("SphereMesh_htpvs")
+skeleton = NodePath("")
