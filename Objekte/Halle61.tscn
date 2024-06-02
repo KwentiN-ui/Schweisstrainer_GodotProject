@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgwcj6vml3eij"]
+
+[ext_resource type="PackedScene" uid="uid://b7rjgtopa16lk" path="res://Meshes/Halle61/Halle61.dae" id="1_7qeqn"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6ag2"]
+
+[node name="Halle61" type="Node3D"]
+
+[node name="Halle61" parent="." instance=ExtResource("1_7qeqn")]
+
+[node name="Boden" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boden"]
+shape = SubResource("WorldBoundaryShape3D_k6ag2")

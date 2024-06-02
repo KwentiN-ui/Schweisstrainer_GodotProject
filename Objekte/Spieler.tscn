@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://3cgr3vswgw00"]
+
+[ext_resource type="Script" path="res://Objekte/Spieler.gd" id="1_3qhso"]
+[ext_resource type="PackedScene" uid="uid://beclmk8hpk3ch" path="res://Objekte/Helm.tscn" id="1_nvyxg"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="3_4gk3v"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_fatwb"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="3_yp8pr"]
+
+[node name="Spieler" type="Node3D"]
+script = ExtResource("1_3qhso")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+current = true
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+near = 0.01
+far = 1000.0
+
+[node name="Helm" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_nvyxg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.00532508, -0.0239138)
+
+[node name="LinkerController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="FunctionTeleport" parent="XROrigin3D/LinkerController" instance=ExtResource("3_fatwb")]
+
+[node name="RechterController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="MovementTurn" parent="XROrigin3D/RechterController" instance=ExtResource("3_4gk3v")]
+turn_mode = 2
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("3_yp8pr")]
+
+[connection signal="button_pressed" from="XROrigin3D/RechterController" to="." method="_on_rechter_controller_button_pressed"]
