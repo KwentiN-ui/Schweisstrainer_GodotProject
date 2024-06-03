@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://3cgr3vswgw00"]
+[gd_scene load_steps=9 format=3 uid="uid://3cgr3vswgw00"]
 
 [ext_resource type="Script" path="res://Objekte/Spieler.gd" id="1_3qhso"]
 [ext_resource type="PackedScene" uid="uid://beclmk8hpk3ch" path="res://Objekte/Helm.tscn" id="1_nvyxg"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="3_4gk3v"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_fatwb"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="3_yp8pr"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_qfedh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0x4ua"]
 radius = 0.05
@@ -51,3 +52,6 @@ shape = SubResource("SphereShape3D_0x4ua")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RechterController/Area3D"]
 mesh = SubResource("SphereMesh_htpvs")
 skeleton = NodePath("")
+
+[node name="FunctionPointer" parent="XROrigin3D/RechterController" instance=ExtResource("6_qfedh")]
+show_laser = 2

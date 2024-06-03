@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cttqvlsid3jys"]
+
+[ext_resource type="Script" path="res://Objekte/WeldOS/WeldOS_main_menu.gd" id="1_wg2vc"]
+
+[node name="Hauptmenü" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wg2vc")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Übungen" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="Einführung" type="Button" parent="TabContainer/Übungen"]
+layout_mode = 2
+text = "Einführung"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Übungen"]
+layout_mode = 2
+
+[node name="E-Hand" type="VBoxContainer" parent="TabContainer/Übungen"]
+layout_mode = 2
+
+[node name="E-Hand Titel" type="Label" parent="TabContainer/Übungen/E-Hand"]
+layout_mode = 2
+text = "Elektrode-Hand-Schweißen"
+
+[node name="Erste Schweißnaht" type="Button" parent="TabContainer/Übungen/E-Hand"]
+layout_mode = 2
+text = "Erste Schweißnaht"
+
+[node name="Einstellungen" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Beenden" type="Button" parent="TabContainer/Einstellungen"]
+layout_mode = 2
+text = "Spiel beenden"
+alignment = 0
+
+[node name="xr meldung deaktivieren" type="SubViewport" parent="."]
+use_xr = true
+size = Vector2i(0, 0)
+
+[connection signal="pressed" from="TabContainer/Übungen/E-Hand/Erste Schweißnaht" to="." method="_on_erste_schweißnaht_pressed"]
+[connection signal="pressed" from="TabContainer/Einstellungen/Beenden" to="." method="_on_beenden_pressed"]

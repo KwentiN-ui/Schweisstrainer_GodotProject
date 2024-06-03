@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq5sj1ymiew4x"]
+
+[ext_resource type="Script" path="res://Objekte/WeldOS/WeldOS_schweisslevel.gd" id="1_yppb7"]
+[ext_resource type="Texture2D" uid="uid://cveeloijooeh0" path="res://Zeichnungen/Level1_resized.jpg" id="2_xf0im"]
+
+[node name="WeldOsSchweisslevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yppb7")
+
+[node name="Tabs" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Aufgaben" type="ItemList" parent="Tabs"]
+layout_mode = 2
+
+[node name="Zeichnung" type="VBoxContainer" parent="Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Zeichnung"]
+layout_mode = 2
+text = "Zeichnung"
+
+[node name="Bild" type="TextureRect" parent="Tabs/Zeichnung"]
+layout_mode = 2
+texture = ExtResource("2_xf0im")
+stretch_mode = 4
+
+[node name="Optionen" type="VBoxContainer" parent="Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Optionen"]
+layout_mode = 2
+text = "Optionen"
+
+[node name="Abbruch" type="Button" parent="Tabs/Optionen"]
+layout_mode = 2
+text = "Kapitel abbrechen"
+alignment = 0
+
+[node name="xr meldung deaktivieren" type="SubViewport" parent="."]
+use_xr = true
+size = Vector2i(0, 0)
+
+[node name="TODO" type="Node" parent="."]
+
+[node name="Aufgabe 1 - Test" type="Node" parent="TODO"]
+metadata/fertig = false
+
+[node name="Aufgabe 2 - Test" type="Node" parent="TODO"]
+metadata/fertig = false
+
+[node name="Diese Aufgabe ist fertig" type="Node" parent="TODO"]
+metadata/fertig = true
+
+[connection signal="pressed" from="Tabs/Optionen/Abbruch" to="." method="_on_abbruch_pressed"]

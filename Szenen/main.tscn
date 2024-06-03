@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
 [ext_resource type="PackedScene" uid="uid://bgwcj6vml3eij" path="res://Objekte/Halle61.tscn" id="3_xpm5g"]
-[ext_resource type="PackedScene" uid="uid://lb37klol8jor" path="res://Objekte/MenueKonsole.tscn" id="4_hh3f7"]
+[ext_resource type="PackedScene" uid="uid://bsl75lmsev1px" path="res://Objekte/Tablet/Tablet.tscn" id="5_53hqm"]
 [ext_resource type="PackedScene" uid="uid://cj2yms30gnuhe" path="res://Objekte/Schweissgeraet/Schweissgeraet.tscn" id="5_yum85"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bxpny"]
@@ -26,8 +26,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91026, 0, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_opc6v")
 
-[node name="MenueKonsole" parent="." instance=ExtResource("4_hh3f7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94471, 0, -0.856005)
-
 [node name="Schweissgeraet" parent="." instance=ExtResource("5_yum85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.04674)
+
+[node name="Tablet" parent="." instance=ExtResource("5_53hqm")]
+transform = Transform3D(-0.0802667, 0.220531, -0.972071, 0.939693, 0.34202, 8.88178e-16, 0.332468, -0.913448, -0.234684, 0.993825, 1.2704, 3.59609)
