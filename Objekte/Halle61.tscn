@@ -1,14 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgwcj6vml3eij"]
 
-[ext_resource type="PackedScene" uid="uid://b7rjgtopa16lk" path="res://Meshes/Halle61/Halle61.dae" id="1_7qeqn"]
+[ext_resource type="PackedScene" uid="uid://d4btfru7j7atr" path="res://Meshes/Halle61.blend" id="1_x50hd"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6ag2"]
 
 [node name="Halle61" type="Node3D"]
 
-[node name="Halle61" parent="." instance=ExtResource("1_7qeqn")]
-
 [node name="Boden" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boden"]
+visible = false
 shape = SubResource("WorldBoundaryShape3D_k6ag2")
+
+[node name="mesh" parent="." instance=ExtResource("1_x50hd")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.707107, -3.09086e-08, 0.707107, -0.707107, -3.09086e-08, 0.707107, 0, -1, -4.37114e-08, 8.82432, 13.6089, -6.30137)
+light_energy = 7.743
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 26.0184

@@ -1,33 +1,51 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=12 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
 [ext_resource type="PackedScene" uid="uid://bgwcj6vml3eij" path="res://Objekte/Halle61.tscn" id="3_xpm5g"]
 [ext_resource type="PackedScene" uid="uid://bsl75lmsev1px" path="res://Objekte/Tablet/Tablet.tscn" id="5_53hqm"]
 [ext_resource type="PackedScene" uid="uid://cj2yms30gnuhe" path="res://Objekte/Schweissgeraet/Schweissgeraet.tscn" id="5_yum85"]
+[ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch.blend" id="6_mu8py"]
+[ext_resource type="Texture2D" uid="uid://c17d3qnvro463" path="res://Bilder/Schweisszeichen.jpg" id="7_f2i3q"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bxpny"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
-[sub_resource type="Sky" id="Sky_sacwo"]
-sky_material = SubResource("ProceduralSkyMaterial_bxpny")
+[sub_resource type="Sky" id="Sky_51yyc"]
+sky_material = SubResource("ProceduralSkyMaterial_ytg4t")
 
-[sub_resource type="Environment" id="Environment_opc6v"]
+[sub_resource type="Environment" id="Environment_linc2"]
 background_mode = 2
-sky = SubResource("Sky_sacwo")
+background_energy_multiplier = 1.6
+sky = SubResource("Sky_51yyc")
+ambient_light_source = 3
+ambient_light_energy = 0.2
+volumetric_fog_density = 0.0306
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_cubk4"]
+auto_exposure_scale = 0.3
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sksy6")
 
-[node name="Spieler" parent="." instance=ExtResource("1_u04tm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91026, 0, 0)
-
-[node name="Halle61" parent="." instance=ExtResource("3_xpm5g")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_opc6v")
+environment = SubResource("Environment_linc2")
+camera_attributes = SubResource("CameraAttributesPhysical_cubk4")
+
+[node name="Spieler" parent="." instance=ExtResource("1_u04tm")]
+transform = Transform3D(-0.92959, 0, -0.368595, 0, 1, 0, 0.368595, 0, -0.92959, 2.27037, 0, 0.924155)
 
 [node name="Schweissgeraet" parent="." instance=ExtResource("5_yum85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.04674)
 
 [node name="Tablet" parent="." instance=ExtResource("5_53hqm")]
 transform = Transform3D(-0.0802667, 0.220531, -0.972071, 0.939693, 0.34202, 8.88178e-16, 0.332468, -0.913448, -0.234684, 0.993825, 1.2704, 3.59609)
+
+[node name="Halle61" parent="." instance=ExtResource("3_xpm5g")]
+
+[node name="Tisch" parent="." instance=ExtResource("6_mu8py")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.70988, 0, 3.36217)
+
+[node name="Poster Nahtarten" type="Sprite3D" parent="."]
+transform = Transform3D(0.105, 0, 4.44089e-16, 0, 0.105, 0, -4.44089e-16, 0, 0.105, 1.76948, 1.07176, 5.02057)
+flip_h = true
+texture = ExtResource("7_f2i3q")

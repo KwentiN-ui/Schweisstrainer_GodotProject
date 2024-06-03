@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -27,6 +31,11 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
+[godot_xr_tools]
+
+player/quality/msaa_3d=1
+player/standard_height=1.9
 
 [xr]
 
