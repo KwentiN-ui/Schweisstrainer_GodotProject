@@ -1,22 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj2yms30gnuhe"]
 
-[ext_resource type="PackedScene" uid="uid://o44biswwhv7k" path="res://Schweissgeraet.blend" id="1_crkb0"]
-[ext_resource type="PackedScene" uid="uid://bqovkbm21t80a" path="res://Objekte/Schweissgeraet/SG_Display.tscn" id="2_ud0xs"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_mdogl"]
-viewport_path = NodePath("Display")
+[ext_resource type="PackedScene" uid="uid://o44biswwhv7k" path="res://Meshes/Schweissgeraet.blend" id="1_v8nik"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_kesoo"]
+[ext_resource type="PackedScene" uid="uid://bly4eo4lhfmfi" path="res://Objekte/Schweissgeraet/Schweissmaschine_UI.tscn" id="3_4esfr"]
 
 [node name="Schweissgeraet" type="Node3D"]
 
-[node name="Schweissgeraet" parent="." instance=ExtResource("1_crkb0")]
+[node name="Schweissgeraet" parent="." instance=ExtResource("1_v8nik")]
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.170255, 0.916074, -0.503102)
-pixel_size = 0.0021
-texture = SubResource("ViewportTexture_mdogl")
+[node name="Bildschirm" parent="." instance=ExtResource("2_kesoo")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0.99088, -0.539477)
+scene = ExtResource("3_4esfr")
+viewport_size = Vector2(1200, 800)
 
-[node name="Display" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(79, 50)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.946328, -1.18653)
 
-[node name="SgDisplay" parent="Display" instance=ExtResource("2_ud0xs")]
+[node name="SubViewport" type="SubViewport" parent="."]
+use_xr = true
+size = Vector2i(0, 0)

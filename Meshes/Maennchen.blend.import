@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://o44biswwhv7k"
-path="res://.godot/imported/Schweissgeraet.blend-c18469d3524e43c98bec2370ed518333.scn"
+uid="uid://7qf4gih3mh48"
+path="res://.godot/imported/Maennchen.blend-fc6d3994f61b3436afdf98c6064db34c.scn"
 
 [deps]
 
-source_file="res://Schweissgeraet.blend"
-dest_files=["res://.godot/imported/Schweissgeraet.blend-c18469d3524e43c98bec2370ed518333.scn"]
+source_file="res://Meshes/Maennchen.blend"
+dest_files=["res://.godot/imported/Maennchen.blend-fc6d3994f61b3436afdf98c6064db34c.scn"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://beclmk8hpk3ch"]
 
 [ext_resource type="Script" path="res://Objekte/Helm.gd" id="1_xlrgj"]
-[ext_resource type="PackedScene" uid="uid://w0yoayfvy7n3" path="res://Meshes/Helm/helm.tscn" id="2_5wjgo"]
+[ext_resource type="PackedScene" uid="uid://w0yoayfvy7n3" path="res://Meshes/Helm/helm_import.tscn" id="2_5wjgo"]
 
 [sub_resource type="Animation" id="Animation_bl5g8"]
 resource_name = "Flip_up"
