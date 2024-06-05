@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsl75lmsev1px"]
+
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_63uo3"]
+[ext_resource type="PackedScene" uid="uid://dca5hf10uwi4h" path="res://Meshes/Tablet.blend" id="3_ga7se"]
+[ext_resource type="PackedScene" uid="uid://c2tvwgfbcfx6y" path="res://Objekte/WeldOS/WeldOS.tscn" id="3_xydwx"]
+
+[node name="Tablet" type="Node3D"]
+
+[node name="Bildschirm" parent="." instance=ExtResource("2_63uo3")]
+transform = Transform3D(2.67496e-16, 0.14, 6.11959e-09, 6.11959e-09, -6.11959e-09, 0.14, 0.14, 0, -6.11959e-09, 0.162, 0.0166414, 0)
+screen_size = Vector2(4.265, 2.125)
+scene = ExtResource("3_xydwx")
+viewport_size = Vector2(1170, 567)
+update_mode = 2
+throttle_fps = 24.0
+
+[node name="Mesh" parent="." instance=ExtResource("3_ga7se")]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2tvwgfbcfx6y"]
+
+[ext_resource type="Script" path="res://Objekte/WeldOS/WeldOS.gd" id="1_sgfo3"]
+[ext_resource type="PackedScene" uid="uid://cttqvlsid3jys" path="res://Objekte/WeldOS/WeldOS_main_menu.tscn" id="2_4mq8r"]
+[ext_resource type="PackedScene" uid="uid://bq5sj1ymiew4x" path="res://Objekte/WeldOS/WeldOS_schweisslevel.tscn" id="3_s1uq5"]
+
+[node name="WeldOS" type="Control"]
+editor_description = "Hauptnode des \"Betriebssystems\". Steuert alle Untermenüs"
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sgfo3")
+Packed_Menu_Szene = ExtResource("2_4mq8r")
+Packed_Schweiss_Szene = ExtResource("3_s1uq5")
