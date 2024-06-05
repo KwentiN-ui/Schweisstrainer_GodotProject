@@ -1,26 +1,32 @@
-[gd_scene format=3 uid="uid://bly4eo4lhfmfi"]
+[gd_scene load_steps=2 format=3 uid="uid://bly4eo4lhfmfi"]
+
+[ext_resource type="Script" path="res://Objekte/Schweissgeraet/Schweissmaschine_UI.gd" id="1_kmk28"]
 
 [node name="SchweissmaschineUi" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 48.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kmk28")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 39.0
-offset_top = -360.0
-offset_right = 461.0
-offset_bottom = -112.0
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 274.0
+offset_right = 668.0
+offset_bottom = 593.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Stromanzeige" type="Label" parent="HBoxContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -33,4 +39,30 @@ offset_right = 59.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hallo wie gehts"
+theme_override_font_sizes/font_size = 60
+text = "400 A"
+
+[node name="Stromslider" type="VSlider" parent="HBoxContainer"]
+layout_mode = 2
+min_value = 40.0
+max_value = 360.0
+step = 5.0
+value = 100.0
+tick_count = 10
+
+[node name="Einschalter" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -176.0
+offset_top = 59.0
+offset_right = -63.0
+offset_bottom = 122.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "EIN"
+
+[connection signal="value_changed" from="HBoxContainer/Stromslider" to="." method="_on_v_slider_value_changed"]
+[connection signal="toggled" from="Einschalter" to="." method="_on_einschalter_toggled"]
