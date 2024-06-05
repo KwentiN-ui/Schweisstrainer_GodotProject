@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://5eglfofw65c4"]
+
+[ext_resource type="PackedScene" uid="uid://dmc80edjpj5j1" path="res://Szenen/main.tscn" id="1_5yfs6"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="2_t0cb6"]
+
+[node name="Main_XR_sim" type="Node3D"]
+
+[node name="Main" parent="." instance=ExtResource("1_5yfs6")]
+
+[node name="XRSimulator" parent="." instance=ExtResource("2_t0cb6")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=18 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="9_nv0w0"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="10_b3yke"]
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
-[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="12_xjmml"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
@@ -80,5 +79,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133318, -0.119781, 0.03798
 
 [node name="Schweisstisch" parent="." instance=ExtResource("10_cvuox")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.68973, 0, 2.78977)
-
-[node name="XRSimulator" parent="." instance=ExtResource("12_xjmml")]
