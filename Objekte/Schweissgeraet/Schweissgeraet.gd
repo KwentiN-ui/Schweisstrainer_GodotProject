@@ -1,6 +1,7 @@
 extends Node3D
 class_name Schweissmaschine
 
+@export var halter:XRToolsPickable
 var ui:Control
 var display:Label 
 var strom_ein:bool:

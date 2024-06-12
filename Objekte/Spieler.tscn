@@ -37,6 +37,7 @@ tracker = &"left_hand"
 [node name="LeftPhysicsHand" parent="XROrigin3D/LinkerController" instance=ExtResource("4_5whye")]
 
 [node name="FunctionPickup" parent="XROrigin3D/LinkerController" instance=ExtResource("7_11dud")]
+grab_distance = 0.1
 ranged_enable = false
 
 [node name="FunctionPointer" parent="XROrigin3D/LinkerController" instance=ExtResource("6_qfedh")]
@@ -63,4 +64,5 @@ show_laser = 2
 laser_length = 1
 
 [node name="FunctionPickup" parent="XROrigin3D/RechterController" instance=ExtResource("7_11dud")]
+grab_distance = 0.1
 ranged_enable = false

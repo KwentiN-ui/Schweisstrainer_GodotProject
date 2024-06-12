@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://o44biswwhv7k"
-path="res://.godot/imported/Schweissgeraet.blend-aa3dd87dd7dddf5e01087d144127bc85.scn"
+uid="uid://bu2bx8vq1gd6s"
+path="res://.godot/imported/Elektttrodenhalter.blend-cbfcaf29272f2a4566adaca48bcb344f.scn"
 
 [deps]
 
-source_file="res://Meshes/Schweissgeraet.blend"
-dest_files=["res://.godot/imported/Schweissgeraet.blend-aa3dd87dd7dddf5e01087d144127bc85.scn"]
+source_file="res://Meshes/Elektttrodenhalter.blend"
+dest_files=["res://.godot/imported/Elektttrodenhalter.blend-cbfcaf29272f2a4566adaca48bcb344f.scn"]
 
 [params]
 
@@ -31,7 +31,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "meshes": {
-"Schweissgeraet_Cube_002": {
+"Elektttrodenhalter_Cube_004": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
@@ -39,7 +39,12 @@ _subresources={
 "lods/normal_split_angle": 25.0,
 "save_to_file/enabled": true,
 "save_to_file/make_streamable": "",
-"save_to_file/path": "res://Meshes/Schweissmaschine_mesh.res"
+"save_to_file/path": "res://Meshes/Elektrodenhalter_mesh_col.res"
+}
+},
+"nodes": {
+"PATH:Hebel": {
+"physics/shape_type": 2
 }
 }
 }
