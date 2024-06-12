@@ -48,7 +48,7 @@ transform = Transform3D(-0.92959, 0, -0.368595, 0, 1, 0, 0.368595, 0, -0.92959, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.04674)
 
 [node name="Tablet" parent="." instance=ExtResource("5_53hqm")]
-transform = Transform3D(-0.0802667, 0.220531, -0.972071, 0.939693, 0.34202, 8.88178e-16, 0.332468, -0.913448, -0.234684, 0.993825, 1.2704, 3.59609)
+transform = Transform3D(1.24577e-07, 2.85, -4.30338e-07, 2.85, -1.24577e-07, -1.20702e-21, -1.88107e-14, -4.30338e-07, -2.85, 0.22985, 0.832698, 1.9639)
 
 [node name="Halle61" parent="." instance=ExtResource("3_xpm5g")]
 

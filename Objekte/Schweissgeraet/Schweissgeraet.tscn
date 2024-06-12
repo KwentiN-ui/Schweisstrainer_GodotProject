@@ -11,7 +11,7 @@ script = ExtResource("1_ypmc2")
 [node name="Mesh" parent="." instance=ExtResource("1_v8nik")]
 
 [node name="Bildschirm" parent="." instance=ExtResource("2_kesoo")]
-transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0.99088, -0.539477)
+transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0.99088, -0.503304)
 scene = ExtResource("3_4esfr")
 viewport_size = Vector2(1200, 800)
 
