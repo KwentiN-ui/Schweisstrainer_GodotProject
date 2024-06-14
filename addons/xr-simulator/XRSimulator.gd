@@ -30,10 +30,10 @@ var key_map = {
 	KEY_5: "trigger_touch",
 	KEY_6: "grip_touch",
 	KEY_7: "secondary_click",
-	KEY_8: "secondary_touch",
+	KEY_8: "eeeeeeeeeeeeeee",
 	KEY_9: "",
-	KEY_0: "",
-	KEY_MINUS: "primary_click",
+	KEY_MINUS: "",
+	KEY_0: "primary_click",
 	KEY_EQUAL: "primary_touch",
 	KEY_BACKSPACE: "",
 	KEY_ENTER: "menu_button"

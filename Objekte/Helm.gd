@@ -14,9 +14,9 @@ func _ready():
 		helm_hoch()
 
 func _input(_event):
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("v"):
 		unten = false
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("b"):
 		unten = true
 
 func helm_hoch():
