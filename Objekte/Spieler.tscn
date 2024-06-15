@@ -57,6 +57,7 @@ turn_mode = 2
 
 [node name="FunctionTeleport" parent="XROrigin3D/RechterController" instance=ExtResource("3_fatwb")]
 teleport_button_action = "ax_button"
+strength = 3.0
 
 [node name="FunctionPointer" parent="XROrigin3D/RechterController" instance=ExtResource("6_qfedh")]
 distance = 1.0
