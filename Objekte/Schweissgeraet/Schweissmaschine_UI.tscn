@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bly4eo4lhfmfi"]
+[gd_scene load_steps=3 format=3 uid="uid://bly4eo4lhfmfi"]
 
 [ext_resource type="Script" path="res://Objekte/Schweissgeraet/Schweissmaschine_UI.gd" id="1_kmk28"]
+[ext_resource type="FontFile" uid="uid://dr117qc8843yw" path="res://fonts/digital-7 (mono).ttf" id="2_8ni6i"]
 
 [node name="SchweissmaschineUi" type="Control"]
 layout_mode = 3
@@ -39,6 +40,7 @@ offset_right = 59.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8ni6i")
 theme_override_font_sizes/font_size = 60
 text = "400 A"
 
