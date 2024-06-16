@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="9_nv0w0"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="10_b3yke"]
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
+[ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
+[ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
@@ -45,12 +47,13 @@ camera_attributes = SubResource("CameraAttributesPhysical_cubk4")
 transform = Transform3D(-0.92959, 0, -0.368595, 0, 1, 0, 0.368595, 0, -0.92959, 2.27037, 0, 0.924155)
 
 [node name="Schweissgeraet" parent="." instance=ExtResource("5_yum85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.04674)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.22878)
 
 [node name="Tablet" parent="." instance=ExtResource("5_53hqm")]
 transform = Transform3D(1.24577e-07, 2.85, -4.30338e-07, 2.85, -1.24577e-07, -1.20702e-21, -1.88107e-14, -4.30338e-07, -2.85, 0.22985, 0.832698, 1.9639)
 
 [node name="Halle61" parent="." instance=ExtResource("3_xpm5g")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="Poster Nahtarten" type="Sprite3D" parent="."]
 transform = Transform3D(0.105, 0, 4.44089e-16, 0, 0.105, 0, -4.44089e-16, 0, 0.105, 1.76948, 1.07176, 5.02057)
@@ -66,6 +69,7 @@ angular_damp = 1.0
 shape = SubResource("BoxShape3D_lkxyw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="greifbares Testobjekt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.246106)
 mesh = SubResource("BoxMesh_pcn2w")
 skeleton = NodePath("")
 
@@ -79,3 +83,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133318, -0.119781, 0.03798
 
 [node name="Schweisstisch" parent="." instance=ExtResource("10_cvuox")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.68973, 0, 2.78977)
+
+[node name="normalerTisch" parent="." instance=ExtResource("13_s4owh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.22257, 0, 0.00919056)
+
+[node name="Helm_aufnehmen" parent="." instance=ExtResource("13_b2o30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)

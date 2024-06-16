@@ -1,12 +1,10 @@
 extends Node3D
-@export var unten:bool:
-	set(new_unten):
-		unten = new_unten
-		if new_unten==true:
-			helm_runter(-1)
-		elif new_unten==false:
-			helm_hoch(1.0)
+var unten:bool = false
 
+var sichtbar:bool = false
+var helm_aufsetzen_ausfueren:bool = true
+
+var aufnehmbarer_helm:Node3D
 
 var Contr_rechts:XRController3D
 var Contr_links:XRController3D
@@ -16,7 +14,8 @@ var helm_unten:bool = false
 var sekunden_seit_helm:float = 0 # sekunden seit helm animation
 var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 
-func _ready():#
+func _ready():
+	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm
 	Contr_rechts = $"../../RechterController"
 	Contr_links = $"../../LinkerController"
 	if unten:
@@ -25,6 +24,24 @@ func _ready():#
 		helm_hoch(1.0)
 
 func _physics_process(delta):
+	if sichtbar:
+		visible = true
+	else:
+		visible = false 
+	helm_bewegung(delta)
+	if is_instance_valid(aufnehmbarer_helm):
+		helm_aufnehmen(helm_aufsetzen_ausfueren)
+	
+	
+func helm_aufnehmen(ausfuehren):
+	if ausfuehren:
+		var helm_anderer_helm = (aufnehmbarer_helm.global_position-global_position) #Vektor Helm <-> rechter Controller
+		var dist_helm_anderer_helm = sqrt(helm_anderer_helm.x**2+helm_anderer_helm.y**2+helm_anderer_helm.z**2) # Abstand
+		if dist_helm_anderer_helm <= 0.3:
+			sichtbar = true
+			aufnehmbarer_helm.queue_free()
+
+func helm_bewegung(delta):
 	var helm_contr_rechts = (Contr_rechts.global_position-global_position) #Vektor Helm <-> rechter Controller
 	var dist_helm_contr_rechts = sqrt(helm_contr_rechts.x**2+helm_contr_rechts.y**2+helm_contr_rechts.z**2) # Abstand
 	
@@ -44,7 +61,7 @@ func _physics_process(delta):
 		helm_lange_in_position = true
 	
 	#wenn rechter controller an helm, rechter controller "grip"
-	if (dist_helm_contr_rechts <= 0.2  && helm_lange_in_position && Contr_rechts.get_input("grip")):
+	if (dist_helm_contr_rechts <= 0.2  && helm_lange_in_position && Contr_rechts.get_input("trigger") && sichtbar):
 		if helm_unten:
 			helm_hoch(1)
 			helm_unten = false
@@ -55,7 +72,7 @@ func _physics_process(delta):
 		sekunden_seit_helm = 0
 	
 	#wenn linker controller an helm, linker controller "grip"
-	if (dist_helm_contr_links <= 0.2  && helm_lange_in_position && Contr_links.get_input("grip")):
+	if (dist_helm_contr_links <= 0.2  && helm_lange_in_position && Contr_links.get_input("trigger") && sichtbar):
 		if helm_unten:
 			helm_hoch(1)
 			helm_unten = false
@@ -66,7 +83,7 @@ func _physics_process(delta):
 		sekunden_seit_helm = 0
 		
 	# wenn winkelgeschwindigkeit helm größer als 150°/s
-	if (aenderung < -150 && !helm_unten && helm_lange_in_position): # beschleunigung nach unten > 150°/s
+	if (aenderung < -150 && !helm_unten && helm_lange_in_position && sichtbar): # beschleunigung nach unten > 150°/s
 		helm_runter(aenderung/80)
 		helm_unten = true
 		sekunden_seit_helm = 0
@@ -75,5 +92,6 @@ func _physics_process(delta):
 func helm_hoch(geschwindigkeit):
 	# Spielt Animation ab
 	$AnimationPlayer.play("Flip_up",-1,geschwindigkeit)
+	
 func helm_runter(geschwindigkeit):
 	$AnimationPlayer.play("Flip_up",-1,geschwindigkeit,true)
