@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj2yms30gnuhe"]
+[gd_scene load_steps=14 format=3 uid="uid://cj2yms30gnuhe"]
 
 [ext_resource type="Script" path="res://Objekte/Schweissgeraet/Schweissgeraet.gd" id="1_ypmc2"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_kesoo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bly4eo4lhfmfi" path="res://Objekte/Schweissgeraet/Schweissmaschine_UI.tscn" id="3_4esfr"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="5_ryu4g"]
 [ext_resource type="ArrayMesh" uid="uid://dfgrsehximk3t" path="res://Meshes/Elektrodenhalter_mesh_col.res" id="6_pk035"]
+[ext_resource type="Script" path="res://Objekte/Schweissgeraet/RayCast3D_test.gd" id="8_6snxy"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="8_xpgtv"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ba8ts"]
@@ -22,6 +23,9 @@ height = 0.4
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7lw00"]
 height = 0.4
 radius = 0.008
+
+[sub_resource type="BoxMesh" id="BoxMesh_wjqlo"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="Schweissgeraet" type="StaticBody3D" node_paths=PackedStringArray("halter")]
 script = ExtResource("1_ypmc2")
@@ -78,3 +82,12 @@ mesh = SubResource("CylinderMesh_64um7")
 [node name="Elektrode_Col" type="CollisionShape3D" parent="Elektrodenhalter"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.16773, 0.00482166, 0.147867)
 shape = SubResource("CylinderShape3D_7lw00")
+
+[node name="RayCast3D" type="RayCast3D" parent="Elektrodenhalter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0373445, 0, 0.145293)
+script = ExtResource("8_6snxy")
+
+[node name="zielmesh" type="MeshInstance3D" parent="Elektrodenhalter/RayCast3D"]
+visible = false
+mesh = SubResource("BoxMesh_wjqlo")
+skeleton = NodePath("../..")

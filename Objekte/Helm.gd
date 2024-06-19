@@ -2,7 +2,6 @@ extends Node3D
 var unten:bool = false
 
 var sichtbar:bool = false
-var helm_aufsetzen_ausfueren:bool = true
 
 var aufnehmbarer_helm:Node3D
 
@@ -14,6 +13,8 @@ var helm_unten:bool = false
 var sekunden_seit_helm:float = 0 # sekunden seit helm animation
 var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 
+@export var entfernung_helm_helm = 0.2
+
 func _ready():
 	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm
 	Contr_rechts = $"../../RechterController"
@@ -23,23 +24,22 @@ func _ready():
 	else:
 		helm_hoch(1.0)
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if sichtbar:
 		visible = true
 	else:
 		visible = false 
 	helm_bewegung(delta)
 	if is_instance_valid(aufnehmbarer_helm):
-		helm_aufnehmen(helm_aufsetzen_ausfueren)
+		helm_aufnehmen()
 	
 	
-func helm_aufnehmen(ausfuehren):
-	if ausfuehren:
-		var helm_anderer_helm = (aufnehmbarer_helm.global_position-global_position) #Vektor Helm <-> rechter Controller
-		var dist_helm_anderer_helm = sqrt(helm_anderer_helm.x**2+helm_anderer_helm.y**2+helm_anderer_helm.z**2) # Abstand
-		if dist_helm_anderer_helm <= 0.3:
-			sichtbar = true
-			aufnehmbarer_helm.queue_free()
+func helm_aufnehmen():
+	var helm_anderer_helm = (aufnehmbarer_helm.global_position-global_position) #Vektor Helm <-> rechter Controller
+	var dist_helm_anderer_helm = sqrt(helm_anderer_helm.x**2+helm_anderer_helm.y**2+helm_anderer_helm.z**2) # Abstand
+	if dist_helm_anderer_helm <= entfernung_helm_helm:
+		sichtbar = true
+		aufnehmbarer_helm.queue_free()
 
 func helm_bewegung(delta):
 	var helm_contr_rechts = (Contr_rechts.global_position-global_position) #Vektor Helm <-> rechter Controller

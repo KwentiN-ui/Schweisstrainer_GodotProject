@@ -84,7 +84,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_epgo4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nf55d"]
-size = Vector3(0.327393, 0.404541, 0.440918)
+size = Vector3(0.157105, 0.172485, 0.22644)
 
 [node name="Helm_aufnehmen" type="Node3D"]
 
@@ -92,6 +92,7 @@ size = Vector3(0.327393, 0.404541, 0.440918)
 collision_layer = 4
 collision_mask = 196615
 script = ExtResource("1_4wngd")
+ranged_grab_method = 2
 
 [node name="Helm" type="MeshInstance3D" parent="XRToolsPickable"]
 mesh = SubResource("ArrayMesh_0a4a8")
@@ -103,14 +104,16 @@ mesh = SubResource("ArrayMesh_lfjmb")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="XRToolsPickable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0167236, -0.00378418, 0.00878906)
+transform = Transform3D(0.998231, 0, -0.0594632, 0, 1, 0, 0.0594632, 0, 0.998231, -0.0396571, -0.119812, -0.00479771)
 shape = SubResource("BoxShape3D_nf55d")
 
 [node name="XRToolsGrabPointHandLeft" type="Marker3D" parent="XRToolsPickable"]
-transform = Transform3D(0.913545, 0, -0.406737, 0, 1, 0, 0.406737, 0, 0.913545, -0.123255, -2.98023e-08, 0.0659218)
+transform = Transform3D(0.913545, 0, -0.406737, 0, 1, 0, 0.406737, 0, 0.913545, -0.123255, -2.98023e-08, -0.223133)
+visible = false
 script = ExtResource("2_6dwx6")
 
 [node name="XRToolsGrabPointHandRight" type="Marker3D" parent="XRToolsPickable"]
-transform = Transform3D(-0.425779, 0, -0.904827, 0, 1, 0, 0.904827, 0, -0.425779, -0.0937975, 0, -0.11214)
+transform = Transform3D(-0.425779, 0, -0.904827, 0, 1, 0, 0.904827, 0, -0.425779, -0.086785, 0, 0.167049)
+visible = false
 script = ExtResource("2_6dwx6")
 hand = 1
