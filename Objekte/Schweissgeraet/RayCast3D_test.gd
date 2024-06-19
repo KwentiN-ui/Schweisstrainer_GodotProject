@@ -1,6 +1,7 @@
 extends RayCast3D
 
 const max_abstand = 1
+signal nahtpunkt_erzeugen(pos:Vector3,normale:Vector3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

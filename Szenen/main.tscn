@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=23 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
 [ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
+[ext_resource type="PackedScene" uid="uid://dmkamcadot4mw" path="res://Objekte/Schweissnaht/Naht.tscn" id="14_dagow"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
@@ -35,6 +36,12 @@ size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pcn2w"]
 size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5xffi"]
+size = Vector3(1, 0.01, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2e1hq"]
+size = Vector3(1, 0.01, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_sksy6")
@@ -89,3 +96,15 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.2225
 
 [node name="Helm_aufnehmen" parent="." instance=ExtResource("13_b2o30")]
 transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 0.838539, 1, 1)
+
+[node name="Testblech" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11243, 0.896295, 2.77391)
+sleeping = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Testblech"]
+mesh = SubResource("BoxMesh_5xffi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Testblech"]
+shape = SubResource("BoxShape3D_2e1hq")
+
+[node name="Naht" parent="Testblech" instance=ExtResource("14_dagow")]
