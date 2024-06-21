@@ -1,8 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgwcj6vml3eij"]
+[gd_scene load_steps=13 format=3 uid="uid://bgwcj6vml3eij"]
 
 [ext_resource type="PackedScene" uid="uid://d4btfru7j7atr" path="res://Meshes/Halle61.blend" id="1_x50hd"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6ag2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1u6o"]
+size = Vector3(0.0230713, 1.98572, 4.6701)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl22a"]
+size = Vector3(10.7546, 1.97754, 0.0511475)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wr25w"]
+size = Vector3(0.00799561, 2.47766, 7.04883)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxsu5"]
+size = Vector3(7.65652, 2.48248, 0.034668)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsudf"]
+size = Vector3(14.3994, 12.7489, 37.4268)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8w4j"]
+size = Vector3(19.3945, 12.4213, 17.7784)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aygjd"]
+size = Vector3(23.2159, 17.9733, 24.5941)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yrelh"]
+size = Vector3(33.7905, 19.3416, 58.1313)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7bpv"]
+size = Vector3(36.5703, 13.6671, 11.2477)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8obl3"]
+size = Vector3(4.42371, 15.8556, 6.12671)
 
 [node name="Halle61" type="Node3D"]
 
@@ -12,11 +42,63 @@
 visible = false
 shape = SubResource("WorldBoundaryShape3D_k6ag2")
 
-[node name="mesh" parent="." instance=ExtResource("1_x50hd")]
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(0.707107, -3.09086e-08, 0.707107, -0.707107, -3.09086e-08, 0.707107, 0, -1, -4.37114e-08, 8.82432, 13.6089, -6.30137)
 light_energy = 7.743
 light_bake_mode = 1
 shadow_enabled = true
 spot_range = 26.0184
+
+[node name="Wände" type="StaticBody3D" parent="."]
+
+[node name="mesh" parent="Wände" instance=ExtResource("1_x50hd")]
+
+[node name="Wand1" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226896, 0.992581, 2.72385)
+visible = false
+shape = SubResource("BoxShape3D_x1u6o")
+
+[node name="Wand2" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59595, 0.997559, 5.03464)
+visible = false
+shape = SubResource("BoxShape3D_yl22a")
+
+[node name="Wand3" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240166, 0.738831, -5.2755)
+visible = false
+shape = SubResource("BoxShape3D_wr25w")
+
+[node name="Wand4" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07247, 0.741241, -8.79547)
+visible = false
+shape = SubResource("BoxShape3D_vxsu5")
+
+[node name="Wand_aussen_1" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0855, 5.87445, -1.13706)
+visible = false
+shape = SubResource("BoxShape3D_wsudf")
+
+[node name="Wand_aussen_2" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4604, 3.97873, 15.4658)
+visible = false
+shape = SubResource("BoxShape3D_r8w4j")
+
+[node name="Wand_aussen_3" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0746579, 8.48666, 28.8726)
+visible = false
+shape = SubResource("BoxShape3D_aygjd")
+
+[node name="Wand_aussen_4" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8459, 9.08926, 2.1255)
+visible = false
+shape = SubResource("BoxShape3D_yrelh")
+
+[node name="Wand_aussen_5" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69226, 6.33353, -25.151)
+visible = false
+shape = SubResource("BoxShape3D_u7bpv")
+
+[node name="Wand_5" type="CollisionShape3D" parent="Wände"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1095, 7.4278, -18.9671)
+visible = false
+shape = SubResource("BoxShape3D_8obl3")
