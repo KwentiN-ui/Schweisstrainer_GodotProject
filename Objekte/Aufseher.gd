@@ -20,19 +20,19 @@ func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
 func abstand():
-	print(Vector3(-sin(spieler.global_rotation.y),0,-cos(spieler.global_rotation.y)))
 	return Vector3(-abstand_zum_spieler*sin(spieler.global_rotation.y),0,-abstand_zum_spieler *cos(spieler.global_rotation.y))
 
 func _physics_process(delta):
 	var v_spieler_aufseher: Vector3 = spieler.global_position - global_position
 	var abstand: float = sqrt(v_spieler_aufseher.x**2 + v_spieler_aufseher.y**2 + v_spieler_aufseher.z**2)
 	var bewegung = sqrt((spieler.global_position.x-alte_pos_spieler.x)**2 + (spieler.global_position.y-alte_pos_spieler.y)**2 + (spieler.global_position.z-alte_pos_spieler.z)**2 )
-	if abs(alter_winkel_spieler - spieler.global_rotation.y) > 1 or bewegung > 1:
+	if abs(alter_winkel_spieler - spieler.global_rotation.y) > PI or bewegung > 1:
 		set_movement_target(spieler.global_position+abstand())
 	if navigation_agent.is_navigation_finished():
+		look_at(spieler.global_position)
+		rotation.x = 0
+		rotation.z = 0
 		animation.play("stehen")
-		if spieler.global_rotation.y != 0 and spieler.global_rotation.y != 2*PI: 
-			global_rotation = Vector3(0,-spieler.global_rotation.y,0)
 		return
 
 	look_at(navigation_agent.get_next_path_position())
@@ -47,6 +47,7 @@ func _physics_process(delta):
 		navigation_agent.velocity = new_velocity
 	else:
 		_on_velocity_computed(new_velocity)
+	alter_winkel_spieler = spieler.global_rotation.y
 
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
