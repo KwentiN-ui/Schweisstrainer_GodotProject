@@ -16,7 +16,9 @@ var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 @export var entfernung_helm_helm = 0.2
 
 func _ready():
-	aufnehmbarer_helm = $/root/Main_XR_sim/Main/Helm_aufnehmen/XRToolsPickable/Helm
+	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm
+	if !is_instance_valid(aufnehmbarer_helm):
+		aufnehmbarer_helm = $/root/Main_XR_sim/Main/Helm_aufnehmen/XRToolsPickable/Helm
 	Contr_rechts = $"../../RechterController"
 	Contr_links = $"../../LinkerController"
 	if unten:
