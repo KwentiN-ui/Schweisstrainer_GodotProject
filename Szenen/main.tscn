@@ -98,4 +98,7 @@ movement_speed = 1.1
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Aufseher"]
 avoidance_enabled = true
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

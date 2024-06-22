@@ -37,13 +37,12 @@ func Navigation(delta):
 	var v_spieler_aufseher: Vector3 = spieler.global_position - global_position
 	var abstand: float = sqrt(v_spieler_aufseher.x**2 + v_spieler_aufseher.y**2 + v_spieler_aufseher.z**2)
 	var bewegung = sqrt((spieler.global_position.x-alte_pos_spieler.x)**2 + (spieler.global_position.y-alte_pos_spieler.y)**2 + (spieler.global_position.z-alte_pos_spieler.z)**2 )
-	if bewegung > 1:
+	if bewegung > 3:
 		set_movement_target(ziel)
-	if navigation_agent.is_navigation_finished():
 		look_at(spieler.global_position)
+	if navigation_agent.is_navigation_finished():
 		rotation.x = 0
 		rotation.z = 0
-		animation.play("stehen")
 		return
 
 	position.y=0
@@ -64,3 +63,6 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	_on_velocity_computed(safe_velocity)
+
+
+

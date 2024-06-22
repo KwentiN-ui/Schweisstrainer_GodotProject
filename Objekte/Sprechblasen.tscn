@@ -11,7 +11,7 @@ transparent_bg = true
 size = Vector2i(275, 200)
 
 [node name="Label" type="Label" parent="SubViewport"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(275, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,7 +23,8 @@ offset_right = 20.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-horizontal_alignment = 1
+text = "Um Augenverletzungen zu vermeiden bitte den Schweißhelm aufsetzen.
+Dieser befindet sich auf dem Tisch rechts."
 vertical_alignment = 1
 autowrap_mode = 3
 
