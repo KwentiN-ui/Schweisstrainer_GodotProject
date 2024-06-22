@@ -40,3 +40,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0442729, 0)
 
 [node name="Model" parent="Rotation_Center" instance=ExtResource("2_5wjgo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00250095, -0.0634252, 0)
+
+[node name="Timer" type="Timer" parent="."]

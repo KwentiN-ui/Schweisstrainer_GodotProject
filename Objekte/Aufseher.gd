@@ -21,8 +21,11 @@ func abstand():
 	return Vector3(-abstand_zum_spieler*sin(spieler.global_rotation.y),0,-abstand_zum_spieler *cos(spieler.global_rotation.y))
 
 func _physics_process(delta):
-	print(spieler.global_position.x, "-", spieler.global_position.z)
+	Navigation(delta)
+
+func Navigation(delta):
 	var ziel = spieler.global_position+abstand()
+	print(spieler.global_position)
 	if spieler.global_position.x >= 0.4 and spieler.global_position.z <= 5 and spieler.global_position.z >= -9.3:
 		if ziel.x <= 0.4:
 			ziel.x = 1
@@ -37,7 +40,6 @@ func _physics_process(delta):
 	var bewegung = sqrt((spieler.global_position.x-alte_pos_spieler.x)**2 + (spieler.global_position.y-alte_pos_spieler.y)**2 + (spieler.global_position.z-alte_pos_spieler.z)**2 )
 	if bewegung > 1:
 		set_movement_target(ziel)
-		position.y=0
 	if navigation_agent.is_navigation_finished():
 		look_at(spieler.global_position)
 		rotation.x = 0
@@ -45,6 +47,7 @@ func _physics_process(delta):
 		animation.play("stehen")
 		return
 
+	position.y=0
 	look_at(navigation_agent.get_next_path_position())
 	rotation.x = 0
 	rotation.z = 0
