@@ -119,10 +119,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.2225
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.68973, 0, 2.78977)
 
 [node name="Spieler" parent="NavigationRegion3D" instance=ExtResource("1_u04tm")]
-transform = Transform3D(-0.278321, 0, -0.960488, 0, 1, 0, 0.960488, 0, -0.278321, 1.5285, -1.43051e-06, -0.911501)
+transform = Transform3D(0.239211, 0, -0.970968, 0, 1, 0, 0.970968, 0, 0.239211, -0.471502, -1.43051e-06, -0.911501)
 
 [node name="Aufseher" parent="." instance=ExtResource("16_plsmp")]
-transform = Transform3D(-0.0255315, 0, 0.999674, 0, 1, 0, -0.999674, 0, -0.0255315, 5.54856, 2.38419e-07, -0.732141)
+transform = Transform3D(-0.72493, 0, 0.688823, 0, 1, 0, -0.688823, 0, -0.72493, 5.54856, 2.38419e-07, -2.73214)
 script = ExtResource("16_x652a")
 movement_speed = 1.1
 

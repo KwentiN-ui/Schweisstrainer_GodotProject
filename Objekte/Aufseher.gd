@@ -25,7 +25,6 @@ func _physics_process(delta):
 
 func Navigation(delta):
 	var ziel = spieler.global_position+abstand()
-	print(spieler.global_position)
 	if spieler.global_position.x >= 0.4 and spieler.global_position.z <= 5 and spieler.global_position.z >= -9.3:
 		if ziel.x <= 0.4:
 			ziel.x = 1
