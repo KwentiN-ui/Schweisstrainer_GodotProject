@@ -37,14 +37,14 @@ func Navigation(delta):
 	var v_spieler_aufseher: Vector3 = spieler.global_position - global_position
 	var abstand: float = sqrt(v_spieler_aufseher.x**2 + v_spieler_aufseher.y**2 + v_spieler_aufseher.z**2)
 	var bewegung = sqrt((spieler.global_position.x-alte_pos_spieler.x)**2 + (spieler.global_position.y-alte_pos_spieler.y)**2 + (spieler.global_position.z-alte_pos_spieler.z)**2 )
-	if bewegung > 3:
+	if bewegung > 1:
 		set_movement_target(ziel)
-		look_at(spieler.global_position)
+		alte_pos_spieler = spieler.global_position
 	if navigation_agent.is_navigation_finished():
+		look_at(spieler.global_position)
 		rotation.x = 0
 		rotation.z = 0
 		return
-
 	position.y=0
 	look_at(navigation_agent.get_next_path_position())
 	rotation.x = 0
