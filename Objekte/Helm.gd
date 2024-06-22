@@ -14,12 +14,11 @@ var helm_unten:bool = false
 var sekunden_seit_helm:float = 0 # sekunden seit helm animation
 var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 
-var time: Timer
+var time = 0
 
 @export var entfernung_helm_helm = 0.2
 
 func _ready():
-	time = find_child("Timer")
 	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm
 	if !is_instance_valid(aufnehmbarer_helm):
 		aufnehmbarer_helm = $/root/Main_XR_sim/Main/Helm_aufnehmen/XRToolsPickable/Helm
@@ -33,6 +32,7 @@ func _ready():
 	TextManagerSprechblasen.add_dialogue("Helm_aufnehmen","HELM",Vector3(0,0.4,0),80,20)
 
 func _physics_process(delta) -> void:
+	time+=delta
 	if sichtbar:
 		visible = true
 	else:
@@ -40,6 +40,9 @@ func _physics_process(delta) -> void:
 	helm_bewegung(delta)
 	if is_instance_valid(aufnehmbarer_helm):
 		helm_aufnehmen()
+	else:
+		if time >= 5:
+			AufseherEmotion.fertig()
 	
 	
 func helm_aufnehmen():
@@ -50,6 +53,7 @@ func helm_aufnehmen():
 		TextManagerSprechblasen.close_dialogue("Helm_aufnehmen")
 		aufnehmbarer_helm.queue_free()
 		TextManagerSprechblasen.close_dialogue("Aufseher")
+		time = 0
 		AufseherEmotion.freuen()
 		
 
