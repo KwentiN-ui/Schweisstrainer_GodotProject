@@ -1,4 +1,5 @@
 extends Node3D
+@export var beschleunigungstrigger = 200 # °/s
 var unten:bool = false
 
 var sichtbar:bool = false
@@ -25,7 +26,7 @@ func _ready():
 		helm_runter(-1)
 	else:
 		helm_hoch(1.0)
-	TextManagerSprechblasen.add_dialogue("Bitte Helm aufsetzen")
+	TextManagerSprechblasen.add_dialogue("Ohne Helm wird das nichts! Da drüben liegt einer...")
 
 func _physics_process(delta) -> void:
 	if sichtbar:
@@ -39,18 +40,16 @@ func _physics_process(delta) -> void:
 	
 func helm_aufnehmen():
 	var helm_anderer_helm = (aufnehmbarer_helm.global_position-global_position) #Vektor Helm <-> rechter Controller
-	var dist_helm_anderer_helm = sqrt(helm_anderer_helm.x**2+helm_anderer_helm.y**2+helm_anderer_helm.z**2) # Abstand
-	if dist_helm_anderer_helm <= entfernung_helm_helm:
+	# .length ermittelt die Länge des Vektors, keine extra Varialbe notwendig
+	if helm_anderer_helm.length() <= entfernung_helm_helm:
 		sichtbar = true
 		TextManagerSprechblasen.close_dialogue()
 		aufnehmbarer_helm.queue_free()
 
 func helm_bewegung(delta):
 	var helm_contr_rechts = (Contr_rechts.global_position-global_position) #Vektor Helm <-> rechter Controller
-	var dist_helm_contr_rechts = sqrt(helm_contr_rechts.x**2+helm_contr_rechts.y**2+helm_contr_rechts.z**2) # Abstand
 	
 	var helm_contr_links = (Contr_links.global_position-global_position) # Vektor Helm <-> linker Controller
-	var dist_helm_contr_links = sqrt(helm_contr_links.x**2+helm_contr_links.y**2+helm_contr_links.z**2) # Abstand
 
 	var v_neu = global_rotation_degrees  # Rotationsvektor des Helms
 	var dv = v_neu.z - v_alt.z  # Änderung im dritten Eintrag
@@ -65,7 +64,7 @@ func helm_bewegung(delta):
 		helm_lange_in_position = true
 	
 	#wenn rechter controller an helm, rechter controller "grip"
-	if (dist_helm_contr_rechts <= 0.2  && helm_lange_in_position && Contr_rechts.get_input("trigger") && sichtbar):
+	if (helm_contr_rechts.length() <= 0.2  && helm_lange_in_position && Contr_rechts.get_input("trigger") && sichtbar):
 		if helm_unten:
 			helm_hoch(1)
 			helm_unten = false
@@ -76,7 +75,7 @@ func helm_bewegung(delta):
 		sekunden_seit_helm = 0
 	
 	#wenn linker controller an helm, linker controller "grip"
-	if (dist_helm_contr_links <= 0.2  && helm_lange_in_position && Contr_links.get_input("trigger") && sichtbar):
+	if (helm_contr_links.length() <= 0.2  && helm_lange_in_position && Contr_links.get_input("trigger") && sichtbar):
 		if helm_unten:
 			helm_hoch(1)
 			helm_unten = false
@@ -86,8 +85,8 @@ func helm_bewegung(delta):
 		helm_lange_in_position = false
 		sekunden_seit_helm = 0
 		
-	# wenn winkelgeschwindigkeit helm größer als 150°/s
-	if (aenderung < -150 && !helm_unten && helm_lange_in_position && sichtbar): # beschleunigung nach unten > 150°/s
+	# wenn winkelgeschwindigkeit helm größer als beschleunigungstrigger
+	if (aenderung < -beschleunigungstrigger && !helm_unten && helm_lange_in_position && sichtbar): # beschleunigung nach unten > beschleunigungstrigger
 		helm_runter(aenderung/80)
 		helm_unten = true
 		sekunden_seit_helm = 0

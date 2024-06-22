@@ -41,8 +41,8 @@ grab_distance = 0.1
 ranged_enable = false
 
 [node name="FunctionPointer" parent="XROrigin3D/LinkerController" instance=ExtResource("6_qfedh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-distance = 1.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0163016, 0, 0)
+distance = 3.0
 show_laser = 2
 laser_length = 1
 
@@ -60,7 +60,7 @@ teleport_button_action = "ax_button"
 strength = 3.0
 
 [node name="FunctionPointer" parent="XROrigin3D/RechterController" instance=ExtResource("6_qfedh")]
-distance = 1.0
+distance = 3.0
 show_laser = 2
 laser_length = 1
 

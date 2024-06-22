@@ -8,3 +8,4 @@
 [node name="Main" parent="." instance=ExtResource("1_5yfs6")]
 
 [node name="XRSimulator" parent="." instance=ExtResource("2_t0cb6")]
+disable_xr_in_editor = true
