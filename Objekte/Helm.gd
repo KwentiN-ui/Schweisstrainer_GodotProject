@@ -25,6 +25,7 @@ func _ready():
 		helm_runter(-1)
 	else:
 		helm_hoch(1.0)
+	TextManagerSprechblasen.add_dialogue("Bitte Helm aufsetzen")
 
 func _physics_process(delta) -> void:
 	if sichtbar:
@@ -41,6 +42,7 @@ func helm_aufnehmen():
 	var dist_helm_anderer_helm = sqrt(helm_anderer_helm.x**2+helm_anderer_helm.y**2+helm_anderer_helm.z**2) # Abstand
 	if dist_helm_anderer_helm <= entfernung_helm_helm:
 		sichtbar = true
+		TextManagerSprechblasen.close_dialogue()
 		aufnehmbarer_helm.queue_free()
 
 func helm_bewegung(delta):

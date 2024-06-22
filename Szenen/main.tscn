@@ -124,6 +124,7 @@ transform = Transform3D(-0.278321, 0, -0.960488, 0, 1, 0, 0.960488, 0, -0.278321
 [node name="Aufseher" parent="." instance=ExtResource("16_plsmp")]
 transform = Transform3D(-0.0255315, 0, 0.999674, 0, 1, 0, -0.999674, 0, -0.0255315, 5.54856, 2.38419e-07, -0.732141)
 script = ExtResource("16_x652a")
+movement_speed = 1.1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Aufseher"]
 avoidance_enabled = true
