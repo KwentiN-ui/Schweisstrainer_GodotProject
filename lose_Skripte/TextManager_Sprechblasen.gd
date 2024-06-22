@@ -1,7 +1,7 @@
 extends Node
 
 var Sprechblasen_Scene: PackedScene
-var sprechblase
+var sprechblase: Node3D
 var curr_scene = null
 var label: Label
 
@@ -11,12 +11,15 @@ func _ready():
 	curr_scene = root.get_child(root.get_child_count()-1)
 	Sprechblasen_Scene = preload("res://Objekte/Sprechblasen.tscn")
 
-
-func add_dialogue(text_in:String):
+func add_dialogue(parent:String,text_in:String, pos_zu_par:Vector3):
 	sprechblase = Sprechblasen_Scene.instantiate()
-	curr_scene.find_child("Aufseher").add_child(sprechblase)
+	curr_scene.find_child(parent).add_child(sprechblase)
+	sprechblase.position = pos_zu_par
 	label = sprechblase.find_child("Label")
 	label.text = text_in
 
-func close_dialogue():
-	sprechblase.queue_free()
+func close_dialogue(parent):
+	var par = curr_scene.find_child(parent)
+	for child in par.get_children():
+		if child.name == "SPRECHBLASE":
+			child.queue_free()
