@@ -42,6 +42,7 @@ func Navigation(delta):
 		alte_pos_spieler = spieler.global_position
 	if navigation_agent.is_navigation_finished():
 		look_at(spieler.global_position)
+		animation.play("stehen")
 		rotation.x = 0
 		rotation.z = 0
 		return
