@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 TextManagerSprechblasen="*res://Singletons/TextManager_Sprechblasen.gd"
 GlobaleVariablen="*res://Globale_Variablen.gd"
-AufseherEmotion="*res://Singletons/Aufseher_emotion.gd"
 
 [display]
 

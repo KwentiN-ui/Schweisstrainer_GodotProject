@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
 [ext_resource type="PackedScene" uid="uid://bgwcj6vml3eij" path="res://Objekte/Halle61.tscn" id="3_xpm5g"]
 [ext_resource type="PackedScene" uid="uid://bsl75lmsev1px" path="res://Objekte/Tablet/Tablet.tscn" id="5_53hqm"]
 [ext_resource type="PackedScene" uid="uid://cj2yms30gnuhe" path="res://Objekte/Schweissgeraet/Schweissgeraet.tscn" id="5_yum85"]
+[ext_resource type="PackedScene" uid="uid://cpwxhdddf3tnu" path="res://Szenen/schweissbar.tscn" id="6_740ak"]
 [ext_resource type="Texture2D" uid="uid://c17d3qnvro463" path="res://Bilder/Schweisszeichen.jpg" id="7_f2i3q"]
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
@@ -53,7 +54,7 @@ camera_attributes = SubResource("CameraAttributesPhysical_cubk4")
 transform = Transform3D(1.24577e-07, 2.85, -4.30338e-07, 2.85, -1.24577e-07, -1.20702e-21, -1.88107e-14, -4.30338e-07, -2.85, 0.270193, 0.832698, 1.9639)
 
 [node name="Poster Nahtarten" type="Sprite3D" parent="."]
-transform = Transform3D(0.105, 0, 4.44089e-16, 0, 0.105, 0, -4.44089e-16, 0, 0.105, 1.76948, 1.07176, 5.02057)
+transform = Transform3D(0.105, 0, 4.44089e-16, 0, 0.105, 0, -4.44089e-16, 0, 0.105, 1.76948, 1.07176, 5.50259)
 flip_h = true
 texture = ExtResource("7_f2i3q")
 
@@ -72,14 +73,16 @@ shape = SubResource("BoxShape3D_2e1hq")
 
 [node name="Naht" parent="Testblech" instance=ExtResource("14_dagow")]
 
+[node name="schweissbar" parent="Testblech" instance=ExtResource("6_740ak")]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_akoil")
 
-[node name="Halle61" parent="NavigationRegion3D" instance=ExtResource("3_xpm5g")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
-
 [node name="Schweissgeraet" parent="NavigationRegion3D" instance=ExtResource("5_yum85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.22878)
+
+[node name="Halle61" parent="NavigationRegion3D" instance=ExtResource("3_xpm5g")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="normalerTisch" parent="NavigationRegion3D" instance=ExtResource("13_s4owh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.22257, 0, 0.00919056)

@@ -82,5 +82,3 @@ script = ExtResource("8_f1tet")
 [node name="Path3D" type="Path3D" parent="Elektrodenhalter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30651, -0.00227427, 0.138021)
 curve = SubResource("Curve3D_081yo")
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]

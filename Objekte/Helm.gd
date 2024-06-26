@@ -40,9 +40,6 @@ func _physics_process(delta) -> void:
 	helm_bewegung(delta)
 	if is_instance_valid(aufnehmbarer_helm):
 		helm_aufnehmen()
-	else:
-		if time >= 5:
-			AufseherEmotion.fertig()
 	
 	
 func helm_aufnehmen():
@@ -54,7 +51,6 @@ func helm_aufnehmen():
 		aufnehmbarer_helm.queue_free()
 		TextManagerSprechblasen.close_dialogue("Aufseher")
 		time = 0
-		AufseherEmotion.freuen()
 		
 
 func helm_bewegung(delta):
