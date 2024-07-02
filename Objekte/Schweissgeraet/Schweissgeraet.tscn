@@ -69,5 +69,19 @@ visible = false
 script = ExtResource("8_xpgtv")
 
 [node name="Path3D" type="Path3D" parent="Elektrodenhalter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, -0.002, 0.138)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, -0.00199997, 0.138)
 curve = SubResource("Curve3D_081yo")
+
+[node name="querschnitt" type="CSGPolygon3D" parent="Elektrodenhalter"]
+polygon = PackedVector2Array(0.998767, 1.01825, 1.06045, 0.451135, 0.680212, 0.736707)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
