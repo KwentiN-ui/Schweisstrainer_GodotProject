@@ -1,0 +1,45 @@
+- GPUParticles3D:  
+  - emitting = true wenn Lichtbogen an  
+  - amount: 2000 - 6000  
+  - Time:  
+    - Lifetime: 0.1-0.2 Länge des Lichtbogens  
+    - Preprocess: an  
+    - Speed Sclae: 0.8; sonst zu schnell für Collider  
+    - Explosivness: 0-0.1; macht Lichtbigen unruhig  
+    - fixed FPS: 50  
+    - Interpolate: true, fact delta: true; braucht dadurch weniger FPS  
+  - Collision:  
+    - base Size: min höhe der körper  
+  - drawing:  
+    - Kollision geht nur innerhalb der AABB box  
+    - Local Coords: true; direkte Verschiebung beim Bewegen des Körpers; hängt sonst hinterher  
+  - Process Material:  
+    - ParticleProcessMaterial  
+    - Spawn:  
+      - Position:  
+        - Emission Shape: Points; vorher Scheibe (flacher Zylinder, als Kind von Elektrode) unter Elektrode und oben in Leiste "GPU-Partikel-3D" $\to$ "erzeuge Emissionspunkte aus Node, danach Zylinder unsichtbar  
+      - Velocity:  
+        - Direction: (0,-1,0); damit Partikel nach unten fliegen  
+        - spread: 45-50-60 deg  
+        - initial Velocity min/max: 0.8  
+    - Collision:  
+      - mode: Hide on Contact  
+  - Draw Passes:  
+    - Sphere:  
+      - radius: 0.01m  
+      - height: 0.03m  
+      - radius segments: 5  
+      - rings: 5  
+      - Material: Standard  
+        - Transparancy:  
+          - Transparency: Alpha  
+        - Albedo:  
+          - Color: ffffff01  
+        - Emission:  
+          - enabled: true  
+          - emission: ffffff  
+          - energy multiplier: >=14  
+          - operator: add  
+- OmniLight3D für Beleuchtung des Lichtbogens; Emission reicht dafür nicht aus  
+- GPUParticlesCollisionBox3D:  
+  - am Blech, damit Particles nicht durch Blech durch gehen
