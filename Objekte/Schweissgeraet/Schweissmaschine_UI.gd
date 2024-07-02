@@ -15,9 +15,9 @@ func _process(delta):
 
 
 func _on_v_slider_value_changed(value):
-	schweissmaschine.strom = value
-	
+	Schweisslogik.strom = value
+
 
 
 func _on_einschalter_toggled(toggled_on):
-	schweissmaschine.strom_ein = toggled_on
+	Schweisslogik.strom_ein = toggled_on
