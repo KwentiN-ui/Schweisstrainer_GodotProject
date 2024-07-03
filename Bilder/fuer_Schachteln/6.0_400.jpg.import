@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caf4snunqocn4"
-path.s3tc="res://.godot/imported/Fugenformen.jpg-381a8879d706ad0d717acddfde00136e.s3tc.ctex"
+uid="uid://dgfyh275ngtvo"
+path.s3tc="res://.godot/imported/6.0_400.jpg-7bb6f442e6d3f31dcfbf57f60213b4ff.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Bilder/Fugenformen.jpg"
-dest_files=["res://.godot/imported/Fugenformen.jpg-381a8879d706ad0d717acddfde00136e.s3tc.ctex"]
+source_file="res://Bilder/fuer_Schachteln/6.0_400.jpg"
+dest_files=["res://.godot/imported/6.0_400.jpg-7bb6f442e6d3f31dcfbf57f60213b4ff.s3tc.ctex"]
 
 [params]
 

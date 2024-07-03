@@ -3,6 +3,8 @@
 
 extends Node
 
+var Lichtbogen_an = true # DEBUG für Nahterstellung
+
 var schweissmaschine: Schweissmaschine
 
 var halter = {
@@ -17,20 +19,24 @@ var gezuendet = false:
 		gezuendet = neu
 		if gezuendet && strom_ein && elektrode_l > 0:
 			max_distanz = 0.08
-			lichtbogen.emitting = true
-			LichtbogenLicht.visible = true
-			funken.emitting = true
-			if is_instance_valid(Helm_Visier):
-				var Mat = StandardMaterial3D.new() 
-				Mat.albedo_color = Color(0,0.5,0,0.98)
-				Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-				Mat.roughness = 0.6
-				Helm_Visier.mesh.surface_set_material(0,Mat)
+			if Lichtbogen_an:
+				lichtbogen.emitting = true
+				LichtbogenLicht.visible = true
+				funken.emitting = true
+				if is_instance_valid(Helm_Visier):
+					var Mat = StandardMaterial3D.new() 
+					Mat.albedo_color = Color(0,0.5,0,0.98)
+					Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+					Mat.roughness = 0.6
+					Helm_Visier.mesh.surface_set_material(0,Mat)
+				if !Schweiss_Ton.playing:
+					Schweiss_Ton.playing = true
 		else:
 			max_distanz = 0.01
 			lichtbogen.emitting = false
 			funken.emitting = false
 			LichtbogenLicht.visible = false
+			Schweiss_Ton.playing = false
 			if is_instance_valid(Helm_Visier):
 				var Mat = StandardMaterial3D.new() 
 				Mat.albedo_color = Color(0,0.5,0,0.6)
@@ -42,6 +48,7 @@ var lichtbogen: GPUParticles3D
 var LichtbogenLicht: OmniLight3D
 var funken: GPUParticles3D
 var Helm_Visier: MeshInstance3D
+var Schweiss_Ton: AudioStreamPlayer3D
 
 
 var max_distanz = 0.01 #m
@@ -81,6 +88,7 @@ func _ready():
 	LichtbogenLicht = curr_scene.find_child("LichtbogenLicht")
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
+	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
 	lichtbogen.emitting = false
 	LichtbogenLicht.visible = false
 	funken.emitting = false

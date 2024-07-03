@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
 [ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
+[ext_resource type="PackedScene" uid="uid://d2n13boqsijxj" path="res://Objekte/Schachteln.tscn" id="13_yiknr"]
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Objekte/Aufseher.gd" id="16_x652a"]
 
@@ -58,7 +59,10 @@ flip_h = true
 texture = ExtResource("7_f2i3q")
 
 [node name="Helm_aufnehmen" parent="." instance=ExtResource("13_b2o30")]
-transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 0.838539, 1, 1)
+transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 0.962827, 0.951536, 0.936648)
+
+[node name="Schachteln" parent="." instance=ExtResource("13_yiknr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.939437, 0.75793, 2.58291)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_akoil")
@@ -70,7 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.931777, 0, 4.22878)
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="normalerTisch" parent="NavigationRegion3D" instance=ExtResource("13_s4owh")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.22257, 0, 0.00919056)
+transform = Transform3D(-5.13609e-08, 0, 1.055, 0, 1, 0, -1.175, 0, -4.61155e-08, 1.22257, 0, 0.00919056)
 
 [node name="Schweisstisch" parent="NavigationRegion3D" instance=ExtResource("10_cvuox")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.68973, 0, 2.78977)
