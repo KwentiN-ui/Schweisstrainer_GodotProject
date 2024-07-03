@@ -98,7 +98,7 @@ ranged_grab_method = 2
 mesh = SubResource("ArrayMesh_0a4a8")
 skeleton = NodePath("")
 
-[node name="Visier" type="MeshInstance3D" parent="XRToolsPickable/Helm"]
+[node name="Visier_Aufnehmen" type="MeshInstance3D" parent="XRToolsPickable/Helm"]
 transform = Transform3D(0, 0.0292242, 0, -0.0292242, 0, 0, 0, 0, 0.0292242, 0.0786844, -0.0849564, 0.000807496)
 mesh = SubResource("ArrayMesh_lfjmb")
 skeleton = NodePath("")

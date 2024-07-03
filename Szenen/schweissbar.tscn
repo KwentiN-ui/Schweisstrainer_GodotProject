@@ -20,3 +20,7 @@ shape = SubResource("BoxShape3D_jihfx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_hhaho")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045166, -0.0562134, 0.00201416)
+size = Vector3(0.12085, 0.112427, 1.01575)

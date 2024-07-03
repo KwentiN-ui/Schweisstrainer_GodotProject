@@ -15,10 +15,34 @@ var schweissflaechen = []
 var gezuendet = false:
 	set(neu):
 		gezuendet = neu
-		if gezuendet:
+		if gezuendet && strom_ein && elektrode_l > 0:
 			max_distanz = 0.08
+			lichtbogen.emitting = true
+			LichtbogenLicht.visible = true
+			funken.emitting = true
+			if is_instance_valid(Helm_Visier):
+				var Mat = StandardMaterial3D.new() 
+				Mat.albedo_color = Color(0,0.5,0,0.98)
+				Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				Mat.roughness = 0.6
+				Helm_Visier.mesh.surface_set_material(0,Mat)
 		else:
 			max_distanz = 0.01
+			lichtbogen.emitting = false
+			funken.emitting = false
+			LichtbogenLicht.visible = false
+			if is_instance_valid(Helm_Visier):
+				var Mat = StandardMaterial3D.new() 
+				Mat.albedo_color = Color(0,0.5,0,0.6)
+				Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				Mat.roughness = 0.6
+				Helm_Visier.mesh.surface_set_material(0,Mat)
+
+var lichtbogen: GPUParticles3D
+var LichtbogenLicht: OmniLight3D
+var funken: GPUParticles3D
+var Helm_Visier: MeshInstance3D
+
 
 var max_distanz = 0.01 #m
 var t = 0.0
@@ -53,6 +77,13 @@ func _ready():
 	root = get_tree().root
 	curr_scene = root.get_child(root.get_child_count()-1)
 	halter["elektrode"] = curr_scene.find_child("Elektrode")
+	lichtbogen = curr_scene.find_child("Lichtbogen")
+	LichtbogenLicht = curr_scene.find_child("LichtbogenLicht")
+	Helm_Visier = curr_scene.find_child("Visier")
+	funken = curr_scene.find_child("Funken")
+	lichtbogen.emitting = false
+	LichtbogenLicht.visible = false
+	funken.emitting = false
 
 func _process(delta):
 	t += delta
@@ -61,6 +92,10 @@ func _process(delta):
 	var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5))
 	halter["elektrode"].global_position = ursprung_Elektrode
 	halter["elektrode"].mesh.height = elektrode_l
+	var ursprung_Lichtbogen = pfad.to_global(pfad.curve.get_point_position(1))
+	lichtbogen.global_position = ursprung_Lichtbogen
+	LichtbogenLicht.global_position = ursprung_Lichtbogen
+	
 	
 
 func _physics_process(delta):
@@ -74,12 +109,12 @@ func abbrennen(delta):
 		
 func raycast_schweissflaechen():
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
-
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
 	for flaeche in schweissflaechen:
 		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
 			var up_vector = flaeche.basis.y
+			lichtbogen.process_material.direction = -1*lichtbogen.to_global(up_vector)
 			var space_state = curr_scene.get_world_3d().direct_space_state
 			var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(1))
 			var ziel = ursprung_Elektrode + max_distanz * -1*up_vector
