@@ -92,5 +92,5 @@ path_joined = false
 smooth_faces = true
 
 [node name="Elektrode" type="MeshInstance3D" parent="Elektrodenhalter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.264198, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.264198, 0)
 mesh = SubResource("CylinderMesh_esf0b")

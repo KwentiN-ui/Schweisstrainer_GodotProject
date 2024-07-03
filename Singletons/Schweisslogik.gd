@@ -8,8 +8,7 @@ var schweissmaschine: Schweissmaschine
 var halter = {
 	"root":null,   # XRToolsPickable
 	"path3d":null, # Path3D Node
-	"querschnitt":null, # CSGPolygon3
-	"elektrode":null #MeshInstance3D
+	"elektrode":null, #MeshInstance3D
 }
 
 var schweissflaechen = []
@@ -46,9 +45,13 @@ func _ready():
 func _process(delta):
 	t += delta
 	var pfad:Path3D = halter["path3d"]
+	elektrode_l = randf_range(0.1,0.3)
 	print(pfad.curve.get_point_position(1)) # DEBUG
-	var ursprung_Elektrode = pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5)
+	var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5))
+	halter["elektrode"].global_position = ursprung_Elektrode
+	halter["elektrode"].mesh.height = elektrode_l
 
+	
 
 func refresh_elektrodenpfad():
 	var pfad:Path3D = halter["path3d"]
@@ -59,9 +62,8 @@ func refresh_elektrodenpfad():
 		curve.add_point(Vector3(elektrode_l,0,0))
 
 func refresh_elektrodenquerschnitt():
-	if is_instance_valid(halter["querschnitt"]):
-		var qs:CSGPolygon3D = halter["querschnitt"]
-		qs.polygon = kreisform_koordinaten(elektrode_d/2.0)
+	halter["elektrode"].mesh.top_radius = elektrode_d/2
+	halter["elektrode"].mesh.bottom_radius = elektrode_d/2
 
 func kreisform_koordinaten(radius:float)->PackedVector2Array:
 	var punkte = []
