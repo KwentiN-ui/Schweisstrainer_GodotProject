@@ -11,6 +11,8 @@ var halter = {
 	"querschnitt":null, # CSGPolygon3
 }
 
+var schweissflaechen = []
+
 var t = 0.0
 var stromdisplay: Label
 var ui:Control
@@ -40,13 +42,17 @@ func _ready():
 
 func _process(delta):
 	t += delta
-	elektrode_l = (sin(t)+1)/2 * elektrode_l
+	elektrode_l = randf_range(0.1,0.3)
+	var pfad:Path3D = halter["path3d"]
+
 
 func refresh_elektrodenpfad():
-	if is_instance_valid(halter["path3d"]) and is_instance_valid(halter["path3d"]):
+	if is_instance_valid(halter["path3d"]):
 		var pfad:Path3D = halter["path3d"]
 		var curve:Curve3D = pfad.curve
-		curve.set_point_position(1,Vector3(elektrode_l,0,0))
+		curve.clear_points()
+		curve.add_point(Vector3(0,0,0))
+		curve.add_point(Vector3(elektrode_l,0,0))
 
 func refresh_elektrodenquerschnitt():
 	if is_instance_valid(halter["querschnitt"]):
