@@ -21,3 +21,7 @@ func _on_v_slider_value_changed(value):
 
 func _on_einschalter_toggled(toggled_on):
 	Schweisslogik.strom_ein = toggled_on
+	if toggled_on:
+		Schweisslogik.strom = $HBoxContainer/Stromslider.value
+	else:
+		Schweisslogik.strom = 0
