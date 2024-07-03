@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cj2yms30gnuhe"]
+[gd_scene load_steps=12 format=3 uid="uid://cj2yms30gnuhe"]
 
 [ext_resource type="Script" path="res://Objekte/Schweissgeraet/Schweissgeraet.gd" id="1_ypmc2"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_kesoo"]
@@ -20,6 +20,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_esf0b"]
+top_radius = 0.004
+bottom_radius = 0.004
+height = 0.3
 
 [node name="Schweissgeraet" type="StaticBody3D"]
 script = ExtResource("1_ypmc2")
@@ -85,3 +90,7 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 smooth_faces = true
+
+[node name="Elektrode" type="MeshInstance3D" parent="Elektrodenhalter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.264198, 0)
+mesh = SubResource("CylinderMesh_esf0b")
