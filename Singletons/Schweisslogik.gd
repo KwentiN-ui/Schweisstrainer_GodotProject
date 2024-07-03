@@ -9,6 +9,7 @@ var halter = {
 	"root":null,   # XRToolsPickable
 	"path3d":null, # Path3D Node
 	"querschnitt":null, # CSGPolygon3
+	"elektrode":null #MeshInstance3D
 }
 
 var schweissflaechen = []
@@ -38,12 +39,15 @@ var elektrode_l = 0.3: #m Länge
 		refresh_elektrodenpfad()
 
 func _ready():
-	pass
+	var root = get_tree().root
+	var curr_scene = root.get_child(root.get_child_count()-1)
+	halter["elektrode"] = curr_scene.find_child("Elektrode")
 
 func _process(delta):
 	t += delta
 	elektrode_l = randf_range(0.1,0.3)
 	var pfad:Path3D = halter["path3d"]
+	var ursprung_Elektrode = pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5)
 
 
 func refresh_elektrodenpfad():
