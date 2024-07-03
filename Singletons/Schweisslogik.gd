@@ -42,13 +42,12 @@ func _ready():
 
 func _process(delta):
 	t += delta
-	elektrode_l = randf_range(0.1,0.3)
 	var pfad:Path3D = halter["path3d"]
-
+	print(pfad.curve.get_point_position(1)) # DEBUG
 
 func refresh_elektrodenpfad():
-	if is_instance_valid(halter["path3d"]):
-		var pfad:Path3D = halter["path3d"]
+	var pfad:Path3D = halter["path3d"]
+	if is_instance_valid(pfad):
 		var curve:Curve3D = pfad.curve
 		curve.clear_points()
 		curve.add_point(Vector3(0,0,0))
@@ -58,7 +57,6 @@ func refresh_elektrodenquerschnitt():
 	if is_instance_valid(halter["querschnitt"]):
 		var qs:CSGPolygon3D = halter["querschnitt"]
 		qs.polygon = kreisform_koordinaten(elektrode_d/2.0)
-
 
 func kreisform_koordinaten(radius:float)->PackedVector2Array:
 	var punkte = []
