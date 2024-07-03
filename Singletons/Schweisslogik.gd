@@ -46,12 +46,19 @@ func _process(delta):
 	t += delta
 	var pfad:Path3D = halter["path3d"]
 	elektrode_l = randf_range(0.1,0.3)
-	print(pfad.curve.get_point_position(1)) # DEBUG
 	var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5))
 	halter["elektrode"].global_position = ursprung_Elektrode
 	halter["elektrode"].mesh.height = elektrode_l
-
 	
+	raycast_schweissflaechen()
+
+func raycast_schweissflaechen() -> Array:
+
+	for flaeche in schweissflaechen:
+		if flaeche is Schweissflaeche:
+			var up_vector = flaeche.basis.y
+			print(flaeche,up_vector)
+	return []
 
 func refresh_elektrodenpfad():
 	var pfad:Path3D = halter["path3d"]
@@ -64,10 +71,3 @@ func refresh_elektrodenpfad():
 func refresh_elektrodenquerschnitt():
 	halter["elektrode"].mesh.top_radius = elektrode_d/2
 	halter["elektrode"].mesh.bottom_radius = elektrode_d/2
-
-func kreisform_koordinaten(radius:float)->PackedVector2Array:
-	var punkte = []
-	for i in range(0,floor(2*PI*100),20):
-		var w = i/100.0
-		punkte.append(Vector2(radius*cos(w),radius*sin(w)))
-	return punkte
