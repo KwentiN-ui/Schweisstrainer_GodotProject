@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2n13boqsijxj"]
+[gd_scene load_steps=10 format=3 uid="uid://d2n13boqsijxj"]
 
 [ext_resource type="Texture2D" uid="uid://bfyiygeru7hgp" path="res://Bilder/fuer_Schachteln/1.2_300.jpg" id="1_cps37"]
-[ext_resource type="Script" path="res://Objekte/neue_elektrode.gd" id="1_q51x5"]
 [ext_resource type="Texture2D" uid="uid://bkcqm751bl8vu" path="res://Bilder/fuer_Schachteln/2.0_300.jpg" id="2_4m4sh"]
 [ext_resource type="Texture2D" uid="uid://8carbgksnvbl" path="res://Bilder/fuer_Schachteln/2.5_300.jpg" id="3_mfq71"]
 [ext_resource type="Texture2D" uid="uid://d2ilahckr44j8" path="res://Bilder/fuer_Schachteln/3.2_400.jpg" id="4_x1ad1"]
@@ -16,10 +15,10 @@ size = Vector3(0.2, 0.05, 0.35)
 size = Vector3(0.2, 0.0557617, 0.35)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_q51x5")
 
-[node name="E_1_2_300" type="RigidBody3D" parent="."]
-sleeping = true
+[node name="E_1_2_300" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 65543
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_1_2_300"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -35,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_2_0_300" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.214523, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.214523, 0, -0.0560921)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_2_0_300"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -51,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_2_5_300" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.429977, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.429977, 0, -0.0104771)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_2_5_300"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -67,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_3_2_400" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.646802, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.646802, 0, -0.0606477)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_3_2_400"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -83,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_4_0_400" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.867357, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.867357, 0, -0.0230497)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_4_0_400"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -99,7 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_5_0_400" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07936, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07936, 0, 0.0188589)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_5_0_400"]
 mesh = SubResource("BoxMesh_bdqv2")
@@ -115,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00288086, 0)
 shape = SubResource("BoxShape3D_lu3en")
 
 [node name="E_6_0_400" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29884, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29884, 0, -0.0628629)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="E_6_0_400"]
 mesh = SubResource("BoxMesh_bdqv2")

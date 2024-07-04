@@ -29,6 +29,7 @@ _data = {
 [node name="Helm" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_xlrgj")
+debug_helm_ist_auf = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,5 +1,6 @@
 extends Node3D
 @export var beschleunigungstrigger = 200 # °/s
+@export var debug_helm_ist_auf = true
 var unten:bool = false
 
 var sichtbar:bool = false
@@ -15,6 +16,7 @@ var sekunden_seit_helm:float = 0 # sekunden seit helm animation
 var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 
 var time = 0
+
 
 @export var entfernung_helm_helm = 0.2
 
@@ -33,6 +35,10 @@ func _ready():
 
 func _physics_process(delta) -> void:
 	time+=delta
+	
+	if debug_helm_ist_auf:
+		sichtbar = true
+	
 	if sichtbar:
 		visible = true
 	else:
@@ -40,7 +46,6 @@ func _physics_process(delta) -> void:
 	helm_bewegung(delta)
 	if is_instance_valid(aufnehmbarer_helm):
 		helm_aufnehmen()
-	
 	
 func helm_aufnehmen():
 	var helm_anderer_helm = (aufnehmbarer_helm.global_position-global_position) #Vektor Helm <-> rechter Controller

@@ -39,7 +39,7 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0.00392157)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 11.82
+emission_energy_multiplier = 40.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_jokmm"]
 material = SubResource("StandardMaterial3D_j8kx6")
@@ -123,7 +123,6 @@ mesh = SubResource("CylinderMesh_esf0b")
 
 [node name="Lichtbogen" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0, 1, 0.000660419, -0.155406, 0)
-visible = false
 emitting = false
 amount = 3000
 lifetime = 0.1
@@ -138,7 +137,8 @@ draw_pass_1 = SubResource("SphereMesh_jokmm")
 [node name="LichtbogenLicht" type="OmniLight3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0, 1, -0.0770583, 0.0417778, 0)
 visible = false
-light_energy = 0.3
+light_color = Color(0.898039, 1, 1, 1)
+light_energy = 5.0
 
 [node name="Funken" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.193648, 0)

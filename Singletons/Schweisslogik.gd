@@ -6,6 +6,8 @@ extends Node
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
 var schweissmaschine: Schweissmaschine
+var Schachteln: Node3D
+var elektroden_boxen: Array[StaticBody3D]
 
 var halter = {
 	"root":null,   # XRToolsPickable
@@ -17,7 +19,7 @@ var schweissflaechen = []
 var gezuendet = false:
 	set(neu):
 		gezuendet = neu
-		if gezuendet && strom_ein && elektrode_l > 0:
+		if gezuendet && strom_ein:
 			max_distanz = 0.08
 			if Lichtbogen_an:
 				lichtbogen.emitting = true
@@ -72,7 +74,7 @@ var elektrode_d: #m Durchmesser, Startwert wird in der Schweißmaschine festgele
 		elektrode_d = neu
 		refresh_elektrodenquerschnitt()
 
-var elektrode_l = 0.3: #m Länge
+var elektrode_l = 0.008: #m Länge
 	set(neu):
 		elektrode_l = neu
 		refresh_elektrodenpfad()
@@ -89,6 +91,7 @@ func _ready():
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
+	Schachteln = curr_scene.find_child("Schachteln")
 	lichtbogen.emitting = false
 	LichtbogenLicht.visible = false
 	funken.emitting = false
@@ -103,17 +106,18 @@ func _process(delta):
 	var ursprung_Lichtbogen = pfad.to_global(pfad.curve.get_point_position(1))
 	lichtbogen.global_position = ursprung_Lichtbogen
 	LichtbogenLicht.global_position = ursprung_Lichtbogen
-	
+	funken.global_position = ursprung_Lichtbogen
 	
 
 func _physics_process(delta):
 	raycast_schweissflaechen()
 	abbrennen(delta)
+	if elektrode_l <= 0.01:
+		neue_elektrode()
 
 func abbrennen(delta):
 	if gezuendet and elektrode_l>0:
 		elektrode_l -= strom * 0.00010 * delta # TODO Durch Funktion (d) ersetzen!
-		print(strom,",",elektrode_l)
 		
 func raycast_schweissflaechen():
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
@@ -158,3 +162,45 @@ func refresh_elektrodenpfad():
 func refresh_elektrodenquerschnitt():
 	halter["elektrode"].mesh.top_radius = elektrode_d/2
 	halter["elektrode"].mesh.bottom_radius = elektrode_d/2
+
+func neue_elektrode():
+	var Schwellwert = 0.1 # Abstand nötig um neue Elektrode zu bekommen
+	if elektroden_boxen.size() == 0:
+		elektroden_boxen = [
+			Schachteln.find_child("E_1_2_300"),
+			Schachteln.find_child("E_2_0_300"),
+			Schachteln.find_child("E_2_5_300"),
+			Schachteln.find_child("E_3_2_400"),
+			Schachteln.find_child("E_4_0_400"),
+			Schachteln.find_child("E_5_0_400"),
+			Schachteln.find_child("E_6_0_400"),
+		]
+	else:
+		if Vector3(elektroden_boxen[0].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.0012
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.3		
+		elif Vector3(elektroden_boxen[1].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.002
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.3	
+		elif Vector3(elektroden_boxen[2].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.0025
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.3	
+		elif Vector3(elektroden_boxen[3].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.0032
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.4
+		elif Vector3(elektroden_boxen[4].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.004
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.4						
+		elif Vector3(elektroden_boxen[5].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.005
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.4		
+		elif Vector3(elektroden_boxen[6].global_position - halter["root"].global_position).length() <= Schwellwert:
+			elektrode_d = 0.006
+			elektrode_d += elektrode_d * 1.2
+			elektrode_l = 0.4		
