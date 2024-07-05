@@ -30,8 +30,6 @@ func _ready():
 		helm_runter(-1)
 	else:
 		helm_hoch(1.0)
-	TextManagerSprechblasen.add_dialogue("Aufseher","Bitte Helm aufsetzen",Vector3(-1,1.4,0),100,50)
-	TextManagerSprechblasen.add_dialogue("Helm_aufnehmen","HELM",Vector3(0,0.4,0),80,20)
 
 func _physics_process(delta) -> void:
 	time+=delta
@@ -52,9 +50,7 @@ func helm_aufnehmen():
 	# .length ermittelt die Länge des Vektors, keine extra Varialbe notwendig
 	if helm_anderer_helm.length() <= entfernung_helm_helm:
 		sichtbar = true
-		TextManagerSprechblasen.close_dialogue("Helm_aufnehmen")
 		aufnehmbarer_helm.queue_free()
-		TextManagerSprechblasen.close_dialogue("Aufseher")
 		time = 0
 		
 
