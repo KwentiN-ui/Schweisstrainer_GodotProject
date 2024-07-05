@@ -108,7 +108,7 @@ func _process(delta):
 	if !Einleitung_eingeblendet && !eingeblendet["Grip"]:
 		add_dialogue("Grip")
 		eingeblendet["Grip"] = true
-	print(ControllerR.is_button_pressed("grip"),",",!Einleitung_eingeblendet,",",eingeblendet["Grip"])
+	#print(ControllerR.is_button_pressed("grip"),",",!Einleitung_eingeblendet,",",eingeblendet["Grip"])
 	if !Einleitung_eingeblendet && eingeblendet["Grip"] && (ControllerR.is_button_pressed("Grip") || ControllerL.is_button_pressed("Grip")) :
 		close_dialogue("Grip")
 
