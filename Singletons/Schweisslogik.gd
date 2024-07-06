@@ -19,7 +19,12 @@ var spieler = {
 	"hand_l":null,
 }
 
-var schweissflaechen = []
+var nähte:Array[PackedScene] = []
+
+func get_naht_by_quality(qualität):
+	return nähte[0]
+
+var schweissflaechen = [] # [[Fläche1,Pfad1],[Fläche2,Pfad2]] für alle schweißbaren Flächen
 var gezuendet = false:
 	set(neu):
 		if neu == false:
@@ -29,7 +34,7 @@ var gezuendet = false:
 			gezuendet = neu
 
 		if gezuendet && strom_ein:
-			max_distanz = 0.08
+			max_distanz = 0.03
 			if Lichtbogen_an:
 				lichtbogen.emitting = true
 				LichtbogenLicht.visible = true
@@ -78,7 +83,7 @@ var strom:int = 0:
 		if is_instance_valid(stromdisplay):
 			stromdisplay.text = str(strom)+" A"
 
-var elektrode_d: #m Durchmesser, Startwert wird in der Schweißmaschine festgelegt
+var elektrode_d:
 	set(neu):
 		elektrode_d = neu
 		refresh_elektrodenquerschnitt()
@@ -105,6 +110,15 @@ func _ready():
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
 	
+	# Nähte in Array laden
+	for i in range(31):
+		var zahl:String
+		if i+1<10:
+			zahl = "0"+str(i+1)
+		else:
+			zahl = str(i+1)
+		nähte.append(load("res://Meshes/Schweissnaehte/"+zahl+".blend"))
+	print(nähte)
 	debuglabel = curr_scene.find_child("DEBUGLABEL")
 	
 	lichtbogen.emitting = false
@@ -142,13 +156,13 @@ func _physics_process(delta):
 
 func abbrennen(delta):
 	if gezuendet:
-		elektrode_l -= strom * 0.00010 * delta # TODO Durch Funktion (d) ersetzen!
+		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta # TODO Durch Funktion (d) ersetzen!
 		
 func raycast_schweissflaechen():
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
-	for flaeche in schweissflaechen:
+	for flaeche:StaticBody3D in schweissflaechen:
 		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
 			var up_vector = flaeche.global_basis.y
 			var space_state = curr_scene.get_world_3d().direct_space_state
@@ -170,7 +184,10 @@ func raycast_schweissflaechen():
 					return
 				if gezuendet:
 					# Naht erzeugen TODO
-					pass
+					var naht:Node3D = nähte.pick_random().instantiate()
+					naht.position = flaeche.to_local(result["position"])
+					
+					flaeche.add_child(naht)
 			else:
 				verfehlt.append(true)
 	if verfehlt.all(is_true):

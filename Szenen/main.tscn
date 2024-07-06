@@ -103,6 +103,17 @@ transform = Transform3D(0.592767, -0.802815, -0.0641568, 0.805368, 0.591187, 0.0
 
 [node name="ErsatzelektrodeSchachtel" parent="." instance=ExtResource("13_hcfse")]
 transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.93138, 1.24556, 3.85737)
+durchmesser = 0.015
+"länge" = 0.2
+
+[node name="ErsatzelektrodeSchachtel2" parent="." instance=ExtResource("13_hcfse")]
+transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.93138, 1.24556, 3.76583)
+durchmesser = 0.01
+"länge" = 0.2
+
+[node name="ErsatzelektrodeSchachtel3" parent="." instance=ExtResource("13_hcfse")]
+transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.88505, 1.24556, 3.92455)
+durchmesser = 0.02
 "länge" = 0.2
 
 [node name="DEBUGLABEL" type="Label3D" parent="."]

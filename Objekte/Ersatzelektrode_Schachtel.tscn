@@ -24,16 +24,26 @@ mesh = SubResource("BoxMesh_xlxax")
 shape = SubResource("BoxShape3D_6qvjd")
 
 [node name="label_durchmesser" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0564171, 0.0210302, -0.0172473)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0922171, 0.0210302, -0.0172473)
 pixel_size = 0.0005
 text = "d = 5 mm"
 font_size = 27
+horizontal_alignment = 0
 
 [node name="label_laenge" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0564171, 0.0210302, 0.000359211)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0922171, 0.0210302, 0.000359211)
 pixel_size = 0.0005
 text = "l = 100 mm"
 font_size = 27
+horizontal_alignment = 0
+
+[node name="Schrift" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 1.06581e-14, 0, -1.06581e-14, 1, -0.08063, -0.000911051, 0.0302011)
+pixel_size = 0.0005
+text = "Trigger zum nachfüllen
+drücken"
+font_size = 27
+horizontal_alignment = 0
 
 [node name="XRToolsInteractableArea" type="Area3D" parent="."]
 collision_layer = 32768

@@ -28,6 +28,9 @@ func _ready():
 	hand_l.button_pressed.connect(hand_l_pressed)
 	hand_r.button_released.connect(hand_r_released)
 	hand_l.button_released.connect(hand_l_released)
+	
+	durchmesser = durchmesser
+	länge = länge
 
 func _on_xr_tools_interactable_area_pointer_event(event):
 	if r_pressed or l_pressed:
