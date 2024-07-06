@@ -124,7 +124,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.1086
 mesh = SubResource("CylinderMesh_esf0b")
 
 [node name="Lichtbogen" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0932813, 1.4067, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0932813, 1.4067, 0)
 top_level = true
 emitting = false
 amount = 3000
@@ -134,7 +134,6 @@ speed_scale = 0.8
 randomness = 1.0
 fixed_fps = 50
 visibility_aabb = AABB(-0.711279, -0.770325, -0.710517, 1.42256, 1.54065, 1.42103)
-local_coords = true
 process_material = SubResource("ParticleProcessMaterial_b34kd")
 draw_pass_1 = SubResource("SphereMesh_jokmm")
 

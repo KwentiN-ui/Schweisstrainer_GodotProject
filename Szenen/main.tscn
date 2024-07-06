@@ -99,6 +99,6 @@ mesh = SubResource("BoxMesh_ep25f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164475, 0.00750828, 0)
 
 [node name="ErsatzelektrodeSchachtel" parent="." instance=ExtResource("13_hcfse")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894738, 0.732, 2.24105)
+transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.93138, 1.24556, 3.85737)
 
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

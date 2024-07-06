@@ -6,8 +6,6 @@ extends Node
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
 var schweissmaschine: Schweissmaschine
-var Schachteln: Node3D
-var elektroden_boxen: Array[StaticBody3D]
 
 var halter = {
 	"root":null,   # XRToolsPickable
@@ -24,7 +22,10 @@ var spieler = {
 var schweissflaechen = []
 var gezuendet = false:
 	set(neu):
-		gezuendet = neu
+		if elektrode_l <= 0:
+			gezuendet = false
+		else:
+			gezuendet = neu
 		if gezuendet && strom_ein:
 			max_distanz = 0.08
 			if Lichtbogen_an:
@@ -83,6 +84,8 @@ var elektrode_d: #m Durchmesser, Startwert wird in der Schweißmaschine festgele
 var elektrode_l = 0.008: #m Länge
 	set(neu):
 		elektrode_l = neu
+		if neu <= 0:
+			gezuendet = false
 		refresh_elektrodenpfad()
 
 var root
@@ -97,10 +100,11 @@ func _ready():
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
-	Schachteln = curr_scene.find_child("Schachteln")
 	lichtbogen.emitting = false
 	LichtbogenLicht.visible = false
 	funken.emitting = false
+	
+	lichtbogen.basis = Basis() # Rotation zurücksetzen
 
 func _process(delta):
 	t += delta
@@ -115,7 +119,7 @@ func _process(delta):
 	lichtbogen.global_position = ursprung_Lichtbogen
 	LichtbogenLicht.global_position = ursprung_Lichtbogen
 	funken.global_position = ursprung_Lichtbogen
-	
+
 
 func _physics_process(delta):
 	raycast_schweissflaechen()
@@ -138,7 +142,8 @@ func raycast_schweissflaechen():
 			var query = PhysicsRayQueryParameters3D.create(ursprung_Elektrode, ziel)
 			var result = space_state.intersect_ray(query)
 			# Richtung für Partikel definieren
-			lichtbogen.process_material.direction = lichtbogen.to_local((ziel - ursprung_Elektrode).normalized())
+			var zielrichtung:Vector3 = ziel - ursprung_Elektrode
+			lichtbogen.process_material.direction = zielrichtung
 			Draw3d.line(ursprung_Elektrode, ziel)
 
 			if result.get("collider") is Schweissflaeche and result.get("collider") == flaeche: # hat der Raycast die Schweißfläche getroffen?
