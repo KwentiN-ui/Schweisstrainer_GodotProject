@@ -22,10 +22,12 @@ var spieler = {
 var schweissflaechen = []
 var gezuendet = false:
 	set(neu):
-		if elektrode_l <= 0:
-			gezuendet = false
-		else:
+		if neu == false:
 			gezuendet = neu
+		# Darf der Lichtbogen zünden?
+		if neu and elektrode_l >= 0 and schweisswinkel_deg >= 120:
+			gezuendet = neu
+
 		if gezuendet && strom_ein:
 			max_distanz = 0.08
 			if Lichtbogen_an:
@@ -84,12 +86,14 @@ var elektrode_d: #m Durchmesser, Startwert wird in der Schweißmaschine festgele
 var elektrode_l = 0.008: #m Länge
 	set(neu):
 		elektrode_l = neu
-		if neu <= 0:
-			gezuendet = false
 		refresh_elektrodenpfad()
+
+var schweisswinkel_deg: float
 
 var root
 var curr_scene: Node3D
+
+var debuglabel:Label3D #TODO NUR FÜR DEBUGGING
 
 func _ready():
 	root = get_tree().root
@@ -100,11 +104,18 @@ func _ready():
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
+	
+	debuglabel = curr_scene.find_child("DEBUGLABEL")
+	
 	lichtbogen.emitting = false
 	LichtbogenLicht.visible = false
 	funken.emitting = false
 	
 	lichtbogen.basis = Basis() # Rotation zurücksetzen
+
+func debugtext(text):
+	if is_instance_valid(debuglabel):
+		debuglabel.text = str(text)
 
 func _process(delta):
 	t += delta
@@ -119,14 +130,18 @@ func _process(delta):
 	lichtbogen.global_position = ursprung_Lichtbogen
 	LichtbogenLicht.global_position = ursprung_Lichtbogen
 	funken.global_position = ursprung_Lichtbogen
-
+	
+func lichtbogenparameter_pruefen():
+	if schweisswinkel_deg <= 120 or elektrode_l<=0:
+		gezuendet = false
 
 func _physics_process(delta):
 	raycast_schweissflaechen()
+	lichtbogenparameter_pruefen()
 	abbrennen(delta)
 
 func abbrennen(delta):
-	if gezuendet and elektrode_l>0:
+	if gezuendet:
 		elektrode_l -= strom * 0.00010 * delta # TODO Durch Funktion (d) ersetzen!
 		
 func raycast_schweissflaechen():
@@ -141,12 +156,13 @@ func raycast_schweissflaechen():
 			var ziel = ursprung_Elektrode + max_distanz * -1*up_vector
 			var query = PhysicsRayQueryParameters3D.create(ursprung_Elektrode, ziel)
 			var result = space_state.intersect_ray(query)
-			# Richtung für Partikel definieren
-			var zielrichtung:Vector3 = ziel - ursprung_Elektrode
-			lichtbogen.process_material.direction = zielrichtung
-			Draw3d.line(ursprung_Elektrode, ziel)
 
 			if result.get("collider") is Schweissflaeche and result.get("collider") == flaeche: # hat der Raycast die Schweißfläche getroffen?
+				# Richtung für Partikel definieren
+				var zielrichtung:Vector3 = ziel - ursprung_Elektrode
+				lichtbogen.process_material.direction = zielrichtung
+				Draw3d.line(ursprung_Elektrode, ziel) # TODO DEBUG
+				schweisswinkel_deg = rad_to_deg(up_vector.angle_to(halter["root"].global_basis.x))
 				verfehlt.append(false)
 				if not gezuendet:
 					# Lichtbogen zünden

@@ -98,7 +98,14 @@ mesh = SubResource("BoxMesh_ep25f")
 [node name="Schweissflaeche2" parent="StaticBody3D" instance=ExtResource("6_740ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164475, 0.00750828, 0)
 
+[node name="Schweissflaeche3" parent="StaticBody3D" instance=ExtResource("6_740ak")]
+transform = Transform3D(0.592767, -0.802815, -0.0641568, 0.805368, 0.591187, 0.0433654, 0.00311372, -0.0773754, 0.996998, 0.13355, 0.0477833, 0.0438035)
+
 [node name="ErsatzelektrodeSchachtel" parent="." instance=ExtResource("13_hcfse")]
 transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.93138, 1.24556, 3.85737)
+"länge" = 0.2
+
+[node name="DEBUGLABEL" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.77877, 1.13802, 3.66046)
 
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]
