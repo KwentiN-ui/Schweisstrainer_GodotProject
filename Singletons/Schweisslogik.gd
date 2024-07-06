@@ -98,10 +98,12 @@ func _ready():
 
 func _process(delta):
 	t += delta
+	
+	# Platziere die Elektrode mittig im Pfad
 	var pfad:Path3D = halter["path3d"]
-	#elektrode_l = randf_range(0.1,0.3)
 	var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5))
 	halter["elektrode"].global_position = ursprung_Elektrode
+	# Skaliere die Elektrode auf die aktuelle Länge
 	halter["elektrode"].mesh.height = elektrode_l
 	var ursprung_Lichtbogen = pfad.to_global(pfad.curve.get_point_position(1))
 	lichtbogen.global_position = ursprung_Lichtbogen
@@ -125,14 +127,15 @@ func raycast_schweissflaechen():
 	var verfehlt = []
 	for flaeche in schweissflaechen:
 		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
-			var up_vector = flaeche.basis.y
-			lichtbogen.process_material.direction = -1*lichtbogen.to_global(up_vector)
+			var up_vector = flaeche.global_basis.y
 			var space_state = curr_scene.get_world_3d().direct_space_state
 			var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(1))
 			var ziel = ursprung_Elektrode + max_distanz * -1*up_vector
 			var query = PhysicsRayQueryParameters3D.create(ursprung_Elektrode, ziel)
-			Draw3d.line(ursprung_Elektrode, ziel)
 			var result = space_state.intersect_ray(query)
+			# Richtung für Partikel definieren
+			lichtbogen.process_material.direction = lichtbogen.to_local((ziel - ursprung_Elektrode).normalized())
+			Draw3d.line(ursprung_Elektrode, ziel)
 
 			if result.get("collider") is Schweissflaeche and result.get("collider") == flaeche: # hat der Raycast die Schweißfläche getroffen?
 				verfehlt.append(false)
@@ -141,7 +144,7 @@ func raycast_schweissflaechen():
 					gezuendet = true
 					return
 				if gezuendet:
-					# Naht erzeugen
+					# Naht erzeugen TODO
 					pass
 			else:
 				verfehlt.append(true)
@@ -179,15 +182,15 @@ func neue_elektrode():
 		if Vector3(elektroden_boxen[0].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.0012
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3		
+			elektrode_l = 0.3
 		elif Vector3(elektroden_boxen[1].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.002
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3	
+			elektrode_l = 0.3
 		elif Vector3(elektroden_boxen[2].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.0025
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3	
+			elektrode_l = 0.3
 		elif Vector3(elektroden_boxen[3].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.0032
 			elektrode_d += elektrode_d * 1.2
@@ -195,12 +198,12 @@ func neue_elektrode():
 		elif Vector3(elektroden_boxen[4].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.004
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4						
+			elektrode_l = 0.4
 		elif Vector3(elektroden_boxen[5].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.005
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4		
+			elektrode_l = 0.4
 		elif Vector3(elektroden_boxen[6].global_position - halter["root"].global_position).length() <= Schwellwert:
 			elektrode_d = 0.006
 			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4		
+			elektrode_l = 0.4
