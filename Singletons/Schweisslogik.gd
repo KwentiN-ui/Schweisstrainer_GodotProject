@@ -21,9 +21,6 @@ var spieler = {
 
 var nähte:Array[PackedScene] = []
 
-func get_naht_by_quality(qualität):
-	return nähte[0]
-
 var schweissflaechen = [] # [[Fläche1,Pfad1],[Fläche2,Pfad2]] für alle schweißbaren Flächen
 var gezuendet = false:
 	set(neu):
@@ -118,7 +115,7 @@ func _ready():
 		else:
 			zahl = str(i+1)
 		nähte.append(load("res://Meshes/Schweissnaehte/"+zahl+".blend"))
-	print(nähte)
+		
 	debuglabel = curr_scene.find_child("DEBUGLABEL")
 	
 	lichtbogen.emitting = false
@@ -175,7 +172,7 @@ func raycast_schweissflaechen():
 				# Richtung für Partikel definieren
 				var zielrichtung:Vector3 = ziel - ursprung_Elektrode
 				lichtbogen.process_material.direction = zielrichtung
-				Draw3d.line(ursprung_Elektrode, ziel) # TODO DEBUG
+
 				schweisswinkel_deg = rad_to_deg(up_vector.angle_to(halter["root"].global_basis.x))
 				verfehlt.append(false)
 				if not gezuendet:
@@ -184,6 +181,11 @@ func raycast_schweissflaechen():
 					return
 				if gezuendet:
 					# Naht erzeugen TODO
+					# IDEE:
+					# Ist an dem Ort schon ein Schmelzbad?
+					# wenn nein, dann erzeuge eines
+					# wenn ja dann addiere temperatur, update die größe in Abhängigkeit der Temperatur
+					# wenn Temperatur unter Grenze fällt, dann instanziiere einen Nahtabschnitt
 					var naht:Node3D = nähte.pick_random().instantiate()
 					naht.position = flaeche.to_local(result["position"])
 					
