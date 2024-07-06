@@ -15,6 +15,12 @@ var halter = {
 	"elektrode":null, #MeshInstance3D
 }
 
+var spieler = {
+	"root":null,
+	"hand_r":null,
+	"hand_l":null,
+}
+
 var schweissflaechen = []
 var gezuendet = false:
 	set(neu):
@@ -114,8 +120,6 @@ func _process(delta):
 func _physics_process(delta):
 	raycast_schweissflaechen()
 	abbrennen(delta)
-	if elektrode_l <= 0.01:
-		neue_elektrode()
 
 func abbrennen(delta):
 	if gezuendet and elektrode_l>0:
@@ -165,45 +169,3 @@ func refresh_elektrodenpfad():
 func refresh_elektrodenquerschnitt():
 	halter["elektrode"].mesh.top_radius = elektrode_d/2
 	halter["elektrode"].mesh.bottom_radius = elektrode_d/2
-
-func neue_elektrode():
-	var Schwellwert = 0.1 # Abstand nötig um neue Elektrode zu bekommen
-	if elektroden_boxen.size() == 0:
-		elektroden_boxen = [
-			Schachteln.find_child("E_1_2_300"),
-			Schachteln.find_child("E_2_0_300"),
-			Schachteln.find_child("E_2_5_300"),
-			Schachteln.find_child("E_3_2_400"),
-			Schachteln.find_child("E_4_0_400"),
-			Schachteln.find_child("E_5_0_400"),
-			Schachteln.find_child("E_6_0_400"),
-		]
-	else:
-		if Vector3(elektroden_boxen[0].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.0012
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3
-		elif Vector3(elektroden_boxen[1].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.002
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3
-		elif Vector3(elektroden_boxen[2].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.0025
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.3
-		elif Vector3(elektroden_boxen[3].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.0032
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4
-		elif Vector3(elektroden_boxen[4].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.004
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4
-		elif Vector3(elektroden_boxen[5].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.005
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4
-		elif Vector3(elektroden_boxen[6].global_position - halter["root"].global_position).length() <= Schwellwert:
-			elektrode_d = 0.006
-			elektrode_d += elektrode_d * 1.2
-			elektrode_l = 0.4

@@ -1,16 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
 [ext_resource type="PackedScene" uid="uid://bgwcj6vml3eij" path="res://Objekte/Halle61.tscn" id="3_xpm5g"]
-[ext_resource type="PackedScene" uid="uid://bsl75lmsev1px" path="res://Objekte/Tablet/Tablet.tscn" id="5_53hqm"]
 [ext_resource type="PackedScene" uid="uid://cj2yms30gnuhe" path="res://Objekte/Schweissgeraet/Schweissgeraet.tscn" id="5_yum85"]
 [ext_resource type="PackedScene" uid="uid://cpwxhdddf3tnu" path="res://Szenen/schweissbar.tscn" id="6_740ak"]
 [ext_resource type="Texture2D" uid="uid://c17d3qnvro463" path="res://Bilder/Schweisszeichen.jpg" id="7_f2i3q"]
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
+[ext_resource type="PackedScene" uid="uid://g21uv0vsiah3" path="res://Objekte/Ersatzelektrode_Schachtel.tscn" id="13_hcfse"]
 [ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
-[ext_resource type="PackedScene" uid="uid://d2n13boqsijxj" path="res://Objekte/Schachteln.tscn" id="13_yiknr"]
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Objekte/Aufseher.gd" id="16_x652a"]
 
@@ -50,9 +49,6 @@ script = ExtResource("1_sksy6")
 environment = SubResource("Environment_linc2")
 camera_attributes = SubResource("CameraAttributesPhysical_cubk4")
 
-[node name="Tablet" parent="." instance=ExtResource("5_53hqm")]
-transform = Transform3D(1.24577e-07, 2.85, -4.30338e-07, 2.85, -1.24577e-07, -1.20702e-21, -1.88107e-14, -4.30338e-07, -2.85, 0.270193, 0.832698, 1.9639)
-
 [node name="Poster Nahtarten" type="Sprite3D" parent="."]
 transform = Transform3D(0.105, 0, 4.44089e-16, 0, 0.105, 0, -4.44089e-16, 0, 0.105, 1.76948, 1.07176, 5.50259)
 flip_h = true
@@ -60,9 +56,6 @@ texture = ExtResource("7_f2i3q")
 
 [node name="Helm_aufnehmen" parent="." instance=ExtResource("13_b2o30")]
 transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 2.55361, 1.43819, 4.12925)
-
-[node name="Schachteln" parent="." instance=ExtResource("13_yiknr")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.939437, 0.75793, 2.58291)
 
 [node name="Spieler" parent="." instance=ExtResource("1_u04tm")]
 transform = Transform3D(-0.999997, 0, -0.00246087, 0, 1, 0, 0.00246087, 0, -0.999997, 2.069, -1.43051e-06, 2.79977)
@@ -104,5 +97,8 @@ mesh = SubResource("BoxMesh_ep25f")
 
 [node name="Schweissflaeche2" parent="StaticBody3D" instance=ExtResource("6_740ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164475, 0.00750828, 0)
+
+[node name="ErsatzelektrodeSchachtel" parent="." instance=ExtResource("13_hcfse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.894738, 0.732, 2.24105)
 
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

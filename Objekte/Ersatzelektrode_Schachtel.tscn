@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://g21uv0vsiah3"]
+
+[ext_resource type="Script" path="res://Objekte/Ersatzelektrode_Schachtel.gd" id="1_wso0x"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/interactable_area.gd" id="2_imddg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlxax"]
+size = Vector3(0.2, 0.04, 0.06)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qvjd"]
+size = Vector3(0.2, 0.04, 0.06)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytd7a"]
+size = Vector3(0.2, 0.04, 0.06)
+
+[node name="ErsatzelektrodeSchachtel" type="StaticBody3D"]
+script = ExtResource("1_wso0x")
+durchmesser = 0.005
+"länge" = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xlxax")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6qvjd")
+
+[node name="label_durchmesser" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0564171, 0.0210302, -0.0172473)
+pixel_size = 0.0005
+text = "d = 5 mm"
+font_size = 27
+
+[node name="label_laenge" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0564171, 0.0210302, 0.000359211)
+pixel_size = 0.0005
+text = "l = 100 mm"
+font_size = 27
+
+[node name="XRToolsInteractableArea" type="Area3D" parent="."]
+collision_layer = 32768
+collision_mask = 32768
+script = ExtResource("2_imddg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRToolsInteractableArea"]
+shape = SubResource("BoxShape3D_ytd7a")
+
+[connection signal="pointer_event" from="XRToolsInteractableArea" to="." method="_on_xr_tools_interactable_area_pointer_event"]
