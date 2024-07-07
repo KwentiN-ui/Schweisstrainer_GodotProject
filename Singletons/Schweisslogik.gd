@@ -194,20 +194,24 @@ func raycast_schweissflaechen(delta):
 					#naht.position = flaeche.to_local(result["position"])
 					#
 					#flaeche.add_child(naht)
-					var temp:Array = []
+					
+					# Ermittle nähestes Schweissbad
+					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:
 						var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
-						if abstand_sq < 0.02:
+						if abstand_sq < 0.005:
 							temp.append([schmelzbad,abstand_sq])
 					if temp.size()>0:
 						# Es wurde ein ausreichend nahes Bad gefunden
-						temp.sort_custom(func(a,b): return a[1]<b[1])
-						var bad:Schweissbad = temp[0][0]
-						# Erhitze die Naht und verschiebe sie in die Nähe der Schweissposition
-						bad.temperatur += strom/clamp(temp[0][1],1e-2,1) * 1e-3
+						temp.sort_custom(func(a,b): return a[1]<b[1]) # sortiere nach Abständen
+						var bad:Schweissbad = temp[0][0] # Nähestes Bad
+						var dist_sq = temp[0][1] # Quadrat des nahesten Abstandes zur Schweissposition
+						
+						# Erhitze das Bad und verschiebe sie zur Schweissposition
+						bad.temperatur += strom/clamp(dist_sq,1e-2,1) * 1e-3
 						bad.global_position = bad.global_position.lerp(pos,delta*0.5)
 					else:
-						# erzeuge neues Bad
+						# kein Bad in der Nähe, erzeuge ein neues
 						var bad:Schweissbad = szene_schmelzbad.instantiate()
 						bad.position = flaeche.to_local(pos)
 						flaeche.schweissbäder.append(bad)

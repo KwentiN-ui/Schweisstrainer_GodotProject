@@ -27,4 +27,4 @@ mesh = SubResource("PlaneMesh_inbwb")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0103558, 0)
-size = Vector3(0.01, 0.01, 0.58)
+size = Vector3(0.011, 0.01, 0.584)
