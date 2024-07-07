@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://g21uv0vsiah3"]
+[gd_scene load_steps=7 format=3 uid="uid://g21uv0vsiah3"]
 
 [ext_resource type="Script" path="res://Objekte/Ersatzelektrode_Schachtel.gd" id="1_wso0x"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/interactable_area.gd" id="2_imddg"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2igvv"]
+albedo_color = Color(0.254709, 0.471668, 0.9871, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_xlxax"]
+material = SubResource("StandardMaterial3D_2igvv")
 size = Vector3(0.2, 0.04, 0.06)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6qvjd"]

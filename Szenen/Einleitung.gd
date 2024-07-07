@@ -120,9 +120,11 @@ func _process(delta):
 		10:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Elektrode nehmen")
+				TextManagerSprechblasen.add_dialogue("Schweisselektroden Position")
 				eingeblendet = true
 			if eingeblendet && Schweisslogik.elektrode_d != 0:
 				TextManagerSprechblasen.close_dialogue("Elektrode nehmen")
+				TextManagerSprechblasen.close_dialogue("Schweisselektroden Position")
 				eingeblendet = false
 				level = 11
 		11:
@@ -145,6 +147,7 @@ func _process(delta):
 			TextManagerSprechblasen.close_dialogue("Einleitung")
 			fertig.emit()
 			tutorial_fertig.emit() # Aufseher kann sich dann bewegen
+			level = 21
 		_:
 			pass
 

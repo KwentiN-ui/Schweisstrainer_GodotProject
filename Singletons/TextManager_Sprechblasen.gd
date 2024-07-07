@@ -116,7 +116,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 					[p][color=#CDFFE5]Zum Fortfahren die Schweißstromstärke ändern![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.5,0),
-				"min_w_h" : [400,500],
+				"min_w_h" : [400,460],
 				"bg" : false
 			},
 		"Griffstueck nehmen" : 
@@ -132,23 +132,34 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Elektrode nehmen" : 
 			{
 				"Inhalt" : 
-					"[p]Zum Schweißen wird eine Stabelektrode benötigt. Diese befinden sich in den Kartons auf der Schweißmaschine.[/p]
+					"[p]Zum Schweißen wird eine Stabelektrode benötigt. Diese befinden sich in den Kartons auf dem Schweißtisch.[/p]
 					[p]Zum in das Griffstück einzuspannen mit dem Controller der das Griffstück hält auf den jeweiligen Karton zeigen und sobald ein roter Laser erscheint mit \"Trigger\" eine neue Elektrode einspannen.[/p]
 					[p][color=#CDFFE5]Zum Fortfahren eine neue Elektrode einspannen![/color][/p]",
 				"Parent" : "Aufseher",
-				"pos" : Vector3(-2.2,0.8,0),
-				"min_w_h" : [300,500],
+				"pos" : Vector3(-2.0,0.8,0),
+				"min_w_h" : [300,510],
 				"bg" : false
 			},
 		"Schweissen erklären" : 
 			{
 				"Inhalt" : 
-					"[p] Zum Schweißen die Elektrode an das zu schweißende Blech halten und darauf achten, dass der Abstand nicht größer als der Elektrodendurchmesser ist. Falls der Abstand zu groß wird, geht der Lichtbogen aus und die Elektrode muss neu gezündet werden. [/p]",
+					"[p] Zum Schweißen die Elektrode an das zu schweißende Blech halten und darauf achten, dass der Abstand nicht größer als der Elektrodendurchmesser ist. Falls der Abstand zu groß wird, geht der Lichtbogen aus und die Elektrode muss neu gezündet werden. [/p]
+					[p]Und niemals vor dem Schweißen vergessen den Schweißhelm herunterzuklappen![/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.2,0.8,0),
-				"min_w_h" : [300,300],
+				"min_w_h" : [300,410],
 				"bg" : false
-			}
+			},
+		"Schweisselektroden Position" : 
+			{
+			"Inhalt" : 
+				"[pulse][p align=center][color=red]Stabelektroden[/color][/p]
+				[p align=center][font_size=40]\u2193[/font_size][/p]",
+			"Parent" : "ErsatzelektrodeSchachtel1",
+			"pos" : Vector3(0,0.3,0),
+			"min_w_h" : [200,200],
+			"bg" : true
+			},
 		}
 
 var Zeit_Einleitung = 15 #Sekunden
