@@ -36,7 +36,7 @@ func _process(delta):
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Einleitung")
 				eingeblendet = true
-			elif time >= 2:
+			elif time >= 15:
 				TextManagerSprechblasen.close_dialogue("Einleitung")
 				eingeblendet = false
 				level = 1
@@ -125,9 +125,18 @@ func _process(delta):
 				TextManagerSprechblasen.close_dialogue("Elektrode nehmen")
 				eingeblendet = false
 				level = 11
-			fertig.emit()
 		11:
+			if !eingeblendet:
+				TextManagerSprechblasen.add_dialogue("Schweissen erklären")
+				eingeblendet = true
+			if eingeblendet && Schweisslogik.gezuendet:
+				TextManagerSprechblasen.close_dialogue("Schweissen erklären")
+				eingeblendet = false
+				level = 12
+			fertig.emit() # Schweißblech wird eingeblendet
+		12:
 			pass
+			tutorial_fertig.emit() # Aufseher kann sich dann bewegen
 		20:
 			TextManagerSprechblasen.close_dialogue("Teleportieren")
 			TextManagerSprechblasen.close_dialogue("Drehen")
@@ -135,7 +144,7 @@ func _process(delta):
 			TextManagerSprechblasen.close_dialogue("Trigger")
 			TextManagerSprechblasen.close_dialogue("Einleitung")
 			fertig.emit()
-			tutorial_fertig.emit()
+			tutorial_fertig.emit() # Aufseher kann sich dann bewegen
 		_:
 			pass
 

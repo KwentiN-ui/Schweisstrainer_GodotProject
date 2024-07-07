@@ -60,10 +60,10 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Helm aufsetzen" : 
 			{
 			"Inhalt" : 
-				"[p]Um Augenverletzungen beim Schweißen zu vermeiden bitte den Schweißhelm greifen und aufsetzen.[/p]",
+				"[p]Um Augenverletzungen beim Schweißen zu vermeiden bitte den Schweißhelm greifen und aufsetzen. Um den Helm aufzusetzen die Hand, die den Helm festhält an den Kopf führen.[/p]",
 			"Parent" : "Aufseher",
-			"pos" : Vector3(-2.0,0.5,0),
-			"min_w_h" : [200,200],
+			"pos" : Vector3(-2.0,0.8,0),
+			"min_w_h" : [300,220],
 			"bg" : false
 			},
 		"Helm Position" : 
@@ -79,7 +79,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Helm benutzen" : 
 			{
 				"Inhalt" :
-					"[p]Um den Schweißhelm herunterzuklappen entweder mit dem Kopf nicken oder Hand nah an den Kopf halten und \"Trigger\" drücken.[/p]
+					"[p]Um den Schweißhelm herunterzuklappen entweder mit dem Kopf nicken oder eine Hand nah an den Kopf halten und \"Trigger\" drücken.[/p]
 					[p]Zum Hochklappen ebenfalls die Hand nah an den Kopf halten und Trigger drücken.[/p]
 					[p][color=#CDFFE5]Zum Fortfahren den Helm Herunterklappen![/color][/p]",
 				"Parent" : "Aufseher",
@@ -126,8 +126,8 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 					[p][color=#CDFFE5]Zum Fortfahren das Griffstück greifen![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.5,0),
-				"min_w_h" : [300,400],
-				"bg" : false				
+				"min_w_h" : [300,240],
+				"bg" : false
 			},
 		"Elektrode nehmen" : 
 			{
@@ -136,8 +136,17 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 					[p]Zum in das Griffstück einzuspannen mit dem Controller der das Griffstück hält auf den jeweiligen Karton zeigen und sobald ein roter Laser erscheint mit \"Trigger\" eine neue Elektrode einspannen.[/p]
 					[p][color=#CDFFE5]Zum Fortfahren eine neue Elektrode einspannen![/color][/p]",
 				"Parent" : "Aufseher",
-				"pos" : Vector3(-2.5,0.8,0),
+				"pos" : Vector3(-2.2,0.8,0),
 				"min_w_h" : [300,500],
+				"bg" : false
+			},
+		"Schweissen erklären" : 
+			{
+				"Inhalt" : 
+					"[p] Zum Schweißen die Elektrode an das zu schweißende Blech halten und darauf achten, dass der Abstand nicht größer als der Elektrodendurchmesser ist. Falls der Abstand zu groß wird, geht der Lichtbogen aus und die Elektrode muss neu gezündet werden. [/p]",
+				"Parent" : "Aufseher",
+				"pos" : Vector3(-2.2,0.8,0),
+				"min_w_h" : [300,300],
 				"bg" : false
 			}
 		}
