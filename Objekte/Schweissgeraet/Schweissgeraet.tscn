@@ -126,6 +126,7 @@ mesh = SubResource("CylinderMesh_esf0b")
 [node name="Lichtbogen" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0932813, 1.4067, 0)
 top_level = true
+visible = false
 emitting = false
 amount = 3000
 lifetime = 0.1
@@ -155,3 +156,5 @@ draw_pass_1 = SubResource("QuadMesh_rk05a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145438, 0)
 visible = false
 stream = ExtResource("8_7x1ww")
+
+[connection signal="picked_up" from="Elektrodenhalter" to="." method="_on_elektrodenhalter_picked_up"]

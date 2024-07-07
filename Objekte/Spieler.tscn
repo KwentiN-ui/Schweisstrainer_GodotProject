@@ -27,7 +27,6 @@ near = 0.02
 
 [node name="Helm" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_nvyxg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.00532508, -0.0239138)
-debug_helm_ist_auf = true
 
 [node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("4_cbnqe")]
 

@@ -94,11 +94,11 @@ collision_mask = 196615
 script = ExtResource("1_4wngd")
 ranged_grab_method = 2
 
-[node name="Helm" type="MeshInstance3D" parent="XRToolsPickable"]
+[node name="Helm_Aufnehmen" type="MeshInstance3D" parent="XRToolsPickable"]
 mesh = SubResource("ArrayMesh_0a4a8")
 skeleton = NodePath("")
 
-[node name="Visier_Aufnehmen" type="MeshInstance3D" parent="XRToolsPickable/Helm"]
+[node name="Visier_Aufnehmen" type="MeshInstance3D" parent="XRToolsPickable/Helm_Aufnehmen"]
 transform = Transform3D(0, 0.0292242, 0, -0.0292242, 0, 0, 0, 0, 0.0292242, 0.0786844, -0.0849564, 0.000807496)
 mesh = SubResource("ArrayMesh_lfjmb")
 skeleton = NodePath("")

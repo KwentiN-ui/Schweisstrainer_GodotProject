@@ -3,6 +3,9 @@ extends Node3D
 @export var debug_helm_ist_auf = true
 var unten:bool = false
 
+signal einleitung_ueberspringen()
+signal helm_aufgenommen()
+
 var sichtbar:bool = false
 
 var aufnehmbarer_helm:Node3D
@@ -15,15 +18,18 @@ var helm_unten:bool = false
 var sekunden_seit_helm:float = 0 # sekunden seit helm animation
 var helm_lange_in_position:bool = true #helm min 1 sekunde in position
 
+var einleitung: Node3D
+
 var time = 0
 
 
 @export var entfernung_helm_helm = 0.2
 
 func _ready():
-	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm
+	einleitung = find_parent("Main").find_child("Einleitung")
+	aufnehmbarer_helm = $/root/Main/Helm_aufnehmen/XRToolsPickable/Helm_Aufnehmen
 	if !is_instance_valid(aufnehmbarer_helm):
-		aufnehmbarer_helm = $/root/Main_XR_sim/Main/Helm_aufnehmen/XRToolsPickable/Helm
+		aufnehmbarer_helm = $/root/Main_XR_sim/Main/Helm_aufnehmen/XRToolsPickable/Helm_Aufnehmen
 	Contr_rechts = $"../../RechterController"
 	Contr_links = $"../../LinkerController"
 	if unten:
@@ -50,8 +56,14 @@ func helm_aufnehmen():
 	# .length ermittelt die Länge des Vektors, keine extra Varialbe notwendig
 	if helm_anderer_helm.length() <= entfernung_helm_helm:
 		sichtbar = true
-		aufnehmbarer_helm.queue_free()
+		aufnehmbarer_helm.visible = false
 		time = 0
+		if einleitung.level < 5:
+			einleitung_ueberspringen.emit()
+		if einleitung.level == 5:
+			helm_aufgenommen.emit()
+		aufnehmbarer_helm.queue_free()
+			
 		
 
 func helm_bewegung(delta):
