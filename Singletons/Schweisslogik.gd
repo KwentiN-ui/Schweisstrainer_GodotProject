@@ -6,6 +6,7 @@ extends Node
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
 var schweissmaschine: Schweissmaschine
+var szene_schmelzbad = preload("res://Objekte/Schweissbad.tscn")
 
 var halter = {
 	"root":null,   # XRToolsPickable
@@ -147,7 +148,7 @@ func lichtbogenparameter_pruefen():
 		gezuendet = false
 
 func _physics_process(delta):
-	raycast_schweissflaechen()
+	raycast_schweissflaechen(delta)
 	lichtbogenparameter_pruefen()
 	abbrennen(delta)
 
@@ -155,7 +156,7 @@ func abbrennen(delta):
 	if gezuendet:
 		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta # TODO Durch Funktion (d) ersetzen!
 		
-func raycast_schweissflaechen():
+func raycast_schweissflaechen(delta):
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
@@ -169,6 +170,7 @@ func raycast_schweissflaechen():
 			var result = space_state.intersect_ray(query)
 
 			if result.get("collider") is Schweissflaeche and result.get("collider") == flaeche: # hat der Raycast die Schweißfläche getroffen?
+				var pos:Vector3 = result.get("position")
 				# Richtung für Partikel definieren
 				var zielrichtung:Vector3 = ziel - ursprung_Elektrode
 				lichtbogen.process_material.direction = zielrichtung
@@ -186,10 +188,31 @@ func raycast_schweissflaechen():
 					# wenn nein, dann erzeuge eines
 					# wenn ja dann addiere temperatur, update die größe in Abhängigkeit der Temperatur
 					# wenn Temperatur unter Grenze fällt, dann instanziiere einen Nahtabschnitt
-					var naht:Node3D = nähte.pick_random().instantiate()
-					naht.position = flaeche.to_local(result["position"])
 					
-					flaeche.add_child(naht)
+					# Der nachfolgende Code erzeugt einfach zufällige Nähte an der Schweißposition, funktioniert im Notfall auch
+					#var naht:Node3D = nähte.pick_random().instantiate()
+					#naht.position = flaeche.to_local(result["position"])
+					#
+					#flaeche.add_child(naht)
+					var temp:Array = []
+					for schmelzbad: Schweissbad in flaeche.schweissbäder:
+						var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
+						if abstand_sq < 0.02:
+							temp.append([schmelzbad,abstand_sq])
+					if temp.size()>0:
+						# Es wurde ein ausreichend nahes Bad gefunden
+						temp.sort_custom(func(a,b): return a[1]<b[1])
+						var bad:Schweissbad = temp[0][0]
+						# Erhitze die Naht und verschiebe sie in die Nähe der Schweissposition
+						bad.temperatur += strom/clamp(temp[0][1],1e-2,1) * 1e-3
+						bad.global_position = bad.global_position.lerp(pos,delta*0.5)
+					else:
+						# erzeuge neues Bad
+						var bad:Schweissbad = szene_schmelzbad.instantiate()
+						bad.position = flaeche.to_local(pos)
+						flaeche.schweissbäder.append(bad)
+						bad.parent_fläche = flaeche
+						flaeche.add_child(bad)
 			else:
 				verfehlt.append(true)
 	if verfehlt.all(is_true):

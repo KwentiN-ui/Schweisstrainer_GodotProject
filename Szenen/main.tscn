@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
 [ext_resource type="PackedScene" uid="uid://g21uv0vsiah3" path="res://Objekte/Ersatzelektrode_Schachtel.tscn" id="13_hcfse"]
+[ext_resource type="PackedScene" uid="uid://crkbs2da7ejh2" path="res://Objekte/Schweissbad.tscn" id="13_ifyfv"]
 [ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Objekte/Aufseher.gd" id="16_x652a"]
@@ -96,10 +97,14 @@ shape = SubResource("BoxShape3D_o3gyv")
 mesh = SubResource("BoxMesh_ep25f")
 
 [node name="Schweissflaeche2" parent="StaticBody3D" instance=ExtResource("6_740ak")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164475, 0.00750828, 0)
+transform = Transform3D(1, 1.49012e-08, 2.98023e-08, 1.49012e-08, 1, -1.19209e-07, -8.9407e-08, -1.63913e-07, 1, -0.0936556, 0.120806, 0.0552249)
+breite = 0.02
+"länge" = 0.5
 
 [node name="Schweissflaeche3" parent="StaticBody3D" instance=ExtResource("6_740ak")]
 transform = Transform3D(0.592767, -0.802815, -0.0641568, 0.805368, 0.591187, 0.0433654, 0.00311372, -0.0773754, 0.996998, 0.13355, 0.0477833, 0.0438035)
+breite = 0.02
+"länge" = 0.5
 
 [node name="ErsatzelektrodeSchachtel" parent="." instance=ExtResource("13_hcfse")]
 transform = Transform3D(-0.904946, 0, 0.425527, 0, 1, 0, -0.425527, 0, -0.904946, 2.93138, 1.24556, 3.85737)
@@ -118,5 +123,8 @@ durchmesser = 0.02
 
 [node name="DEBUGLABEL" type="Label3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.77877, 1.13802, 3.66046)
+
+[node name="Schweissbad" parent="." instance=ExtResource("13_ifyfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6662, 1.02064, 3.3135)
 
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]
