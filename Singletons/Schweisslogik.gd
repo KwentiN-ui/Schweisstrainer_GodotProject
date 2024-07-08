@@ -3,6 +3,8 @@
 
 extends Node
 
+signal neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D)
+
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
 var schweissmaschine: Schweissmaschine
@@ -157,6 +159,7 @@ func abbrennen(delta):
 		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta # TODO Durch Funktion (d) ersetzen!
 		
 func raycast_schweissflaechen(delta):
+	var neu: bool 
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
@@ -198,15 +201,17 @@ func raycast_schweissflaechen(delta):
 					# Ermittle nähestes Schweissbad
 					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:
-						var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
-						if abstand_sq < 0.005:
+						if (schmelzbad.global_position - pos).length() <= 0.03:
+							var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
 							temp.append([schmelzbad,abstand_sq])
-					if temp.size()>0:
+							neu = false
+						else:
+							neu = true
+					if temp.size()>0 && !neu:
 						# Es wurde ein ausreichend nahes Bad gefunden
 						temp.sort_custom(func(a,b): return a[1]<b[1]) # sortiere nach Abständen
 						var bad:Schweissbad = temp[0][0] # Nähestes Bad
 						var dist_sq = temp[0][1] # Quadrat des nahesten Abstandes zur Schweissposition
-						
 						# Erhitze das Bad und verschiebe sie zur Schweissposition
 						bad.temperatur += strom/clamp(dist_sq,1e-2,1) * 1e-3
 						bad.global_position = bad.global_position.lerp(pos,delta*0.5)
@@ -214,9 +219,9 @@ func raycast_schweissflaechen(delta):
 						# kein Bad in der Nähe, erzeuge ein neues
 						var bad:Schweissbad = szene_schmelzbad.instantiate()
 						bad.position = flaeche.to_local(pos)
-						flaeche.schweissbäder.append(bad)
 						bad.parent_fläche = flaeche
 						flaeche.add_child(bad)
+						neues_schweissbad.emit(bad,flaeche)
 			else:
 				verfehlt.append(true)
 	if verfehlt.all(is_true):
