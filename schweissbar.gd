@@ -1,4 +1,4 @@
-#@tool
+@tool
 extends StaticBody3D
 class_name Schweissflaeche
 
@@ -35,8 +35,8 @@ func _ready():
 	breite = breite
 	länge = länge
 	
-	#if !Engine.is_editor_hint():
-	Schweisslogik.schweissflaechen.append(self)
+	if !Engine.is_editor_hint():
+		Schweisslogik.schweissflaechen.append(self)
 
 
 func _on_neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D):

@@ -34,7 +34,7 @@ func _ready():
 
 func _on_xr_tools_interactable_area_pointer_event(event):
 	if r_pressed or l_pressed:
-		Schweisslogik.elektrode_d = durchmesser
+		Schweisslogik.elektrode_d = durchmesser*2.1
 		Schweisslogik.elektrode_l = länge
 
 func hand_r_pressed(button):

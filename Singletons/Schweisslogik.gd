@@ -204,11 +204,8 @@ func raycast_schweissflaechen(delta):
 					
 					# Ermittle nähestes Schweissbad
 					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
-					var i = 0
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:
-						i += 1	
-					
-						if schmelzbad.temperatur > 1450:
+						if schmelzbad.temperatur > 1600:
 							schmelzbad.ueber_schmelztemp = true
 					
 						if (schmelzbad.global_position - pos).length() <= min_abstand_fuer_neues_schweißbad:
@@ -218,8 +215,23 @@ func raycast_schweissflaechen(delta):
 						else:
 							neu = true
 						if schmelzbad.temperatur <= 1400 && schmelzbad.ueber_schmelztemp:
+							var material = StandardMaterial3D.new()
+							material.albedo_color = Color(0.7,0.7,0.7)
+							material.roughness = 0
+							material.metallic = 1
+							material.metallic_specular = 0.8
 							var naht:Node3D = nähte.pick_random().instantiate()
 							naht.position = schmelzbad.position
+							naht.find_child("Icosphere_003").mesh.surface_set_material(0,material)
+# TODO Ausrichtung der Naht 
+							if elektrode_d == 0.006:
+								naht.scale = Vector3(1.3,0.4,0.4)
+							elif elektrode_d == 0.005:
+								naht.scale = Vector3(1.2,0.35,0.35)
+							elif elektrode_d == 0.004:
+								naht.scale = Vector3(1.15,0.3,0.3)
+							elif elektrode_d == 0.003:
+								naht.scale = Vector3(1.1,0.25,0.25)
 							flaeche.schweissbäder.remove_at(flaeche.schweissbäder.find(schmelzbad))
 							schmelzbad.queue_free()
 							flaeche.add_child(naht)

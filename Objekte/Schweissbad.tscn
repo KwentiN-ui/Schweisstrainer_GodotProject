@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" path="res://Objekte/Schweissbad.gd" id="1_jj6jv"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_begy2"]
-resource_local_to_scene = true
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.001
-radial_segments = 16
+[sub_resource type="SphereMesh" id="SphereMesh_ifd0y"]
+radius = 0.03
+height = 0.03
+radial_segments = 20
+rings = 20
 
 [node name="Schweissbad" type="MeshInstance3D"]
-mesh = SubResource("CylinderMesh_begy2")
+mesh = SubResource("SphereMesh_ifd0y")
 script = ExtResource("1_jj6jv")
 
 [node name="Label3D" type="Label3D" parent="."]

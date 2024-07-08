@@ -1,7 +1,7 @@
 extends MeshInstance3D
 class_name Schweissbad
 const min_temperatur = 700
-const max_temperatur = 1700
+const max_temperatur = 1800
 var parent_fläche: Schweissflaeche
 
 var ueber_schmelztemp: bool = false
@@ -21,8 +21,7 @@ var temperatur:float = min_temperatur*1.5:
 var durchmesser: float:
 	set(neu):
 		durchmesser = neu
-		mesh.top_radius = neu/2.0
-		mesh.bottom_radius = neu/2.0
+		mesh.radius = neu/2.0
 
 func _ready():
 	durchmesser = 0.1

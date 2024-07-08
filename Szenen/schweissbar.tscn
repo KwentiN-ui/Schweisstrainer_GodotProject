@@ -7,7 +7,10 @@ resource_local_to_scene = true
 size = Vector3(0.011, 0.001, 0.584)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haahi"]
-albedo_color = Color(0.37918, 0.37918, 0.37918, 1)
+albedo_color = Color(0.830335, 0.830335, 0.830335, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.57
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_inbwb"]
 resource_local_to_scene = true
