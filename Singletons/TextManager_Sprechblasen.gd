@@ -16,7 +16,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Teleportieren" : 
 			{
 			"Inhalt" :
-				"[p]Zum  Teleportieren den \"A\" Knopf am rechten Controller drücken und auf den Zielort zeigen.[/p]
+				"[p]Zum  Teleportieren den \"A\"-Knopf am rechten Controller drücken und auf den Zielort zeigen.[/p]
 				[p][img=270]res://Bilder/fuer_Text/A_Knopf.png[/img][/p]
 				[p][color=#CDFFE5]Zum Fortfahren teleportieren![/color][/p]",
 			"Parent" : "Aufseher",
@@ -101,7 +101,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 			{
 				"Inhalt" : 
 					"[p]Zum Schweißen wird eine Schweißmaschine benötigt.[/p]
-					[p]Um diese anzuschalten mit dem Controller auf den Ein/Aus-Schalter zeigen. Wenn dort ein roter Laser zu sehen ist, kann die Schweißmaschine mit \"Trigger\" ein- und ausgeschlaten werden.
+					[p]Um diese anzuschalten mit dem Controller auf den Ein/Aus-Schalter zeigen. Wenn dort ein roter Laser zu sehen ist, kann die Schweißmaschine mit \"Trigger\" ein- und ausgeschalten werden.
 					[p][color=#CDFFE5]Zum Fortfahren die Schweißmaschine einschalten![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.8,0),
@@ -111,8 +111,8 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Schweissstrom aendern":
 			{
 				"Inhalt" : 
-					"[p] Für die unterschiedlichen Blechdicken werden unterschieldiche Schweißstromstärken benötigt.[/p]
-					[p]Um diese zu ändern mit dem Controller auf den Slider an der Schweißmaschine zeigen. Wenn dort ein roter Laser zu sehen ist, kann die die Schweißstromstärke durch drücken von \"Trigger\" und Bewegen des Controllers geändert werden.
+					"[p] Für die unterschiedlichen Blechdicken werden unterschiedliche Schweißstromstärken benötigt.[/p]
+					[p]Um diese zu Ändern mit dem Controller auf den Slider an der Schweißmaschine zeigen. Wenn dort ein roter Laser zu sehen ist, kann die Schweißstromstärke durch drücken von \"Trigger\" und Bewegen des Controllers geändert werden.
 					[p][color=#CDFFE5]Zum Fortfahren die Schweißstromstärke ändern![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.5,0),
