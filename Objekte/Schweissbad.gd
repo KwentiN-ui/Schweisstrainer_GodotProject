@@ -1,6 +1,6 @@
 extends MeshInstance3D
 class_name Schweissbad
-const min_temperatur = 150
+const min_temperatur = 700
 const max_temperatur = 1700
 var parent_fläche: Schweissflaeche
 
@@ -28,7 +28,7 @@ func _ready():
 	durchmesser = 0.1
 
 func _physics_process(delta):
-	temperatur -= temperatur**2*1e-6
+	temperatur -= temperatur**2.1*1e-6
 	var Mat = StandardMaterial3D.new()
 	Mat.emission_enabled = true 
 	Mat.emission_energy_multiplier = 30

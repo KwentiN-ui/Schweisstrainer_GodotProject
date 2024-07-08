@@ -5,6 +5,9 @@ extends Node
 
 signal neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D)
 
+# TODO einstellen /vielleicht nach schweißgeschwindigkeit? / Ich blick hier nicht durch
+var min_abstand_fuer_neues_schweißbad = 0.005
+
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
 var schweissmaschine: Schweissmaschine
@@ -208,7 +211,7 @@ func raycast_schweissflaechen(delta):
 						if schmelzbad.temperatur > 1450:
 							schmelzbad.ueber_schmelztemp = true
 					
-						if (schmelzbad.global_position - pos).length() <= 0.01:
+						if (schmelzbad.global_position - pos).length() <= min_abstand_fuer_neues_schweißbad:
 							var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
 							temp.append([schmelzbad,abstand_sq])
 							neu = false
@@ -227,7 +230,7 @@ func raycast_schweissflaechen(delta):
 						var bad:Schweissbad = temp[0][0] # Nähestes Bad
 						var dist_sq = temp[0][1] # Quadrat des nahesten Abstandes zur Schweissposition
 						# Erhitze das Bad und verschiebe sie zur Schweissposition
-						bad.temperatur += strom/clamp(dist_sq,1e-2,1) * 1e-3
+						bad.temperatur += strom/clamp(dist_sq,1e-2,1) * 4e-3
 						bad.global_position = bad.global_position.lerp(pos,delta*0.5)
 					else:
 						# kein Bad in der Nähe, erzeuge ein neues
