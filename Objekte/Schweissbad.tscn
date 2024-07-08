@@ -2,15 +2,17 @@
 
 [ext_resource type="Script" path="res://Objekte/Schweissbad.gd" id="1_jj6jv"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_ifd0y"]
-radius = 0.03
-height = 0.03
-radial_segments = 20
-rings = 20
+[sub_resource type="CylinderMesh" id="CylinderMesh_gj50v"]
+resource_local_to_scene = true
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.01
 
 [node name="Schweissbad" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_ifd0y")
+mesh = SubResource("CylinderMesh_gj50v")
 script = ExtResource("1_jj6jv")
+farbe_kalt = Color(0.698039, 0.152941, 0, 1)
+farbe_warm = Color(0.713726, 0.498039, 1, 1)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.00659572, -0.156679)

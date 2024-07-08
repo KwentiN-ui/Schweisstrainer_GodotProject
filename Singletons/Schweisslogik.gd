@@ -3,10 +3,7 @@
 
 extends Node
 
-signal neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D)
-
-# TODO einstellen /vielleicht nach schweißgeschwindigkeit? / Ich blick hier nicht durch
-var min_abstand_fuer_neues_schweißbad = 0.005
+var min_abstand_fuer_neues_schweißbad = 5e-2 #m
 
 var Lichtbogen_an = true # DEBUG für Nahterstellung
 
@@ -38,18 +35,17 @@ var gezuendet = false:
 
 		if gezuendet && strom_ein:
 			max_distanz = 0.03
-			if Lichtbogen_an:
-				lichtbogen.emitting = true
-				LichtbogenLicht.visible = true
-				funken.emitting = true
-				if is_instance_valid(Helm_Visier):
-					var Mat = StandardMaterial3D.new() 
-					Mat.albedo_color = Color(0,0.5,0,0.98)
-					Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-					Mat.roughness = 0.6
-					Helm_Visier.mesh.surface_set_material(0,Mat)
-				if !Schweiss_Ton.playing:
-					Schweiss_Ton.playing = true
+			lichtbogen.emitting = true
+			LichtbogenLicht.visible = true
+			funken.emitting = true
+			if is_instance_valid(Helm_Visier):
+				var Mat = StandardMaterial3D.new() 
+				Mat.albedo_color = Color(0,0.5,0,0.98)
+				Mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				Mat.roughness = 0.6
+				Helm_Visier.mesh.surface_set_material(0,Mat)
+			if !Schweiss_Ton.playing:
+				Schweiss_Ton.playing = true
 		else:
 			max_distanz = 0.01
 			lichtbogen.emitting = false
@@ -70,7 +66,7 @@ var Helm_Visier: MeshInstance3D
 var Schweiss_Ton: AudioStreamPlayer3D
 
 
-var max_distanz = 0.01 #m
+var max_distanz = 0.01 #m Maximale Länge in der der Lichtbogen an bleibt
 var t = 0.0
 var stromdisplay: Label
 var ui:Control
@@ -136,7 +132,7 @@ func debugtext(text):
 
 func _process(delta):
 	t += delta
-	
+
 	# Platziere die Elektrode mittig im Pfad
 	var pfad:Path3D = halter["path3d"]
 	var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(0).lerp(pfad.curve.get_point_position(1),0.5))
@@ -163,7 +159,6 @@ func abbrennen(delta):
 		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta 
 		
 func raycast_schweissflaechen(delta):
-	var neu: bool 
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
@@ -205,53 +200,25 @@ func raycast_schweissflaechen(delta):
 					# Ermittle nähestes Schweissbad
 					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:
-						if schmelzbad.temperatur > 1600:
-							schmelzbad.ueber_schmelztemp = true
-					
-						if (schmelzbad.global_position - pos).length() <= min_abstand_fuer_neues_schweißbad:
-							var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
-							temp.append([schmelzbad,abstand_sq])
-							neu = false
-						else:
-							neu = true
-						if schmelzbad.temperatur <= 1400 && schmelzbad.ueber_schmelztemp:
-							var material = StandardMaterial3D.new()
-							material.albedo_color = Color(0.7,0.7,0.7)
-							material.roughness = 0
-							material.metallic = 1
-							material.metallic_specular = 0.8
-							var naht:Node3D = nähte.pick_random().instantiate()
-							naht.position = schmelzbad.position
-							naht.find_child("Icosphere_003").mesh.surface_set_material(0,material)
-# TODO Ausrichtung der Naht 
-							if elektrode_d == 0.006*2.1:
-								naht.scale = Vector3(0.5,1.35,0.5)
-								print("AAAAAA")
-							elif elektrode_d == 0.005*2.1:
-								naht.scale = Vector3(0.4,1.3,0.4)
-							elif elektrode_d == 0.004*2.1:
-								naht.scale = Vector3(0.35,1.25,0.35)
-							elif elektrode_d == 0.003*2.1:
-								naht.scale = Vector3(0.3,1.2,0.3)
-							flaeche.schweissbäder.remove_at(flaeche.schweissbäder.find(schmelzbad))
-							schmelzbad.queue_free()
-							flaeche.add_child(naht)
-					if temp.size()>0 && !neu:
-						
+						var abstand = schmelzbad.global_position.distance_to(result["position"])
+						if abstand < min_abstand_fuer_neues_schweißbad:
+							temp.append([schmelzbad,abstand])
+					if temp.size()>0:
 						# Es wurde ein ausreichend nahes Bad gefunden
 						temp.sort_custom(func(a,b): return a[1]<b[1]) # sortiere nach Abständen
 						var bad:Schweissbad = temp[0][0] # Nähestes Bad
-						var dist_sq = temp[0][1] # Quadrat des nahesten Abstandes zur Schweissposition
+						var dist = temp[0][1] # Quadrat des nahesten Abstandes zur Schweissposition
+						
 						# Erhitze das Bad und verschiebe sie zur Schweissposition
-						bad.temperatur += strom/clamp(dist_sq,1e-2,1) * 4e-3
-						bad.global_position = bad.global_position.lerp(pos,delta*0.5)
+						bad.temperatur += strom/clamp(dist**2,1e-2,1) * 1e-3
+						bad.global_position = bad.global_position.lerp(pos,delta*2)
 					else:
 						# kein Bad in der Nähe, erzeuge ein neues
 						var bad:Schweissbad = szene_schmelzbad.instantiate()
 						bad.position = flaeche.to_local(pos)
+						flaeche.schweissbäder.append(bad)
 						bad.parent_fläche = flaeche
 						flaeche.add_child(bad)
-						neues_schweissbad.emit(bad,flaeche)
 			else:
 				verfehlt.append(true)
 	if verfehlt.all(is_true):

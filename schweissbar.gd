@@ -28,7 +28,6 @@ var schweissbäder = []
 			mesh.mesh.size.y = neu
 
 func _ready():
-	Schweisslogik.neues_schweissbad.connect(_on_neues_schweissbad)
 	kollision = find_child("CollisionShape3D",false)
 	particle_kollision = find_child("GPUParticlesCollisionBox3D",false)
 	mesh = find_child("MeshInstance3D",false)
@@ -37,8 +36,3 @@ func _ready():
 	
 	if !Engine.is_editor_hint():
 		Schweisslogik.schweissflaechen.append(self)
-
-
-func _on_neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D):
-	if fläche == self:
-		schweissbäder.append(bad)
