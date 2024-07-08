@@ -224,14 +224,15 @@ func raycast_schweissflaechen(delta):
 							naht.position = schmelzbad.position
 							naht.find_child("Icosphere_003").mesh.surface_set_material(0,material)
 # TODO Ausrichtung der Naht 
-							if elektrode_d == 0.006:
-								naht.scale = Vector3(1.3,0.4,0.4)
-							elif elektrode_d == 0.005:
-								naht.scale = Vector3(1.2,0.35,0.35)
-							elif elektrode_d == 0.004:
-								naht.scale = Vector3(1.15,0.3,0.3)
-							elif elektrode_d == 0.003:
-								naht.scale = Vector3(1.1,0.25,0.25)
+							if elektrode_d == 0.006*2.1:
+								naht.scale = Vector3(0.5,1.35,0.5)
+								print("AAAAAA")
+							elif elektrode_d == 0.005*2.1:
+								naht.scale = Vector3(0.4,1.3,0.4)
+							elif elektrode_d == 0.004*2.1:
+								naht.scale = Vector3(0.35,1.25,0.35)
+							elif elektrode_d == 0.003*2.1:
+								naht.scale = Vector3(0.3,1.2,0.3)
 							flaeche.schweissbäder.remove_at(flaeche.schweissbäder.find(schmelzbad))
 							schmelzbad.queue_free()
 							flaeche.add_child(naht)

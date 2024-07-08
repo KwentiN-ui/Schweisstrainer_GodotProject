@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=24 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -16,6 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Szenen/AudioStreamPlayer3D.gd" id="16_wyr2c"]
 [ext_resource type="Script" path="res://Objekte/Aufseher.gd" id="16_x652a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptg0k"]
+metallic = 1.0
+metallic_specular = 0.48
+roughness = 0.57
+
+[sub_resource type="BoxMesh" id="BoxMesh_8mvr0"]
+material = SubResource("StandardMaterial3D_ptg0k")
+size = Vector3(0.57, 0.005, 0.775)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
@@ -50,19 +59,22 @@ script = ExtResource("1_sksy6")
 script = ExtResource("3_st5k3")
 
 [node name="Level 1" type="Node3D" parent="Level"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 2.83738, 1.17395, 2.58177)
-visible = false
+transform = Transform3D(0.999632, 0.0196336, -0.0187401, -0.0196303, 0.999807, 0.00036801, 0.0187437, 0, 0.999825, 3.57851, 1.04782, 2.58177)
 script = ExtResource("4_ww04b")
 
 [node name="Schweissflaeche2" parent="Level/Level 1" instance=ExtResource("6_740ak")]
-transform = Transform3D(0.906558, 0.42208, -4.1748e-08, -0.42208, 0.906558, -1.16565e-07, -6.35067e-08, -1.44927e-07, 1, -0.393228, 0.145271, 0.0552248)
-breite = 0.225
+transform = Transform3D(0.610697, -0.791831, 0.00729826, 0.791831, 0.610561, -0.0148445, 0.00729826, 0.0148445, 0.999863, -0.336031, -0.158347, 0.058202)
+breite = 0.4
 "länge" = 0.544
 
 [node name="Schweissflaeche3" parent="Level/Level 1" instance=ExtResource("6_740ak")]
-transform = Transform3D(0.592767, -0.802815, -0.0641568, 0.805368, 0.591187, 0.0433654, 0.00311361, -0.0773754, 0.996998, -0.0781171, -0.259169, 0.0649087)
-breite = 0.001
+transform = Transform3D(0.665231, -0.746612, 0.00627593, 0.746611, 0.665114, -0.0139968, 0.00627591, 0.0139967, 0.999883, -0.229129, -0.0475382, 0.0712276)
+breite = 0.4
 "länge" = 0.347
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Level 1"]
+transform = Transform3D(0.63113, -0.775646, 0.00691521, 0.775646, 0.631001, -0.0145411, 0.00691522, 0.014541, 0.999871, -0.260726, -0.0880449, 0.0480142)
+mesh = SubResource("BoxMesh_8mvr0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_linc2")
@@ -74,16 +86,16 @@ flip_h = true
 texture = ExtResource("7_f2i3q")
 
 [node name="Helm_aufnehmen" parent="." instance=ExtResource("13_b2o30")]
-transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 1.18607, 1.50601, 4.526)
+transform = Transform3D(-0.966881, 0, 0.255226, 0, 1, 0, -0.255226, 0, -0.966881, 1.41403, 1.50601, 4.0499)
 
 [node name="Spieler" parent="." instance=ExtResource("1_u04tm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.069, -1.43051e-06, 3.6237)
+transform = Transform3D(-0.943246, 0, -0.332095, 0, 1, 0, 0.332095, 0, -0.943246, 2.54594, -1.43051e-06, 3.17951)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_akoil")
 
 [node name="Schweissgeraet" parent="NavigationRegion3D" instance=ExtResource("5_yum85")]
-transform = Transform3D(0.731818, 0, -0.6815, 0, 1, 0, 0.6815, 0, 0.731818, 1.14238, 0, 4.57629)
+transform = Transform3D(0.731818, 0, -0.6815, 0, 1, 0, 0.6815, 0, 0.731818, 1.58011, 0, 4.00758)
 
 [node name="Halle61" parent="NavigationRegion3D" instance=ExtResource("3_xpm5g")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
