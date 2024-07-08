@@ -154,9 +154,10 @@ func _physics_process(delta):
 	lichtbogenparameter_pruefen()
 	abbrennen(delta)
 
+
 func abbrennen(delta):
 	if gezuendet:
-		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta # TODO Durch Funktion (d) ersetzen!
+		elektrode_l -= strom/(PI * elektrode_d**2) * 0.00000005 * delta 
 		
 func raycast_schweissflaechen(delta):
 	var neu: bool 
@@ -200,14 +201,27 @@ func raycast_schweissflaechen(delta):
 					
 					# Ermittle nähestes Schweissbad
 					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
+					var i = 0
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:
-						if (schmelzbad.global_position - pos).length() <= 0.03:
+						i += 1	
+					
+						if schmelzbad.temperatur > 1450:
+							schmelzbad.ueber_schmelztemp = true
+					
+						if (schmelzbad.global_position - pos).length() <= 0.01:
 							var abstand_sq = schmelzbad.global_position.distance_squared_to(result["position"])
 							temp.append([schmelzbad,abstand_sq])
 							neu = false
 						else:
 							neu = true
+						if schmelzbad.temperatur <= 1400 && schmelzbad.ueber_schmelztemp:
+							var naht:Node3D = nähte.pick_random().instantiate()
+							naht.position = schmelzbad.position
+							flaeche.schweissbäder.remove_at(flaeche.schweissbäder.find(schmelzbad))
+							schmelzbad.queue_free()
+							flaeche.add_child(naht)
 					if temp.size()>0 && !neu:
+						
 						# Es wurde ein ausreichend nahes Bad gefunden
 						temp.sort_custom(func(a,b): return a[1]<b[1]) # sortiere nach Abständen
 						var bad:Schweissbad = temp[0][0] # Nähestes Bad

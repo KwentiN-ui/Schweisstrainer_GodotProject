@@ -1,8 +1,9 @@
-@tool
+#@tool
 extends StaticBody3D
 class_name Schweissflaeche
 
 var schweissbäder = []
+
 
 
 @onready var kollision:CollisionShape3D
@@ -34,12 +35,9 @@ func _ready():
 	breite = breite
 	länge = länge
 	
-	if !Engine.is_editor_hint():
-		Schweisslogik.schweissflaechen.append(self)
+	#if !Engine.is_editor_hint():
+	Schweisslogik.schweissflaechen.append(self)
 
-func _process(delta):
-	if !Engine.is_editor_hint():
-		print(schweissbäder)
 
 func _on_neues_schweissbad(bad: Schweissbad, fläche: StaticBody3D):
 	if fläche == self:

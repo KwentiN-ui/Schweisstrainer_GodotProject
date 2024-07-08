@@ -1,8 +1,11 @@
 extends MeshInstance3D
 class_name Schweissbad
 const min_temperatur = 150
-const max_temperatur = 3000
+const max_temperatur = 1700
 var parent_fläche: Schweissflaeche
+
+var ueber_schmelztemp: bool = false
+
 var temperatur:float = min_temperatur*1.5:
 	set(neu):
 		temperatur = neu
