@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cttqvlsid3jys"]
+[gd_scene load_steps=4 format=3 uid="uid://cttqvlsid3jys"]
 
 [ext_resource type="Script" path="res://Objekte/WeldOS/WeldOS_main_menu.gd" id="1_wg2vc"]
+[ext_resource type="Script" path="res://Objekte/WeldOS/GridContainer.gd" id="2_6uphi"]
+[ext_resource type="Theme" uid="uid://bi2ayw2a0e0qj" path="res://UI/UI.tres" id="2_bvnhk"]
 
 [node name="Hauptmenü" type="Control"]
 layout_mode = 3
@@ -11,52 +13,86 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wg2vc")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_bvnhk")
+metadata/_edit_use_anchors_ = true
 
-[node name="Übungen" type="VBoxContainer" parent="TabContainer"]
-layout_mode = 2
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bvnhk")
+theme_override_font_sizes/font_size = 25
 
-[node name="Einführung" type="Button" parent="TabContainer/Übungen"]
+[node name="Übungen" type="VBoxContainer" parent="Panel/TabContainer"]
 layout_mode = 2
-text = "Einführung"
+theme = ExtResource("2_bvnhk")
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Übungen"]
+[node name="E-Hand" type="VBoxContainer" parent="Panel/TabContainer/Übungen"]
 layout_mode = 2
+theme = ExtResource("2_bvnhk")
 
-[node name="E-Hand" type="VBoxContainer" parent="TabContainer/Übungen"]
+[node name="E-Hand Titel" type="Label" parent="Panel/TabContainer/Übungen/E-Hand"]
 layout_mode = 2
-
-[node name="E-Hand Titel" type="Label" parent="TabContainer/Übungen/E-Hand"]
-layout_mode = 2
+theme = ExtResource("2_bvnhk")
+theme_override_font_sizes/font_size = 25
 text = "Elektrode-Hand-Schweißen"
 
-[node name="Erste Auftragsschweissung" type="Button" parent="TabContainer/Übungen/E-Hand"]
+[node name="GridContainer" type="GridContainer" parent="Panel/TabContainer/Übungen/E-Hand"]
 layout_mode = 2
-text = "Erste Auftragsschweißung"
+size_flags_horizontal = 4
+theme = ExtResource("2_bvnhk")
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 5
+script = ExtResource("2_6uphi")
 
-[node name="Grosses Blech" type="Button" parent="TabContainer/Übungen/E-Hand"]
+[node name="Einführung" type="Button" parent="Panel/TabContainer/Übungen/E-Hand/GridContainer"]
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
-text = "Großes Blech"
+theme = ExtResource("2_bvnhk")
+text = "Tutorial"
 
-[node name="Einstellungen" type="VBoxContainer" parent="TabContainer"]
+[node name="Erste Auftragsschweissung" type="Button" parent="Panel/TabContainer/Übungen/E-Hand/GridContainer"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+theme = ExtResource("2_bvnhk")
+text = "Erste
+Auftrags-
+schweißung"
+
+[node name="Grosses Blech" type="Button" parent="Panel/TabContainer/Übungen/E-Hand/GridContainer"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+theme = ExtResource("2_bvnhk")
+text = "Großes 
+Blech"
+
+[node name="Einstellungen" type="VBoxContainer" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("2_bvnhk")
 
-[node name="Beenden" type="Button" parent="TabContainer/Einstellungen"]
+[node name="Beenden" type="Button" parent="Panel/TabContainer/Einstellungen"]
 layout_mode = 2
+theme = ExtResource("2_bvnhk")
 text = "Spiel beenden"
 alignment = 0
 
-[node name="xr meldung deaktivieren" type="SubViewport" parent="."]
+[node name="xr meldung deaktivieren" type="SubViewport" parent="Panel"]
 use_xr = true
 size = Vector2i(0, 0)
 
-[connection signal="pressed" from="TabContainer/Übungen/E-Hand/Erste Auftragsschweissung" to="." method="_on_erste_schweißnaht_pressed"]
-[connection signal="pressed" from="TabContainer/Übungen/E-Hand/Grosses Blech" to="." method="_on_grosses_blech_pressed"]
-[connection signal="pressed" from="TabContainer/Einstellungen/Beenden" to="." method="_on_beenden_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Einführung" to="." method="_on_einführung_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Erste Auftragsschweissung" to="." method="_on_erste_schweißnaht_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Grosses Blech" to="." method="_on_grosses_blech_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Einstellungen/Beenden" to="." method="_on_beenden_pressed"]

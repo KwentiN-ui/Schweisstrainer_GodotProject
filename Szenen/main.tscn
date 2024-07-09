@@ -116,7 +116,7 @@ volume_db = -10.0
 script = ExtResource("16_wyr2c")
 
 [node name="Tablet" parent="." instance=ExtResource("15_2peo7")]
-transform = Transform3D(-0.385503, 0.922706, -8.06656e-08, 0.922706, 0.385503, -3.37018e-08, -3.82137e-15, -8.74228e-08, -1, 1.06953, 0.988332, 1.90989)
+transform = Transform3D(-1.14494, 2.74044, -4.48458e-07, 2.74044, 1.14494, -1.00094e-07, 8.05242e-08, -4.52381e-07, -2.97, 1.06953, 0.988332, 1.90989)
 
 [connection signal="tutorial_fertig" from="Level/Einleitung" to="Aufseher" method="_on_einleitung_tutorial_fertig"]
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

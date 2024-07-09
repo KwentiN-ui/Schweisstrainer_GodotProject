@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bi2ayw2a0e0qj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kllo1"]
+bg_color = Color(0.150643, 0.174798, 0.21103, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s757p"]
+bg_color = Color(0.27451, 0.403922, 0.615686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy7vi"]
+bg_color = Color(0.290196, 0.423529, 0.819608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hdym"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60eur"]
+bg_color = Color(0.27451, 0.403922, 0.615686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_801td"]
+bg_color = Color(0.188235, 0.215686, 0.262745, 1)
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/disabled = SubResource("StyleBoxFlat_kllo1")
+Button/styles/focus = SubResource("StyleBoxFlat_s757p")
+Button/styles/hover = SubResource("StyleBoxFlat_xy7vi")
+Button/styles/normal = SubResource("StyleBoxFlat_7hdym")
+Button/styles/pressed = SubResource("StyleBoxFlat_60eur")
+Label/font_sizes/font_size = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_801td")
+TabBar/font_sizes/font_size = 20

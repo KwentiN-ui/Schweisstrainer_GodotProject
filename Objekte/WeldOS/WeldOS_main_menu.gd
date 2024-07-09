@@ -14,3 +14,6 @@ func _on_grosses_blech_pressed():
 
 func _on_beenden_pressed():
 	get_tree().quit()
+
+func _on_einführung_pressed():
+	pass # Replace with function body.
