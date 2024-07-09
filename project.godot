@@ -23,7 +23,6 @@ general/text_to_speech=true
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 TextManagerSprechblasen="*res://Singletons/TextManager_Sprechblasen.gd"
-Draw3d="*res://Singletons/Draw3D.gd"
 Schweisslogik="*res://Singletons/Schweisslogik.gd"
 
 [display]

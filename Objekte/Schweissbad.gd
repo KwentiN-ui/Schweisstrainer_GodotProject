@@ -2,6 +2,7 @@ extends MeshInstance3D
 class_name Schweissbad
 const min_temperatur = 700
 const max_temperatur = 1800
+const nahtabstände = 1e-3
 var parent_fläche: Schweissflaeche
 @export var farbe_kalt: Color
 @export var farbe_warm: Color
@@ -39,11 +40,23 @@ func _ready():
 	durchmesser = 0.1
 	last_pos = position
 
+func _process(delta):
+	pass
+	
 func _physics_process(delta):
 	temperatur -= temperatur**2.1*1e-6
-	if last_pos.distance_to(position) > 3e-3:
+	if last_pos.distance_to(position) > nahtabstände:
+		var bewegungsrichtung:Vector3 = last_pos - position
 		var nahtabschnitt:Node3D = Schweisslogik.nähte.pick_random().instantiate()
-		nahtabschnitt.position = parent_fläche.to_local(global_position)
-		nahtabschnitt.scale.x = durchmesser * 20
 		parent_fläche.add_child(nahtabschnitt)
+		
+		# Transformation
+		nahtabschnitt.position = parent_fläche.to_local(global_position)
+		nahtabschnitt.global_basis = Basis(
+			parent_fläche.global_basis.y.cross(-bewegungsrichtung),
+			parent_fläche.global_basis.y,
+			-bewegungsrichtung
+			).orthonormalized()
+		nahtabschnitt.scale = durchmesser * 40 * Vector3(1,1,1)
+		
 		last_pos = position

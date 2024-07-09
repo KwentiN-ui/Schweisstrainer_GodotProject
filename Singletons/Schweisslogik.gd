@@ -175,11 +175,11 @@ func raycast_schweissflaechen(delta):
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
 	for flaeche:StaticBody3D in schweissflaechen:
-		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
-			var up_vector = flaeche.global_basis.y
+		
+		if flaeche is Schweissflaeche and flaeche.is_inside_tree(): # könnte auch gelöscht worden sein, daher check
 			var space_state = curr_scene.get_world_3d().direct_space_state
 			var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(1))
-			var ziel = ursprung_Elektrode + max_distanz * -1*up_vector
+			var ziel = ursprung_Elektrode + max_distanz * -1*flaeche.global_basis.y
 			var query = PhysicsRayQueryParameters3D.create(ursprung_Elektrode, ziel)
 			var result = space_state.intersect_ray(query)
 
@@ -189,7 +189,7 @@ func raycast_schweissflaechen(delta):
 				var zielrichtung:Vector3 = ziel - ursprung_Elektrode
 				lichtbogen.process_material.direction = zielrichtung
 
-				schweisswinkel_deg = rad_to_deg(up_vector.angle_to(halter["root"].global_basis.x))
+				schweisswinkel_deg = rad_to_deg(flaeche.global_basis.y.angle_to(halter["root"].global_basis.x))
 				verfehlt.append(false)
 				if not gezuendet:
 					# Lichtbogen zünden

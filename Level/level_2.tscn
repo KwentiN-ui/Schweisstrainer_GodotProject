@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cpwxhdddf3tnu" path="res://Szenen/schweissbar.tscn" id="1_x2mg3"]
 
 [node name="Level2" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Schweissflaeche" parent="." instance=ExtResource("1_x2mg3")]
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.147132, 0)
-text = "LEVEL 2"
+transform = Transform3D(0.700274, 0.713874, -2.62029e-08, -0.713874, 0.700274, -6.24089e-08, -2.62029e-08, 6.24089e-08, 1, 0.116797, 0.179798, 1.02107e-08)
+breite = 0.5
+"länge" = 0.6
