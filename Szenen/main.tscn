@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
 [ext_resource type="PackedScene" uid="uid://g21uv0vsiah3" path="res://Objekte/Ersatzelektrode_Schachtel.tscn" id="13_hcfse"]
 [ext_resource type="PackedScene" uid="uid://d17q18y5i552q" path="res://Objekte/normaler_tisch.tscn" id="13_s4owh"]
+[ext_resource type="PackedScene" uid="uid://bsl75lmsev1px" path="res://Objekte/Tablet/Tablet.tscn" id="15_2peo7"]
 [ext_resource type="AudioStream" uid="uid://dybxfxwhfoo7x" path="res://Sounds/atomsphere.mp3" id="15_rlid7"]
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Szenen/AudioStreamPlayer3D.gd" id="16_wyr2c"]
@@ -113,6 +114,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44514, 2.37513, -13.0166)
 stream = ExtResource("15_rlid7")
 volume_db = -10.0
 script = ExtResource("16_wyr2c")
+
+[node name="Tablet" parent="." instance=ExtResource("15_2peo7")]
+transform = Transform3D(-0.385503, 0.922706, -8.06656e-08, 0.922706, 0.385503, -3.37018e-08, -3.82137e-15, -8.74228e-08, -1, 1.06953, 0.988332, 1.90989)
 
 [connection signal="tutorial_fertig" from="Level/Einleitung" to="Aufseher" method="_on_einleitung_tutorial_fertig"]
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

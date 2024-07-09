@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://c2tvwgfbcfx6y" path="res://Objekte/WeldOS/WeldOS.tscn" id="3_xydwx"]
 
 [node name="Tablet" type="Node3D"]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Bildschirm" parent="." instance=ExtResource("2_63uo3")]
-transform = Transform3D(2.67496e-16, 0.14, 6.11959e-09, 6.11959e-09, -6.11959e-09, 0.14, 0.14, 0, -6.11959e-09, 0.162, 0.0166414, 0)
-screen_size = Vector2(2000, 1400)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0.162, 0.0166414, 0)
+screen_size = Vector2(0.59, 0.29)
 scene = ExtResource("3_xydwx")
-viewport_size = Vector2(2000, 1400)
+viewport_size = Vector2(1180, 580)
 update_mode = 2
 throttle_fps = 24.0
 

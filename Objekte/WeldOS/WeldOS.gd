@@ -12,7 +12,6 @@ func _ready():
 	instantiate_packed_scenes()
 	aktuelle_szene = menu_szene
 func instantiate_packed_scenes():
-	schweiss_szene = Packed_Schweiss_Szene.instantiate()
 	menu_szene = Packed_Menu_Szene.instantiate()
 
 func reload_gui():
