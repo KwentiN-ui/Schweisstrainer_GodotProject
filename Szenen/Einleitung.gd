@@ -83,7 +83,7 @@ func _process(delta):
 				eingeblendet = false
 				schritt = 6
 		6:
-			var helm_war_unten: bool	
+			var helm_war_unten: bool
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Helm benutzen")
 				eingeblendet = true

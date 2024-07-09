@@ -7,7 +7,7 @@ var Text: Dictionary = {
 			"Inhalt": 
 				"[font_size={30}]Willkommen![/font_size]
 In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschweißen erlernt oder geübt werden.
-[color=#CDFFE5]Um das Tutorial zu überspringen den Schweißhelm aufsetzen und mit dem Schweißen beginnen.[/color]",
+[color=#CDFFE5]Um OHNE eine Einweisung zu beginnen einfach den Helm aufsetzen und losschweißen.[/color]",
 			"Parent" : "Aufseher",
 			"pos" : Vector3(-2.2,0.5,0),
 			"min_w_h" : [300,340], # min width, heigth
@@ -16,7 +16,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Teleportieren" : 
 			{
 			"Inhalt" :
-				"[p]Zum  Teleportieren den \"A\"-Knopf am rechten Controller drücken und auf den Zielort zeigen.[/p]
+				"[p]Zum  Bewegen den \"A\"-Knopf am rechten Controller drücken und auf den Zielort zeigen.[/p]
 				[p][img=270]res://Bilder/fuer_Text/A_Knopf.png[/img][/p]
 				[p][color=#CDFFE5]Zum Fortfahren teleportieren![/color][/p]",
 			"Parent" : "Aufseher",
@@ -27,7 +27,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Drehen" : 
 			{
 			"Inhalt" : 
-				"[p]Zum Drehen den Joystick des rechten Controllers benutzen.[/p]
+				"[p]Siehe dich mit dem Joystick des rechten Controllers um!.[/p]
 				[p][img=300]res://Bilder/fuer_Text/Joystick.png[/img][/p]
 				[p][color=#CDFFE5]Zum Fortfahren drehen![/color][/p]",
 			"Parent" : "Aufseher",
@@ -49,7 +49,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Trigger" : 
 			{
 			"Inhalt" : 
-				"[p]Um Knöpfe zu drücken oder den Schweißhelm herunter- oder hoch zu klappen den \"Trigger-Button\" benutzen.[/p]
+				"[p]Verwende den \"Trigger-Button\" um mit Dingen zu interagieren (Knöpfe, Displays, Gegenstände).[/p]
 				[p][img=100]res://Bilder/fuer_Text/Trigger.png[/img][/p]
 				[p][color=#CDFFE5]Zum Fortfahren \"Trigger-Button\" drücken![/color][/p]",
 			"Parent" : "Aufseher",
@@ -60,7 +60,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Helm aufsetzen" : 
 			{
 			"Inhalt" : 
-				"[p]Um Augenverletzungen beim Schweißen zu vermeiden bitte den Schweißhelm greifen und aufsetzen. Um den Helm aufzusetzen die Hand, die den Helm festhält an den Kopf führen.[/p]",
+				"[p]Damit du dir nicht die Augen verbrennst solltest du einen Schweißhelm tragen. Greife ihn, und führe den Helm zu deinem Kopf um ihn aufzusetzen![/p]",
 			"Parent" : "Aufseher",
 			"pos" : Vector3(-2.0,0.8,0),
 			"min_w_h" : [300,220],
@@ -79,9 +79,9 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Helm benutzen" : 
 			{
 				"Inhalt" :
-					"[p]Um den Schweißhelm herunterzuklappen entweder mit dem Kopf nicken oder eine Hand nah an den Kopf halten und \"Trigger\" drücken.[/p]
+					"[p]Um das Visier herunterzuklappen entweder mit dem Kopf kräftig nicken oder eine Hand nah an den Kopf halten und \"Trigger\" drücken.[/p]
 					[p]Zum Hochklappen ebenfalls die Hand nah an den Kopf halten und Trigger drücken.[/p]
-					[p][color=#CDFFE5]Zum Fortfahren den Helm Herunterklappen![/color][/p]",
+					[p][color=#CDFFE5]Zum Fortfahren den Helm herunterklappen![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.2,0.8,0),
 				"min_w_h" : [300,480],
@@ -101,7 +101,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 			{
 				"Inhalt" : 
 					"[p]Zum Schweißen wird eine Schweißmaschine benötigt.[/p]
-					[p]Um diese anzuschalten mit dem Controller auf den Ein/Aus-Schalter zeigen. Wenn dort ein roter Laser zu sehen ist, kann die Schweißmaschine mit \"Trigger\" ein- und ausgeschalten werden.
+					[p]Um den Strom einzuschalten gibt es in der oberen, rechten Ecke der Maschine einen Schalter. Betätige ihn mit \"Trigger\" wenn der rote Laser auf ihn zeigt.
 					[p][color=#CDFFE5]Zum Fortfahren die Schweißmaschine einschalten![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.8,0),
@@ -111,8 +111,8 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Schweissstrom aendern":
 			{
 				"Inhalt" : 
-					"[p] Für die unterschiedlichen Blechdicken werden unterschiedliche Schweißstromstärken benötigt.[/p]
-					[p]Um diese zu Ändern mit dem Controller auf den Slider an der Schweißmaschine zeigen. Wenn dort ein roter Laser zu sehen ist, kann die Schweißstromstärke durch drücken von \"Trigger\" und Bewegen des Controllers geändert werden.
+					"[p] Um der Naht mehr Wärme zuzuführen kann man den Schweißstrom erhöhen.[/p]
+					[p]Hierzu dient der Slider neben dem Display. Beachte, dass mit steigender Stromstärke deine Elektrode schneller abbrennt.
 					[p][color=#CDFFE5]Zum Fortfahren die Schweißstromstärke ändern![/color][/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.5,0.5,0),
@@ -143,7 +143,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Schweissen erklären" : 
 			{
 				"Inhalt" : 
-					"[p] Zum Schweißen die Elektrode an das zu schweißende Blech halten und darauf achten, dass der Abstand nicht größer als der Elektrodendurchmesser ist. Falls der Abstand zu groß wird, geht der Lichtbogen aus und die Elektrode muss neu gezündet werden. [/p]
+					"[p] Zum Schweißen die Elektrode an das zu schweißende Blech halten und auf den Abstand achten. Falls der Abstand zu groß wird, geht der Lichtbogen aus und die Elektrode muss neu gezündet werden. [/p]
 					[p]Und niemals vor dem Schweißen vergessen den Schweißhelm herunterzuklappen![/p]",
 				"Parent" : "Aufseher",
 				"pos" : Vector3(-2.2,0.8,0),

@@ -56,12 +56,6 @@ theme_override_constants/v_separation = 30
 columns = 5
 script = ExtResource("2_6uphi")
 
-[node name="Einführung" type="Button" parent="Panel/TabContainer/Übungen/E-Hand/GridContainer"]
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-theme = ExtResource("2_bvnhk")
-text = "Tutorial"
-
 [node name="Erste Auftragsschweissung" type="Button" parent="Panel/TabContainer/Übungen/E-Hand/GridContainer"]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
@@ -92,7 +86,6 @@ alignment = 0
 use_xr = true
 size = Vector2i(0, 0)
 
-[connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Einführung" to="." method="_on_einführung_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Erste Auftragsschweissung" to="." method="_on_erste_schweißnaht_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Übungen/E-Hand/GridContainer/Grosses Blech" to="." method="_on_grosses_blech_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Einstellungen/Beenden" to="." method="_on_beenden_pressed"]

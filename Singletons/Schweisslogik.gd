@@ -26,7 +26,7 @@ var level: Node3D:
 	# um Level zu laden einfach level = load("pfad").instantiate() nutzen!
 	set(neu):
 		if is_instance_valid(level):
-			levelparent.remove_child(level) # Lösche den alten Level
+			level.queue_free() # Lösche den alten Level
 		level = neu
 		levelparent.add_child(level) # füge den neuen Level hinzu
 var levelparent: Node3D
@@ -176,7 +176,7 @@ func raycast_schweissflaechen(delta):
 	var verfehlt = []
 	for flaeche:StaticBody3D in schweissflaechen:
 		
-		if flaeche is Schweissflaeche and flaeche.is_inside_tree(): # könnte auch gelöscht worden sein, daher check
+		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
 			var space_state = curr_scene.get_world_3d().direct_space_state
 			var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(1))
 			var ziel = ursprung_Elektrode + max_distanz * -1*flaeche.global_basis.y
