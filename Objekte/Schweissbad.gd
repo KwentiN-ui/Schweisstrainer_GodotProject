@@ -37,6 +37,13 @@ var durchmesser: float:
 
 func _ready():
 	durchmesser = 0.1
+	last_pos = position
 
 func _physics_process(delta):
 	temperatur -= temperatur**2.1*1e-6
+	if last_pos.distance_to(position) > 3e-3:
+		var nahtabschnitt:Node3D = Schweisslogik.nähte.pick_random().instantiate()
+		nahtabschnitt.position = parent_fläche.to_local(global_position)
+		nahtabschnitt.scale.x = durchmesser * 20
+		parent_fläche.add_child(nahtabschnitt)
+		last_pos = position

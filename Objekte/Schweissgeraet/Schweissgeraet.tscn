@@ -126,7 +126,6 @@ mesh = SubResource("CylinderMesh_esf0b")
 [node name="Lichtbogen" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0932813, 1.4067, 0)
 top_level = true
-visible = false
 emitting = false
 amount = 3000
 lifetime = 0.1
@@ -146,7 +145,6 @@ light_energy = 5.0
 
 [node name="Funken" type="GPUParticles3D" parent="Elektrodenhalter/Elektrode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.193648, 0)
-visible = false
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ay2to")
