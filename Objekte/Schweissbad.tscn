@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 top_radius = 0.1
 bottom_radius = 0.1
-height = 0.01
+height = 0.001
 
 [node name="Schweissbad" type="MeshInstance3D"]
 mesh = SubResource("CylinderMesh_gj50v")

@@ -7,8 +7,10 @@ var parent_fläche: Schweissflaeche
 @export var farbe_kalt: Color
 @export var farbe_warm: Color
 
-# Speichert die Position des Bades vom letzten Tick um die Bewegungsrichtung als Differenz zu ermitteln
-var last_pos:Vector3
+# Speichert die Position des Bades um die Bewegungsrichtung als Differenz zu ermitteln
+var last_saved_pos:Vector3
+var last_tick_pos:Vector3
+var geschwindigkeit:float
 
 var temperatur:float = min_temperatur*1.5:
 	set(neu):
@@ -38,25 +40,25 @@ var durchmesser: float:
 
 func _ready():
 	durchmesser = 0.1
-	last_pos = position
+	last_saved_pos = position
+	last_tick_pos = position
 
-func _process(delta):
-	pass
-	
 func _physics_process(delta):
 	temperatur -= temperatur**2.1*1e-6
-	if last_pos.distance_to(position) > nahtabstände:
-		var bewegungsrichtung:Vector3 = last_pos - position
+	geschwindigkeit = ((position - last_tick_pos) * delta * 1e6).length()
+	if last_saved_pos.distance_to(position) > nahtabstände:
+		var bewegungsrichtung:Vector3 = last_saved_pos - position
 		var nahtabschnitt:Node3D = Schweisslogik.nähte.pick_random().instantiate()
 		parent_fläche.add_child(nahtabschnitt)
 		
 		# Transformation
 		nahtabschnitt.position = parent_fläche.to_local(global_position)
 		nahtabschnitt.global_basis = Basis(
-			parent_fläche.global_basis.y.cross(-bewegungsrichtung),
+			parent_fläche.global_basis.y.cross(-bewegungsrichtung), # X über Kreuzprodukt von Oben und Vorne
 			parent_fläche.global_basis.y,
 			-bewegungsrichtung
 			).orthonormalized()
-		nahtabschnitt.scale = durchmesser * 40 * Vector3(1,1,1)
+		nahtabschnitt.scale = 1.0/sqrt(clampf(geschwindigkeit,1,100)) * durchmesser * 40.0 * Vector3(1,1,1) # empirischer Skalierungsfaktor in Abhängigkeit des Baddurchmessers
 		
-		last_pos = position
+		last_saved_pos = position
+	last_tick_pos = position
