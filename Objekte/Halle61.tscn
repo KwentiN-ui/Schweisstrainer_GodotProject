@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgwcj6vml3eij"]
+[gd_scene load_steps=14 format=3 uid="uid://bgwcj6vml3eij"]
 
 [ext_resource type="PackedScene" uid="uid://d4btfru7j7atr" path="res://Meshes/Halle61.blend" id="1_x50hd"]
+[ext_resource type="Texture2D" uid="uid://d36dfnxldjtva" path="res://Bilder/Draussen.png" id="2_05x32"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k6ag2"]
 
@@ -102,3 +103,13 @@ shape = SubResource("BoxShape3D_u7bpv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1095, 7.4278, -18.9671)
 visible = false
 shape = SubResource("BoxShape3D_8obl3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.163929, 0.986472, 0, -0.986472, -0.163929, 0, 33.9055, 0)
+light_energy = 0.3
+light_indirect_energy = 0.0
+light_angular_distance = 39.6
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.325, 0, 0, 0, 1.854, 0, 0, 0, 1.23, 1.68703, 1.04657, -23.4275)
+texture = ExtResource("2_05x32")
