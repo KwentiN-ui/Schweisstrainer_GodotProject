@@ -10,7 +10,7 @@ var time = 0
 
 var eingeblendet: bool = false
 var helm: Node3D
-@export var level = 0 # 0: Einleitung, 1: Grip, 2: Trigger, 3: Drehen, 4: Teleportieren 
+@export var schritt = 0 # 0: Einleitung, 1: Grip, 2: Trigger, 3: Drehen, 4: Teleportieren 
 
 var helm_auf: bool = false
 var griffstueck_aufgenommen: bool = false
@@ -31,7 +31,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	match level:
+	match schritt:
 		0:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Einleitung")
@@ -39,7 +39,7 @@ func _process(delta):
 			elif time >= 15:
 				TextManagerSprechblasen.close_dialogue("Einleitung")
 				eingeblendet = false
-				level = 1
+				schritt = 1
 		1:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Grip")
@@ -47,7 +47,7 @@ func _process(delta):
 			if eingeblendet && (Controller_L.is_button_pressed("grip") || Controller_R.is_button_pressed("grip")):
 				TextManagerSprechblasen.close_dialogue("Grip")
 				eingeblendet = false
-				level = 2
+				schritt = 2
 		2:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Trigger")
@@ -55,7 +55,7 @@ func _process(delta):
 			if eingeblendet && (Controller_L.is_button_pressed("trigger") || Controller_R.is_button_pressed("trigger")):
 				TextManagerSprechblasen.close_dialogue("Trigger")
 				eingeblendet = false
-				level = 3
+				schritt = 3
 		3:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Drehen")
@@ -63,7 +63,7 @@ func _process(delta):
 			if eingeblendet && Controller_R.get_vector2("primary").x != 0:
 				TextManagerSprechblasen.close_dialogue("Trigger")
 				eingeblendet = false
-				level = 4
+				schritt = 4
 		4:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Teleportieren")
@@ -71,7 +71,7 @@ func _process(delta):
 			if eingeblendet && Controller_R.get_input("ax_button"):
 				TextManagerSprechblasen.close_dialogue("Teleportieren")
 				eingeblendet = false
-				level = 5
+				schritt = 5
 		5:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Helm Position")
@@ -81,7 +81,7 @@ func _process(delta):
 				TextManagerSprechblasen.close_dialogue("Helm Position")
 				TextManagerSprechblasen.close_dialogue("Helm aufsetzen")
 				eingeblendet = false
-				level = 6
+				schritt = 6
 		6:
 			var helm_war_unten: bool	
 			if !eingeblendet:
@@ -90,7 +90,7 @@ func _process(delta):
 			if eingeblendet && helm.helm_unten:
 				TextManagerSprechblasen.close_dialogue("Helm benutzen")
 				eingeblendet = false
-				level = 7
+				schritt = 7
 		7:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Schweissmaschine einschalten")
@@ -100,7 +100,7 @@ func _process(delta):
 				TextManagerSprechblasen.close_dialogue("Schweissmaschine einschalten")
 				TextManagerSprechblasen.close_dialogue("Schweissmaschine Position")
 				eingeblendet = false
-				level = 8
+				schritt = 8
 		8:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Schweissstrom aendern")
@@ -108,7 +108,7 @@ func _process(delta):
 			if eingeblendet && (Schweisslogik.strom != 100):
 				TextManagerSprechblasen.close_dialogue("Schweissstrom aendern")
 				eingeblendet = false
-				level = 9
+				schritt = 9
 		9:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Griffstueck nehmen")
@@ -116,7 +116,7 @@ func _process(delta):
 			if eingeblendet && griffstueck_aufgenommen:
 				TextManagerSprechblasen.close_dialogue("Griffstueck nehmen")
 				eingeblendet = false
-				level = 10
+				schritt = 10
 		10:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Elektrode nehmen")
@@ -126,7 +126,7 @@ func _process(delta):
 				TextManagerSprechblasen.close_dialogue("Elektrode nehmen")
 				TextManagerSprechblasen.close_dialogue("Schweisselektroden Position")
 				eingeblendet = false
-				level = 11
+				schritt = 11
 		11:
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Schweissen erklären")
@@ -134,7 +134,7 @@ func _process(delta):
 			if eingeblendet && Schweisslogik.gezuendet:
 				TextManagerSprechblasen.close_dialogue("Schweissen erklären")
 				eingeblendet = false
-				level = 12
+				schritt = 12
 			fertig.emit() # Schweißblech wird eingeblendet
 		12:
 			pass
@@ -147,12 +147,12 @@ func _process(delta):
 			TextManagerSprechblasen.close_dialogue("Einleitung")
 			fertig.emit()
 			tutorial_fertig.emit() # Aufseher kann sich dann bewegen
-			level = 21
+			schritt = 21
 		_:
 			pass
 
 func _on_einleitung_ueberspringen():
-	level = 20
+	schritt = 20
 	eingeblendet = false
 
 func _on_helm_aufgenommen():

@@ -1,12 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmc80edjpj5j1"]
+[gd_scene load_steps=20 format=3 uid="uid://dmc80edjpj5j1"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_sksy6"]
 [ext_resource type="PackedScene" uid="uid://3cgr3vswgw00" path="res://Objekte/Spieler.tscn" id="1_u04tm"]
 [ext_resource type="Script" path="res://Szenen/Einleitung.gd" id="3_st5k3"]
 [ext_resource type="PackedScene" uid="uid://bgwcj6vml3eij" path="res://Objekte/Halle61.tscn" id="3_xpm5g"]
-[ext_resource type="Script" path="res://Szenen/Level 1.gd" id="4_ww04b"]
 [ext_resource type="PackedScene" uid="uid://cj2yms30gnuhe" path="res://Objekte/Schweissgeraet/Schweissgeraet.tscn" id="5_yum85"]
-[ext_resource type="PackedScene" uid="uid://cpwxhdddf3tnu" path="res://Szenen/schweissbar.tscn" id="6_740ak"]
 [ext_resource type="Texture2D" uid="uid://c17d3qnvro463" path="res://Bilder/Schweisszeichen.jpg" id="7_f2i3q"]
 [ext_resource type="PackedScene" uid="uid://fpbw1dxcitxh" path="res://Meshes/Tisch-col.blend" id="10_cvuox"]
 [ext_resource type="PackedScene" uid="uid://btuq2lq2ygxml" path="res://Objekte/helm_aufnehmen.tscn" id="13_b2o30"]
@@ -16,15 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://7qf4gih3mh48" path="res://Meshes/Maennchen.blend" id="16_plsmp"]
 [ext_resource type="Script" path="res://Szenen/AudioStreamPlayer3D.gd" id="16_wyr2c"]
 [ext_resource type="Script" path="res://Objekte/Aufseher.gd" id="16_x652a"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptg0k"]
-metallic = 1.0
-metallic_specular = 0.48
-roughness = 0.57
-
-[sub_resource type="BoxMesh" id="BoxMesh_8mvr0"]
-material = SubResource("StandardMaterial3D_ptg0k")
-size = Vector3(0.57, 0.005, 0.775)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytg4t"]
 
@@ -54,28 +43,10 @@ region_min_size = 3.0
 script = ExtResource("1_sksy6")
 
 [node name="Level" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7082, 1.05268, 2.27554)
 
 [node name="Einleitung" type="Node3D" parent="Level"]
 script = ExtResource("3_st5k3")
-
-[node name="Level 1" type="Node3D" parent="Level"]
-transform = Transform3D(0.999632, 0.0196336, -0.0187401, -0.0196303, 0.999807, 0.00036801, 0.0187437, 0, 0.999825, 3.57851, 1.04782, 2.58177)
-script = ExtResource("4_ww04b")
-
-[node name="Schweissflaeche2" parent="Level/Level 1" instance=ExtResource("6_740ak")]
-transform = Transform3D(0.610697, -0.791831, 0.00729826, 0.791831, 0.610561, -0.0148445, 0.00729826, 0.0148445, 0.999863, -0.336031, -0.158347, 0.058202)
-breite = 0.2
-"länge" = 0.5
-
-[node name="Schweissflaeche3" parent="Level/Level 1" instance=ExtResource("6_740ak")]
-transform = Transform3D(0.665231, -0.746612, 0.00627593, 0.746611, 0.665114, -0.0139968, 0.0062759, 0.0139967, 0.999883, -0.231475, -0.0475845, 0.0712721)
-breite = 0.2
-"länge" = 0.5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Level 1"]
-transform = Transform3D(0.63113, -0.775646, 0.00691521, 0.775646, 0.631001, -0.0145411, 0.00691522, 0.014541, 0.999871, -0.260726, -0.0880449, 0.0480142)
-visible = false
-mesh = SubResource("BoxMesh_8mvr0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_linc2")
@@ -143,6 +114,5 @@ stream = ExtResource("15_rlid7")
 volume_db = -10.0
 script = ExtResource("16_wyr2c")
 
-[connection signal="fertig" from="Level/Einleitung" to="Level/Level 1" method="_on_einleitung_fertig"]
 [connection signal="tutorial_fertig" from="Level/Einleitung" to="Aufseher" method="_on_einleitung_tutorial_fertig"]
 [connection signal="velocity_computed" from="Aufseher/NavigationAgent3D" to="Aufseher" method="_on_navigation_agent_3d_velocity_computed"]

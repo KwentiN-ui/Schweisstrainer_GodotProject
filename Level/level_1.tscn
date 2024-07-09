@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bktf070mnebyj"]
+
+[ext_resource type="PackedScene" uid="uid://cpwxhdddf3tnu" path="res://Szenen/schweissbar.tscn" id="2_x7hf6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptg0k"]
+metallic = 1.0
+metallic_specular = 0.48
+roughness = 0.57
+
+[sub_resource type="BoxMesh" id="BoxMesh_8mvr0"]
+material = SubResource("StandardMaterial3D_ptg0k")
+size = Vector3(0.57, 0.005, 0.775)
+
+[node name="Level 1" type="Node3D"]
+transform = Transform3D(0.999632, 0.0196336, -0.0187401, -0.0196303, 0.999807, 0.00036801, 0.0187437, 0, 0.999825, 0, 0, 0)
+
+[node name="Schweissflaeche2" parent="." instance=ExtResource("2_x7hf6")]
+transform = Transform3D(0.945407, -0.325891, 0.00102345, 0.325891, 0.945388, -0.00610946, 0.00102344, 0.00610947, 0.99998, -0.288162, -0.079015, 0.0573063)
+breite = 0.076
+"länge" = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.63113, -0.775646, 0.00691521, 0.775646, 0.631001, -0.0145411, 0.00691522, 0.014541, 0.999871, -0.260726, -0.0880449, 0.0480142)
+visible = false
+mesh = SubResource("BoxMesh_8mvr0")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.00397531, 0.22765, -0.973735, -0.0148545, 0.973622, 0.227684, 0.999881, 0.0153695, -0.000488803, -0.183986, 0.000402808, 0.0578015)
+pixel_size = 0.002
+text = "Hier kann geschweißt werden!"

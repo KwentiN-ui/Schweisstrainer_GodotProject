@@ -22,6 +22,15 @@ var spieler = {
 	"hand_l":null,
 }
 
+var level: Node3D:
+	# um Level zu laden einfach level = load("pfad").instantiate() nutzen!
+	set(neu):
+		if is_instance_valid(level):
+			levelparent.remove_child(level) # Lösche den alten Level
+		level = neu
+		levelparent.add_child(level) # füge den neuen Level hinzu
+var levelparent: Node3D
+
 var nähte:Array[PackedScene] = []
 
 var schweissflaechen = [] # [[Fläche1,Pfad1],[Fläche2,Pfad2]] für alle schweißbaren Flächen
@@ -108,7 +117,9 @@ func _ready():
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
+	levelparent = curr_scene.find_child("Level")
 
+	level = load("res://Level/level_1.tscn").instantiate() # Level 1 laden
 	
 	# Nähte in Array laden
 	for i in range(31):
