@@ -12,12 +12,14 @@ var last_saved_pos:Vector3
 var last_tick_pos:Vector3
 var geschwindigkeit:float
 
+var nahtmaterial = StandardMaterial3D.new() # Material für Schweissnaht
+var badmaterial = StandardMaterial3D.new()
+
 var temperatur:float = min_temperatur*1.5:
 	set(neu):
 		temperatur = neu
 		if temperatur>max_temperatur:
 			temperatur = max_temperatur
-		$Label3D.text = str(neu)
 		if temperatur < min_temperatur:
 			if is_instance_valid(parent_fläche):
 				parent_fläche.schweissbäder.erase(self)
@@ -25,13 +27,9 @@ var temperatur:float = min_temperatur*1.5:
 		else:
 			durchmesser = lerpf(0,3e-2,(neu-min_temperatur)/2000)
 			# Lege Material fest
-			var Mat = StandardMaterial3D.new()
-			Mat.emission_enabled = true 
-			Mat.emission_energy_multiplier = 5
-			Mat.roughness = 0
-			Mat.emission = farbe_kalt.lerp(farbe_warm,(temperatur-min_temperatur)/(max_temperatur-min_temperatur))
-			Mat.albedo_color = Color(255,0,0)
-			mesh.surface_set_material(0,Mat)
+			badmaterial.emission = farbe_kalt.lerp(farbe_warm,(temperatur-min_temperatur)/(max_temperatur-min_temperatur))
+
+
 var durchmesser: float:
 	set(neu):
 		durchmesser = neu
@@ -42,6 +40,19 @@ func _ready():
 	durchmesser = 0.1
 	last_saved_pos = position
 	last_tick_pos = position
+	
+	# Badmaterialdaten
+	badmaterial.emission_enabled = true
+	badmaterial.emission_energy_multiplier = 5
+	badmaterial.roughness = 0
+	badmaterial.albedo_color = Color(255,0,0)
+	mesh.surface_set_material(0,badmaterial)
+	
+	# Schweissnahtnahtmaterial
+	nahtmaterial.albedo_color = Color(0.7,0.7,0.7)
+	nahtmaterial.roughness = .6
+	nahtmaterial.metallic = 1
+	nahtmaterial.metallic_specular = 0.8
 
 func _physics_process(delta):
 	temperatur -= temperatur**2.1*1e-6
@@ -59,6 +70,6 @@ func _physics_process(delta):
 			-bewegungsrichtung
 			).orthonormalized()
 		nahtabschnitt.scale = 1.0/sqrt(clampf(geschwindigkeit,1,100)) * durchmesser * 40.0 * Vector3(1,1,1) # empirischer Skalierungsfaktor in Abhängigkeit des Baddurchmessers
-		
+		nahtabschnitt.find_child("Icosphere_003",false).mesh.surface_set_material(0, nahtmaterial)
 		last_saved_pos = position
 	last_tick_pos = position

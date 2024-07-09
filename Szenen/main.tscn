@@ -88,23 +88,17 @@ movement_speed = 1.1
 avoidance_enabled = true
 
 [node name="ErsatzelektrodeSchachtel1" parent="." instance=ExtResource("13_hcfse")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.42727, 0.905438, 3.55964)
-durchmesser = 0.02
-"länge" = 0.3
-
-[node name="ErsatzelektrodeSchachtel2" parent="." instance=ExtResource("13_hcfse")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.43252, 0.905439, 3.40376)
-durchmesser = 0.004
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.42727, 0.905438, 3.40698)
+durchmesser = 0.003
 "länge" = 0.3
 
 [node name="ErsatzelektrodeSchachtel3" parent="." instance=ExtResource("13_hcfse")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.43252, 0.905439, 3.25018)
-durchmesser = 0.007
 "länge" = 0.3
 
 [node name="ErsatzelektrodeSchachtel4" parent="." instance=ExtResource("13_hcfse")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.43252, 0.905439, 3.09643)
-durchmesser = 0.01
+durchmesser = 0.006
 "länge" = 0.3
 
 [node name="DEBUGLABEL" type="Label3D" parent="."]

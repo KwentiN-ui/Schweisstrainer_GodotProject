@@ -60,7 +60,7 @@ In dieser virtuellen Werkstatt kann das  Schweißverfahren Lichtbogenhandschwei�
 		"Helm aufsetzen" : 
 			{
 			"Inhalt" : 
-				"[p]Damit du dir nicht die Augen verbrennst solltest du einen Schweißhelm tragen. Greife ihn, und führe den Helm zu deinem Kopf um ihn aufzusetzen![/p]",
+				"[p]Damit du dir nicht die Augen verbrennst solltest du einen Schweißhelm tragen. Greife ihn, und führe ihn zu deinem Kopf![/p]",
 			"Parent" : "Aufseher",
 			"pos" : Vector3(-2.0,0.8,0),
 			"min_w_h" : [300,220],

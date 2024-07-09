@@ -111,7 +111,7 @@ script = ExtResource("8_xpgtv")
 hand = 1
 
 [node name="XRToolsGrabPointHandLeft" type="Marker3D" parent="Elektrodenhalter"]
-transform = Transform3D(-1, 0, 8.74228e-08, 7.77378e-08, 0.457486, 0.889217, -3.99947e-08, 0.889217, -0.457486, 0.00512593, -0.0697711, 0.0505303)
+transform = Transform3D(1, -3.99947e-08, -1.65161e-07, -1.65161e-07, -0.457486, -0.889217, -3.99947e-08, 0.889217, -0.457486, 0.00512593, 0.0593928, 0.0505303)
 visible = false
 script = ExtResource("8_xpgtv")
 

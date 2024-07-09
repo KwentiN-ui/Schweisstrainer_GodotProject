@@ -27,13 +27,22 @@ var level: Node3D:
 	set(neu):
 		if is_instance_valid(level):
 			level.queue_free() # Lösche den alten Level
+			schweissflaechen_säubern()
 		level = neu
 		levelparent.add_child(level) # füge den neuen Level hinzu
 var levelparent: Node3D
 
 var nähte:Array[PackedScene] = []
 
-var schweissflaechen = [] # [[Fläche1,Pfad1],[Fläche2,Pfad2]] für alle schweißbaren Flächen
+var schweissflaechen = []
+func schweissflaechen_säubern():
+	var schlecht = []
+	for flaeche in schweissflaechen:
+		if !is_instance_valid(flaeche):
+			schlecht.append(flaeche)
+	for bad in schlecht:
+		schweissflaechen.erase(bad)
+
 var gezuendet = false:
 	set(neu):
 		if neu == false:
@@ -118,7 +127,7 @@ func _ready():
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
 	levelparent = curr_scene.find_child("Level")
-
+	
 	level = load("res://Level/level_1.tscn").instantiate() # Level 1 laden
 	
 	# Nähte in Array laden
@@ -174,9 +183,8 @@ func raycast_schweissflaechen(delta):
 	# Geht durch alle Schweissflächen und Raycasted in der maximalen Länge des Lichtbogens
 	var pfad:Path3D = halter["path3d"]
 	var verfehlt = []
-	for flaeche:StaticBody3D in schweissflaechen:
-		
-		if flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
+	for flaeche in schweissflaechen:
+		if is_instance_valid(flaeche) and flaeche is Schweissflaeche: # könnte auch gelöscht worden sein, daher check
 			var space_state = curr_scene.get_world_3d().direct_space_state
 			var ursprung_Elektrode = pfad.to_global(pfad.curve.get_point_position(1))
 			var ziel = ursprung_Elektrode + max_distanz * -1*flaeche.global_basis.y
@@ -196,19 +204,6 @@ func raycast_schweissflaechen(delta):
 					gezuendet = true
 					return
 				if gezuendet:
-					# Naht erzeugen TODO
-					# IDEE:
-					# Ist an dem Ort schon ein Schmelzbad?
-					# wenn nein, dann erzeuge eines
-					# wenn ja dann addiere temperatur, update die größe in Abhängigkeit der Temperatur
-					# wenn Temperatur unter Grenze fällt, dann instanziiere einen Nahtabschnitt
-					
-					# Der nachfolgende Code erzeugt einfach zufällige Nähte an der Schweißposition, funktioniert im Notfall auch
-					#var naht:Node3D = nähte.pick_random().instantiate()
-					#naht.position = flaeche.to_local(result["position"])
-					#
-					#flaeche.add_child(naht)
-					
 					# Ermittle nähestes Schweissbad
 					var temp:Array = [] # Speichert Bäder und Abstand zur Schweissposition
 					for schmelzbad: Schweissbad in flaeche.schweissbäder:

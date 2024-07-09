@@ -83,7 +83,6 @@ func _process(delta):
 				eingeblendet = false
 				schritt = 6
 		6:
-			var helm_war_unten: bool
 			if !eingeblendet:
 				TextManagerSprechblasen.add_dialogue("Helm benutzen")
 				eingeblendet = true
@@ -137,8 +136,8 @@ func _process(delta):
 				schritt = 12
 			fertig.emit() # Schweißblech wird eingeblendet
 		12:
-			pass
 			tutorial_fertig.emit() # Aufseher kann sich dann bewegen
+			schritt = 21
 		20:
 			TextManagerSprechblasen.close_dialogue("Teleportieren")
 			TextManagerSprechblasen.close_dialogue("Drehen")
