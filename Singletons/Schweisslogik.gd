@@ -108,6 +108,7 @@ func _ready():
 	Helm_Visier = curr_scene.find_child("Visier")
 	funken = curr_scene.find_child("Funken")
 	Schweiss_Ton = curr_scene.find_child("Elektrode_ton")
+
 	
 	# Nähte in Array laden
 	for i in range(31):
