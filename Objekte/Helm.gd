@@ -58,9 +58,9 @@ func helm_aufnehmen():
 		sichtbar = true
 		aufnehmbarer_helm.visible = false
 		time = 0
-		if einleitung.level < 5:
+		if einleitung.schritt < 5:
 			einleitung_ueberspringen.emit()
-		if einleitung.level == 5:
+		if einleitung.schritt == 5:
 			helm_aufgenommen.emit()
 		aufnehmbarer_helm.queue_free()
 			
