@@ -1,5 +1,26 @@
 # VR Schweißtrainer  
+## Einführung
+Dieses Projekt entstand im Rahmen des Moduls **Augmented and Virtual Reality - Principles and Practice** an der Hochschule Anhalt.
+![Logo der HSA](https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/HSA_Logo_Text.png)
 
+Autoren:
+- Nadine Schulz
+- Quentin Huss
+
+Das Projekt ist unter der MIT-Lizenz für jeden zur freien Verwendung verfügbar.
+
+## Projekt einrichten
+1. Repository klonen oder herunterladen
+2. [Godot 4.2](https://godotengine.org/) herunterladen
+3. [Blender](https://www.blender.org/) installieren
+4. Godot starten und beliebiges Projekt öffnen
+5. In den Editoreinstellungen $\to$ Dateisystem $\to$ Importieren $\to$ Blender3-Pfad festlegen (Ordner zum Blender Ordner, nicht zur .exe)
+6. Projekt neu öffnen
+7. Das Programm kann mit dem Pfeilsymbol oben rechts oder F5 gestartet werden
+
+>Blender wird headless ausgeführt, um die .blend Dateien in Meshes als solche zu importieren und ist somit zwingend erforderlich!
+
+Das Projekt wurde mit SteamVR als OpenXR Runtime getestet.
 
 
 ## Tutorial  
