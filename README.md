@@ -1,6 +1,6 @@
 # VR Schweißtrainer  
 ## Einführung
-![Logo der HSA](https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/HSA_Logo_Text.png)
+<img src="https://cloud.githubusercontent.com/assets/yourgif.gif](https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/HSA_Logo_Text.png" width="400">
 Dieses Projekt entstand im Rahmen des Moduls **Augmented and Virtual Reality - Principles and Practice** an der Hochschule Anhalt.
 
 Autoren:
