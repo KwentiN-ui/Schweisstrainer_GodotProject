@@ -35,6 +35,7 @@ Das Projekt wurde mit SteamVR als OpenXR Runtime getestet.
 | Trigger | Trigger-Button | rechts u. links | Drücken von Knöpfen, Slider, Auffüllen der Elektrode... | ![Trigger-Button](https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_Text/Trigger.png) |  
 
 ### Ablauf  
+
 #### Helm  
 <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Helm_auf_Tisch.png" width="500">  
 1. Helm greifen:  
@@ -42,6 +43,7 @@ Das Projekt wurde mit SteamVR als OpenXR Runtime getestet.
 2. Helm benutzen:  
    Um den Helm Herunterzuklappen mit dem Kopf nicken oder eine Hand nah an den Kopf halten und Trigger drücken.  
    Zum Hochklappen ebenfalls eine Hand nah an den Kopf halten und Trigger drücken.  
+   
 #### Schweißmaschine  
 <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Schweissmaschine.png" width="500">  
 1. Schweißmaschine einschalten:   
@@ -50,12 +52,14 @@ Das Projekt wurde mit SteamVR als OpenXR Runtime getestet.
 2. Schweißstrom ändern:  
    Zum Ändern des Schweißstrom auf den Slider rechts neben der Stromanzeige zeigen. Sobald ein roter Laser erscheint, kann der Schweißstrom durch bewegen der Hand geändert werden.  
    <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Schweissmaschine_Strom_aendern.png" width="500">    
-#### Elektrodenhalter  
+   
+#### Elektrodenhalter   
 <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Elektrodenhalter.png" width="500">  
 1. Elektrodenhalter greifen  
 2. neue Elektrode einspannen:  
    Zum Einspannen einer neuen Elektrode mit einer Hand auf eine Packung mit Stabelektroden halten. Sobald ein roter Laser erscheint, kann durch drücken von Trigger eine neue Elektrode eingespannt werden.   
-   <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Nachfuellelektroden.png" width="500">  
+   <img src="https://github.com/KwentiN-ui/Schweisstrainer_GodotProject/blob/main/Bilder/fuer_README/Nachfuellelektroden.png" width="500">   
+   
 #### Schweißen   
 Zum Schweißen die Elektrode nah an das zu Schweißende Blech führen und Zünden.  
 Sobald die Elektrode gezündet ist, darf der Abstand zum Blech nicht größer als $2\cdot Elektrodendurchmesser$ werden, sonst erlischt der Lichtbogen und es muss neu gezündet werden.  
